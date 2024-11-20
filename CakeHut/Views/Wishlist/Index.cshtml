@@ -1,0 +1,45 @@
+﻿@model IEnumerable<CakeHut.Models.Product>
+
+<div class="row border rounded-3">
+<h2>My Wishlist</h2>
+<hr />
+
+@if (!Model.Any())
+{
+    
+        <div class="alert alert-warning alert-dismissible fade show mt-4" role="alert">
+            <strong>Your wishlist is empty.</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+}
+else
+{
+    <table class="table align-middle">
+        <tbody>
+            @foreach (var product in Model)
+            {
+                <tr>
+                    <td>
+                        <img src="/cakes/@product.ImageUrl" width="100" class="rounded" alt="@product.Name">
+                    </td>
+                    <td>
+                        <h4>@product.Name</h4>
+                        <p>
+                            Product ID: @product.Id<br>
+                            Price: @(product.Price) Rs
+                        </p>
+                    </td>
+                    <td>
+                        <form asp-controller="Wishlist" asp-action="Remove" method="post" style="display:inline">
+                            <input type="hidden" name="productId" value="@product.Id" />
+                            <button type="submit" class="btn btn-outline-danger">
+                                <i class="bi bi-trash"></i> Remove
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+</div>

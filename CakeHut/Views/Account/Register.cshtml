@@ -1,0 +1,105 @@
+﻿@model Register
+@{
+}
+
+<style>
+    /* Style the asterisk for required fields */
+    .required-field::after {
+        content: " *";
+        color: red;
+    }
+</style>
+<div class="row">
+    <div class="col-lg-8 mx-auto rounded border p-4 shadow-lg">
+        <h2 class="text-center mb-3">Register</h2>
+        <hr />
+
+        <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+
+        @if (ViewBag.ErrorMessage != null)
+        {
+            <div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                <strong>@ViewBag.ErrorMessage</strong>
+                <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+            </div>
+        }
+        else if (ViewBag.SuccessMessage != null)
+        {
+            <div class='alert alert-success alert-dismissible fade show' role='alert'>
+                <strong>@ViewBag.SuccessMessage</strong>
+                <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+            </div>
+        }
+
+        <div class="row">
+            <!-- Left Column for Image -->
+            <div class="col-lg-6 d-none d-lg-block">
+                <img src="~/images/bc284d50422202913a976eac88563299.jpg" alt="Registration Image" class="img-fluid rounded">
+            </div>
+
+            <!-- Right Column for Form -->
+            <div class="col-lg-6">
+                <form method="post" class="mt-4">
+                    <div class="row mb-3">
+                        <label class="col-sm-4 col-form-label required-field">First Name </label>
+                        <div class="col-sm-8">
+                            <input class="form-control" asp-for="FirstName">
+                            <span asp-validation-for="FirstName" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label class="col-sm-4 col-form-label required-field">Last Name </label>
+                        <div class="col-sm-8">
+                            <input class="form-control" asp-for="LastName">
+                            <span asp-validation-for="LastName" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label class="col-sm-4 col-form-label required-field">Phone Number </label>
+                        <div class="col-sm-8">
+                            <input class="form-control" asp-for="PhoneNumber">
+                            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label class="col-sm-4 col-form-label required-field">Email </label>
+                        <div class="col-sm-8">
+                            <input class="form-control" asp-for="Email">
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label class="col-sm-4 col-form-label required-field">Password </label>
+                        <div class="col-sm-8">
+                            <input class="form-control" type="password" asp-for="Password">
+                            <span asp-validation-for="Password" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label class="col-sm-4 col-form-label required-field">Confirm Password </label>
+                        <div class="col-sm-8">
+                            <input class="form-control" type="password" asp-for="ConfirmPassword">
+                            <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3 mt-3 justify-content-center">
+                        <div class="offset-sm-4 col-sm-4 d-grid">
+                            <button type="submit" class="btn btn-primary">Register</button>
+                        </div>
+                        <div class="col-sm-4 d-grid">
+                            <a class="btn btn-outline-primary" asp-controller="Home" asp-action="Index" role="button">
+                                Cancel
+                            </a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,106 @@
+﻿@{
+    ViewData["Title"] = "Admin Dashboard";
+}
+
+<div class="container my-4" style="background: linear-gradient(to right, #c3f0e3, #f0d6da, #a5d4d070); padding: 20px; border-radius: 10px;">
+    <h1 class="text-center">Welcome to the Admin Dashboard</h1>
+    <p class="text-center">Manage your application effectively from here.</p>
+
+    <div class="text-center">
+        <img src="~/cakes/foodphotography-macarons.jpeg" alt="Admin Welcome" class="img-fluid rounded-circle" style="max-height: 400px; object-fit: cover; width: 400px; height: 400px;" />
+    </div>
+
+    <div class="text-center mt-4">
+        <h2 class="mb-4">Management Options</h2>
+        <div class="d-grid gap-2 col-md-6 mx-auto">
+            <a class="btn btn-primary" asp-area="" asp-controller="Users" asp-action="Index">User Management</a>
+            <a class="btn btn-primary" asp-area="" asp-controller="AdminOrders" asp-action="Index">Order Management</a>
+            <a class="btn btn-primary" asp-area="" asp-controller="Category" asp-action="Index">Category Management</a>
+            <a class="btn btn-primary" asp-area="" asp-controller="Products" asp-action="Index">Product Management</a>
+            <a class="btn btn-primary" asp-area="" asp-controller="Coupon" asp-action="Index">Coupon Management</a>
+            <a class="btn btn-primary" asp-area="" asp-controller="Offers" asp-action="Index">Offer Management</a>
+        </div>
+    </div>
+
+    @* <!-- Sales Report Section --> *@
+    @* <div class="text-center mt-5"> *@
+    @*     <h2 class="mb-4">Sales Report</h2> *@
+    @*     <div class="d-flex justify-content-center mb-3"> *@
+    @*         <input type="date" id="startDate" class="form-control mx-2" required /> *@
+    @*         <input type="date" id="endDate" class="form-control mx-2" required /> *@
+    @*     </div> *@
+    @*     <div class="d-grid gap-2 col-md-4 mx-auto mb-3"> *@
+    @*         <button id="generateReport" class="btn btn-success">Generate Report</button> *@
+    @*         <button id="downloadPdf" class="btn btn-secondary">Download PDF</button> *@
+    @*         <button id="downloadExcel" class="btn btn-info">Download Excel</button> *@
+    @*     </div> *@
+    @*     <div id="reportResult" class="mt-4"></div> *@
+    @* </div> *@
+</div>
+
+@section Scripts {
+    <script>
+        document.getElementById('generateReport').onclick = async function () {
+            const startDate = document.getElementById('startDate').value;
+            const endDate = document.getElementById('endDate').value;
+
+            const response = await fetch('/admin/sales-report', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ startDate, endDate })
+            });
+
+            if (response.ok) {
+                const reportData = await response.json();
+                displayReport(reportData);
+            } else {
+                alert('Failed to generate report');
+            }
+        };
+
+        function displayReport(reportData) {
+            const reportResultDiv = document.getElementById('reportResult');
+            reportResultDiv.innerHTML = `
+                <h3>Sales Report</h3>
+                <p>Total Sales Count: ${reportData.totalSalesCount}</p>
+                <p>Total Order Amount: ${reportData.totalOrderAmount.toFixed(2)}</p>
+                <p>Total Discount: ${reportData.totalDiscount.toFixed(2)}</p>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Order ID</th>
+                            <th>Order Amount</th>
+                            <th>Discount</th>
+                            <th>Coupon Code</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${reportData.saleDetails.map(detail => `
+                            <tr>
+                                <td>${detail.orderId}</td>
+                                <td>${detail.orderAmount.toFixed(2)}</td>
+                                <td>${detail.discount.toFixed(2)}</td>
+                                <td>${detail.couponCode}</td>
+                            </tr>
+                        `).join('')}
+                    </tbody>
+                </table>
+            `;
+        }
+
+        // Download buttons
+        document.getElementById('downloadPdf').onclick = function() {
+            const startDate = document.getElementById('startDate').value;
+            const endDate = document.getElementById('endDate').value;
+            window.location.href = `/admin/sales-report/download/pdf?startDate=${startDate}&endDate=${endDate}`;
+        };
+
+        document.getElementById('downloadExcel').onclick = function() {
+            const startDate = document.getElementById('startDate').value;
+            const endDate = document.getElementById('endDate').value;
+            window.location.href = `/admin/sales-report/download/excel?startDate=${startDate}&endDate=${endDate}`;
+        };
+    </script>
+}

@@ -1,0 +1,54 @@
+﻿@model CakeHut.Models.Wallet
+
+@{
+    ViewData["Title"] = "Your Wallet";
+}
+
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Your Wallet</h2>
+
+    @if (Model == null)
+    {
+        <div class="alert alert-danger text-center">
+            <p>Unable to load your wallet details. Please try again later.</p>
+        </div>
+    }
+    else if (Model.Balance == 0 && (Model.Transactions == null || !Model.Transactions.Any()))
+    {
+        <div class="alert alert-info text-center">
+            <p>Your wallet is empty.</p>
+        </div>
+    }
+    else
+    {
+        <div class="card shadow-sm mb-4">
+            <div class="card-body">
+                <h4 class="card-title">Balance</h4>
+                <p class="card-text display-4 text-success">@Model.Balance Rs</p>
+            </div>
+        </div>
+
+        <h3 class="mb-4">Transaction History</h3>
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Date</th>
+                        <th>Amount</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var transaction in Model.Transactions.OrderByDescending(t => t.TransactionDate))
+                    {
+                        <tr>
+                            <td>@transaction.TransactionDate.ToString("yyyy-MM-dd HH:mm")</td>
+                            <td class="text-success">@transaction.Amount Rs</td>
+                            <td>@transaction.Description</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+</div>

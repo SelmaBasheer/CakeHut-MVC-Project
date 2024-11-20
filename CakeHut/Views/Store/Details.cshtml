@@ -1,0 +1,236 @@
+﻿@model Product
+@{
+}
+
+<div class="container">
+    <!-- Breadcrumbs -->
+    <nav aria-label="breadcrumb" class="my-3">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Home</a></li>
+            <li class="breadcrumb-item"><a href="/store">Store</a></li>
+            <li class="breadcrumb-item active" aria-current="page">@Model.Name</li>
+        </ol>
+    </nav>
+
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert alert-success">@TempData["Success"]</div>
+    }
+
+    @if (TempData["Error"] != null)
+    {
+        <div class="alert alert-danger">@TempData["Error"]</div>
+    }
+
+    <div class="row">
+        <!-- Thumbnail List -->
+        <div class="col-md-2">
+            <div class="thumbnail-list">
+                @if (Model.Images != null && Model.Images.Count > 0)
+                {
+                    @foreach (var image in Model.Images)
+                    {
+                        <div class="thumbnail mb-2">
+                            <img src="/cakes/@image.ImageUrl" class="img-thumbnail small-img" alt="Additional Image" onclick="changeImage('/cakes/@image.ImageUrl')" />
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+
+        <!-- Main Product Image -->
+        <div class="col-md-4 text-center zoom-container">
+            <img id="mainImage" src="/cakes/@Model.ImageUrl" class="img-fluid mb-3 product-image zoom-image" alt="@Model.Name" />
+        </div>
+
+        
+
+
+        <!-- Product Details -->
+        <div class="col-md-6 my-4">
+            <h2 class="mb-4">@Model.Name</h2>
+
+            <!-- Product Rating Display -->
+            <div class="product-rating mb-4">
+                <span class="rating-stars">
+                    @for (var i = 1; i <= 5; i++)
+                    {
+                        if (i <= Math.Floor(@Model.Ratings))
+                        {
+                            <i class="bi bi-star-fill text-warning"></i> <!-- Filled star -->
+                        }
+                        else if (i == Math.Ceiling(@Model.Ratings) && @Model.Ratings % 1 != 0)
+                        {
+                            <i class="bi bi-star-half text-warning"></i> <!-- Half star -->
+                        }
+                        else
+                        {
+                            <i class="bi bi-star text-warning"></i> <!-- Empty star -->
+                        }
+                    }
+                </span>
+                <span class="text-muted">(@Math.Round(@Model.Ratings, 1)) out of 5</span>
+            </div>
+
+
+            <h4 class="mb-4">
+                @if (Model.DiscountedPrice < Model.Price)
+                {
+                    <span class="text-muted text-decoration-line-through">@Model.Price Rs</span>
+                    <span class="text-danger"> @Model.DiscountedPrice Rs</span>
+                    <span class="text-success"> (@((Model.Price - Model.DiscountedPrice) / Model.Price * 100)% Off) </span>
+                }
+                else
+                {
+                    <span class="text-success">@Model.Price Rs</span>
+                }
+            </h4>
+
+            <button type="button" class="btn btn-warning btn-lg mb-3" onclick="addToCart(this, @Model.Id, @Model.Stock)">
+                Add to Cart <i class="bi bi-cart4"></i>
+            </button>
+            
+            <hr />
+
+            <!-- Availability -->
+            <div class="d-flex mb-3">
+                <div class="fw-bold me-2">Availability:</div>
+                <div>@Model.Availability</div>
+            </div>
+
+            <p>Stock left: @Model.Stock</p>  <!-- Show stock level -->
+            @if (Model.Stock == 0)
+            {
+                <p style="color: red;">Out of Stock</p>
+            }
+            
+
+            <!-- Product Description -->
+            <div class="fw-bold mb-2">Description</div>
+            <div class="text-muted" style="white-space: pre-line">@Model.Description</div>
+
+            <!-- User Rating Submission -->
+            <hr />
+            <div class="user-rating mt-4">
+                <h5>Rate this product:</h5>
+                <form asp-action="SubmitRating" method="post">
+                    <input type="hidden" name="ProductId" value="@Model.Id" />
+                    <div class="form-group mb-3">
+                        <label for="Rating">Your Rating:</label>
+                        <select id="Rating" name="Rating" class="form-select w-25" aria-label="User Rating">
+                            <option selected disabled>Select a rating</option>
+                            <option value="1">1 Star</option>
+                            <option value="2">2 Stars</option>
+                            <option value="3">3 Stars</option>
+                            <option value="4">4 Stars</option>
+                            <option value="5">5 Stars</option>
+                        </select>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="CustomerName">Your Name:</label>
+                        <input type="text" id="CustomerName" name="CustomerName" class="form-control w-50" required />
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="Content">Your Review:</label>
+                        <textarea id="Content" name="Content" class="form-control w-75" rows="4" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary mt-2">Submit Rating</button>
+                </form>
+            </div>
+
+            <!-- Customer Reviews Section -->
+            <hr />
+            <h5>Customer Reviews:</h5>
+            <div class="reviews mt-3">
+                @if (Model.Reviews.Count == 0)
+                {
+                    <p class="text-muted">No reviews yet.</p>
+                }
+                else
+                {
+                    @foreach (var review in Model.Reviews)
+                    {
+                        <div class="review-item mb-3">
+                            <h6>@review.CustomerName - @review.Rating Stars</h6>
+                            <p>@review.Content</p>
+                            <small class="text-muted">Reviewed on @review.Date.ToString("MM/dd/yyyy")</small>
+                        </div>
+                        <hr />
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Additional CSS -->
+<style>
+    .breadcrumb {
+        background-color: transparent;
+        font-size: 14px;
+        margin-bottom: 20px;
+    }
+
+    .product-image {
+        max-width: 400px;
+        border: 1px solid #e1e1e1;
+        padding: 10px;
+        background-color: #f9f9f9;
+    }
+
+    .rating-stars i {
+        font-size: 24px;
+    }
+
+    .reviews {
+        max-height: 400px;
+        overflow-y: auto;
+    }
+
+    .thumbnail-list {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .thumbnail img {
+        width: 100%;
+        cursor: pointer;
+        border-radius: 8px;
+    }
+
+    .main-img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+    }
+
+    .small-img {
+        width: 100%;
+        height: auto;
+        max-width: 200px;
+        max-height: 200px;
+    }
+
+    .zoom-container {
+        overflow: hidden;
+        position: relative;
+    }
+
+    .zoom-image {
+        transition: transform 0.5s ease;
+        width: 100%; /* Ensure it takes the full width */
+    }
+
+    .zoom-container:hover .zoom-image {
+        transform: scale(1.5); /* Change the scale value to adjust zoom level */
+    }
+</style>
+
+
+<!-- Add some JS to switch the images -->
+<script>
+    function changeImage(imageUrl) {
+        document.getElementById('mainImage').src = imageUrl;
+    }
+</script>

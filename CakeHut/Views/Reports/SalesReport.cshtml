@@ -1,0 +1,33 @@
+﻿@* @model CakeHut.Models.ViewModels.SalesReportViewModel *@
+
+@* <h2>Sales Report</h2> *@
+
+@* <p>Total Sales Amount: @Model.TotalSalesAmount</p> *@
+@* <p>Total Discount Amount: @Model.TotalDiscountAmount</p> *@
+@* <p>Total Orders: @Model.TotalOrdersCount</p> *@
+@* <p>Total Items Sold: @Model.TotalItemsSold</p> *@
+@* <p>Average Order Value: @Model.AverageOrderValue</p> *@
+
+@* <table class="table"> *@
+@*     <thead> *@
+@*         <tr> *@
+@*             <th>Order ID</th> *@
+@*             <th>Client</th> *@
+@*             <th>Order Date</th> *@
+@*             <th>Total Amount</th> *@
+@*             <th>Discount Amount</th> *@
+@*         </tr> *@
+@*     </thead> *@
+@*     <tbody> *@
+@*         @foreach (var order in Model.Orders) *@
+@*         { *@
+@*             <tr> *@
+@*                 <td>@order.Id</td> *@
+@*                 <td>@order.ClientId</td> *@
+@*                 <td>@order.CreatedAt.ToString("MM/dd/yyyy")</td> *@
+@*                 <td>@order.TotalAmount</td> *@
+@*                 <td>@order.Items.Sum(i => i.Product.Price * i.Quantity - (i.UnitPrice * i.Quantity))</td> *@
+@*             </tr> *@
+@*         } *@
+@*     </tbody> *@
+@* </table> *@

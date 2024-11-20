@@ -1,0 +1,120 @@
+﻿@model List<Product>
+
+<div class="card shadow border-0 mt-4">
+    <div class="card-header bg-secondary bg-gradient py-3">
+        <div class="row">
+            <div class="col-12">
+                <h2 class="text-white text-center py-2">Product List</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-body p-4">
+        <div class="row mb-3">
+            <div class="col-12 text-end">
+                <a asp-controller="Products" asp-action="Create" class="btn btn-success">
+                    <i class="bi bi-plus-circle"></i> Create New Product
+                </a>
+            </div>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-light table-striped table-hover table-bordered">
+                <thead class="table-dark">
+                    <tr>
+                        <th scope="col" style="width: 10%;">ID</th>
+                        <th scope="col" style="width: 20%;">Cake Name</th>
+                        <th scope="col" style="width: 10%;">Category ID</th>
+                        <th scope="col" style="width: 20%;">Description</th>
+                        <th scope="col" style="width: 10%;">Price</th>
+                        <th scope="col" style="width: 10%;">Image</th>
+                        <th scope="col" style="width: 10%;">Weight</th>
+                        <th scope="col" style="width: 10%;">Availability</th>
+                        <th scope="col" style="width: 15%;">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var obj in Model.OrderBy(u => u.Id))
+                    {
+                        <tr>
+                            <td>@obj.Id</td>
+                            <td>@obj.Name</td>
+                            <td>@obj.CategoryId</td>
+
+                            <!-- Truncated Description with Read More -->
+                            <td>
+                                @{
+                                    var truncatedDescription = obj.Description.Length > 100
+                                    ? obj.Description.Substring(0, 100) + "..."
+                                    : obj.Description;
+                                }
+                                <span id="description-@obj.Id" class="description-truncate">
+                                    @truncatedDescription
+                                </span>
+                                @if (obj.Description.Length > 100)
+                                {
+                                    <a href="javascript:void(0);" onclick="toggleDescription('@obj.Id', '@obj.Description');" id="toggle-link-@obj.Id" class="text-primary">Read More</a>
+                                }
+                            </td>
+                            <td>@obj.Price</td>
+                            <td><img src="/cakes/@obj.ImageUrl" width="100" /></td>
+                            <td>@obj.Weight</td>
+                            <td>@obj.Availability</td>
+                            <td>
+                                <div class="btn-group" role="group">
+                                    <a asp-controller="Products" asp-action="Edit" asp-route-id="@obj.Id" class="btn btn-primary btn-sm">
+                                        <i class="bi bi-pencil-square"></i> Edit
+                                    </a>
+                                    <a asp-controller="Products" asp-action="Delete" asp-route-id="@obj.Id" class="btn btn-danger btn-sm ms-2" onclick="return confirm('Are you sure?')">
+                                        <i class="bi bi-trash3"></i> Delete
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Pagination Controls -->
+    <nav class="d-flex justify-content-center mt-4">
+        <ul class="pagination">
+            @for (int i = 1; i <= ViewBag.TotalPages; i++)
+            {
+                <li class="page-item @(i == ViewBag.PageIndex ? "active" : "")">
+                    <a class="page-link" asp-action="Index" asp-route-pageIndex="@i">@i</a>
+                </li>
+            }
+        </ul>
+    </nav>
+</div>
+
+<!-- Add the JavaScript to handle the toggle -->
+<script>
+    function toggleDescription(productId, fullDescription) {
+        var descriptionSpan = document.getElementById('description-' + productId);
+        var toggleLink = document.getElementById('toggle-link-' + productId);
+
+        if (toggleLink.innerHTML === "Read More") {
+            descriptionSpan.innerHTML = fullDescription; // Show full description
+            toggleLink.innerHTML = "Show Less";
+        } else {
+            var truncatedText = descriptionSpan.innerHTML.split("...")[0]; // Get truncated text
+            descriptionSpan.innerHTML = truncatedText + "...";
+            toggleLink.innerHTML = "Read More";
+        }
+    }
+
+    // Show the "Read More" link if description is long enough
+    document.addEventListener('DOMContentLoaded', function () {
+        var descriptions = document.querySelectorAll('.description-truncate');
+        descriptions.forEach(function (desc) {
+            if (desc.innerHTML.length > 100) {
+                var productId = desc.id.split('-')[1];
+                document.getElementById('toggle-link-' + productId).style.display = 'inline';
+            }
+        });
+    });
+</script>

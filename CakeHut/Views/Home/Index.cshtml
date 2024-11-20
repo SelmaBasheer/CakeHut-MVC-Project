@@ -1,0 +1,58 @@
+﻿@model List<Product>
+@{
+    ViewData["Title"] = "Home Page";
+    ViewData["HomePage"] = true;
+}
+
+<div style="background-color: white">
+    <div class="position-relative text-white">
+        <img src="~/cakes/banner-macarons.jpeg" class="img-fluid w-100" alt="hero" />
+
+        <!-- Text overlay on the image -->
+        <div class="position-absolute  start-50 translate-middle text-center" style="color: #fff; top: 25%; transform: translateX(-50%);">
+            <h1 class="display-2 my-3"><strong>CAKE HUT</strong></h1>
+            <h3 class=" my-3"><strong>Your Ultimate Cake Destination!</strong></h3>
+            <p class="lead text-dark d-none d-md-block">
+                Indulge in a wide selection of freshly baked cakes made with the finest ingredients.
+                From classic flavors to unique creations, we offer cakes for every celebration.
+            </p>
+        </div>
+    </div>
+</div>
+
+
+<div class="bg-light">
+    <div class="container py-4">
+        <h2 class="pb-4 text-center">Our Signatures</h2>
+
+        <div class="row mb-5 g-3">
+            @foreach (var product in Model)
+            {
+                <div class="col-lg-3 col-md-6">
+                    <div class="rounded border shadow p-3 text-center h-100">
+                        <img src="/cakes/@product.ImageUrl" class="img-fluid" alt="..."
+                             style="height: 180px; object-fit: contain" />
+                        <hr />
+                        <h5 class="py-2">@product.Name</h5>
+                        
+                        <h4 class="mb-3">@(product.Price)Rs</h4>
+                        <a class="btn btn-primary btn-sm mb-2" asp-controller="Store"
+                           asp-action="Details" asp-route-id="@product.Id" role="button">Details</a>
+                        <form asp-controller="Wishlist" asp-action="Add" method="post" class="d-inline">
+                            <input type="hidden" name="productId" value="@product.Id" />
+                            <button type="submit" class="btn btn-warning btn-sm mb-2">
+                                <i class="bi bi-heart"></i>
+                            </button>
+                        </form>
+                        <button type="button" class="btn btn-warning btn-sm mb-2" onclick="addToCart(this, @product.Id,  @product.Stock)">
+                            Add to Cart <i class="bi bi-cart4"></i>
+                        </button>
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="text-center mx-auto">
+            <a class="btn btn-secondary" asp-area="" asp-controller="Store" asp-action="Index">View More</a>
+        </div>
+    </div>
+</div>

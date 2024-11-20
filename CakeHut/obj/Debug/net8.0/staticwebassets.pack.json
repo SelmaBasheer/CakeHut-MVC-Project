@@ -1,0 +1,509 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\CakeHut.bundle.scp.css",
+      "PackagePath": "staticwebassets\\CakeHut.jmvkkhm1ty.bundle.scp.css"
+    },
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\cakes\\20240930135106356.jpg",
+      "PackagePath": "staticwebassets\\cakes\\20240930135106356.jpg"
+    },
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\cakes\\20240930135153915.jpg",
+      "PackagePath": "staticwebassets\\cakes\\20240930135153915.jpg"
+    },
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\cakes\\20240930135327707.jpg",
+      "PackagePath": "staticwebassets\\cakes\\20240930135327707.jpg"
+    },
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\cakes\\20240930140340201.jpg",
+      "PackagePath": "staticwebassets\\cakes\\20240930140340201.jpg"
+    },
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\cakes\\20240930141004285.jpg",
+      "PackagePath": "staticwebassets\\cakes\\20240930141004285.jpg"
+    },
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\cakes\\20240930141124178.jpg",
+      "PackagePath": "staticwebassets\\cakes\\20240930141124178.jpg"
+    },
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\cakes\\20240930141222955.jpg",
+      "PackagePath": "staticwebassets\\cakes\\20240930141222955.jpg"
+    },
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\cakes\\20240930141323915.jpg",
+      "PackagePath": "staticwebassets\\cakes\\20240930141323915.jpg"
+    },
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\cakes\\20240930141413101.jpg",
+      "PackagePath": "staticwebassets\\cakes\\20240930141413101.jpg"
+    },
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\cakes\\20241002114514028.jpg",
+      "PackagePath": "staticwebassets\\cakes\\20241002114514028.jpg"
+    },
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\cakes\\20241002114514278.jpg",
+      "PackagePath": "staticwebassets\\cakes\\20241002114514278.jpg"
+    },
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\cakes\\20241002114514313.jpg",
+      "PackagePath": "staticwebassets\\cakes\\20241002114514313.jpg"
+    },
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\cakes\\20241002114514339.jpg",
+      "PackagePath": "staticwebassets\\cakes\\20241002114514339.jpg"
+    },
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\cakes\\20241002130027192.jpg",
+      "PackagePath": "staticwebassets\\cakes\\20241002130027192.jpg"
+    },
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\cakes\\20241002173515131.jpg",
+      "PackagePath": "staticwebassets\\cakes\\20241002173515131.jpg"
+    },
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\cakes\\20241002182650537.jpg",
+      "PackagePath": "staticwebassets\\cakes\\20241002182650537.jpg"
+    },
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\cakes\\20241002182809071.jpg",
+      "PackagePath": "staticwebassets\\cakes\\20241002182809071.jpg"
+    },
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\cakes\\20241004113949655_ChocolateFudge.jpg",
+      "PackagePath": "staticwebassets\\cakes\\20241004113949655_ChocolateFudge.jpg"
+    },
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\cakes\\20241004113949675_Ferreo.jpg",
+      "PackagePath": "staticwebassets\\cakes\\20241004113949675_Ferreo.jpg"
+    },
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\cakes\\20241004120413579_anniversary.jpg",
+      "PackagePath": "staticwebassets\\cakes\\20241004120413579_anniversary.jpg"
+    },
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\cakes\\20241004120413598_birthday.jpg",
+      "PackagePath": "staticwebassets\\cakes\\20241004120413598_birthday.jpg"
+    },
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\cakes\\20241004120413600_designer.jpg",
+      "PackagePath": "staticwebassets\\cakes\\20241004120413600_designer.jpg"
+    },
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\cakes\\20241004121319194_anniversary.jpg",
+      "PackagePath": "staticwebassets\\cakes\\20241004121319194_anniversary.jpg"
+    },
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\cakes\\20241004121319211_birthday.jpg",
+      "PackagePath": "staticwebassets\\cakes\\20241004121319211_birthday.jpg"
+    },
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\cakes\\20241004121319213_designer.jpg",
+      "PackagePath": "staticwebassets\\cakes\\20241004121319213_designer.jpg"
+    },
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\cakes\\20241004124033979_anniversary.jpg",
+      "PackagePath": "staticwebassets\\cakes\\20241004124033979_anniversary.jpg"
+    },
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\cakes\\20241004124034000_birthday.jpg",
+      "PackagePath": "staticwebassets\\cakes\\20241004124034000_birthday.jpg"
+    },
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\cakes\\20241004125300044_anniversary.jpg",
+      "PackagePath": "staticwebassets\\cakes\\20241004125300044_anniversary.jpg"
+    },
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\cakes\\20241004125300063_birthday.jpg",
+      "PackagePath": "staticwebassets\\cakes\\20241004125300063_birthday.jpg"
+    },
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\cakes\\20241004145021610_83c484c8779747afedb7fe594a4443d2.jpg",
+      "PackagePath": "staticwebassets\\cakes\\20241004145021610_83c484c8779747afedb7fe594a4443d2.jpg"
+    },
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\cakes\\20241004145021616_cake1.jpg",
+      "PackagePath": "staticwebassets\\cakes\\20241004145021616_cake1.jpg"
+    },
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\cakes\\20241004145021623_FruitsCake1.jpg",
+      "PackagePath": "staticwebassets\\cakes\\20241004145021623_FruitsCake1.jpg"
+    },
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\cakes\\banner-macarons.jpeg",
+      "PackagePath": "staticwebassets\\cakes\\banner-macarons.jpeg"
+    },
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\cakes\\berries.jpg",
+      "PackagePath": "staticwebassets\\cakes\\berries.jpg"
+    },
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\cakes\\foodphotography-macarons.jpeg",
+      "PackagePath": "staticwebassets\\cakes\\foodphotography-macarons.jpeg"
+    },
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\css\\site.css",
+      "PackagePath": "staticwebassets\\css\\site.css"
+    },
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\favicon.ico",
+      "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\images\\3074630cf79b514e4b5338cbcefc14e3.jpg",
+      "PackagePath": "staticwebassets\\images\\3074630cf79b514e4b5338cbcefc14e3.jpg"
+    },
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\images\\5e96b023fac164daafa94c2bd054f6d5.jpg",
+      "PackagePath": "staticwebassets\\images\\5e96b023fac164daafa94c2bd054f6d5.jpg"
+    },
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\images\\6310963c2e17d0918bda86636848e136.jpg",
+      "PackagePath": "staticwebassets\\images\\6310963c2e17d0918bda86636848e136.jpg"
+    },
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\images\\83c484c8779747afedb7fe594a4443d2.jpg",
+      "PackagePath": "staticwebassets\\images\\83c484c8779747afedb7fe594a4443d2.jpg"
+    },
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\images\\CAKE10.jpg",
+      "PackagePath": "staticwebassets\\images\\CAKE10.jpg"
+    },
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\images\\CAKE11.jpg",
+      "PackagePath": "staticwebassets\\images\\CAKE11.jpg"
+    },
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\images\\CAKE2.jpg",
+      "PackagePath": "staticwebassets\\images\\CAKE2.jpg"
+    },
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\images\\CAKE3.jpg",
+      "PackagePath": "staticwebassets\\images\\CAKE3.jpg"
+    },
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\images\\CAKE4.jpg",
+      "PackagePath": "staticwebassets\\images\\CAKE4.jpg"
+    },
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\images\\CAKE5.jpg",
+      "PackagePath": "staticwebassets\\images\\CAKE5.jpg"
+    },
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\images\\CAKE6.jpg",
+      "PackagePath": "staticwebassets\\images\\CAKE6.jpg"
+    },
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\images\\CAKE7.jpg",
+      "PackagePath": "staticwebassets\\images\\CAKE7.jpg"
+    },
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\images\\CAKE8.jpg",
+      "PackagePath": "staticwebassets\\images\\CAKE8.jpg"
+    },
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\images\\anniversary.jpg",
+      "PackagePath": "staticwebassets\\images\\anniversary.jpg"
+    },
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\images\\b8edf8842ef243c7fa2cf85d89a39708.jpg",
+      "PackagePath": "staticwebassets\\images\\b8edf8842ef243c7fa2cf85d89a39708.jpg"
+    },
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\images\\bc284d50422202913a976eac88563299.jpg",
+      "PackagePath": "staticwebassets\\images\\bc284d50422202913a976eac88563299.jpg"
+    },
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\images\\birthday.jpg",
+      "PackagePath": "staticwebassets\\images\\birthday.jpg"
+    },
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\images\\c984f4e39271424334a0808aadb92f6e.jpg",
+      "PackagePath": "staticwebassets\\images\\c984f4e39271424334a0808aadb92f6e.jpg"
+    },
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\images\\cake.jpg",
+      "PackagePath": "staticwebassets\\images\\cake.jpg"
+    },
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\images\\cake1.jpg",
+      "PackagePath": "staticwebassets\\images\\cake1.jpg"
+    },
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\images\\cake123.jpg",
+      "PackagePath": "staticwebassets\\images\\cake123.jpg"
+    },
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\images\\designer.jpg",
+      "PackagePath": "staticwebassets\\images\\designer.jpg"
+    },
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\images\\e7262a357155d1c6b535944d31d2cc14.jpg",
+      "PackagePath": "staticwebassets\\images\\e7262a357155d1c6b535944d31d2cc14.jpg"
+    },
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\images\\facebook-insta.jpg",
+      "PackagePath": "staticwebassets\\images\\facebook-insta.jpg"
+    },
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\images\\logo.jpg",
+      "PackagePath": "staticwebassets\\images\\logo.jpg"
+    },
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\js\\site.js",
+      "PackagePath": "staticwebassets\\js\\site.js"
+    },
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\lib\\bootstrap\\LICENSE",
+      "PackagePath": "staticwebassets\\lib\\bootstrap"
+    },
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css"
+    },
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map"
+    },
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css"
+    },
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css"
+    },
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map"
+    },
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css"
+    },
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css"
+    },
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map"
+    },
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css"
+    },
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css"
+    },
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map"
+    },
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css"
+    },
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css"
+    },
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map"
+    },
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css"
+    },
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css"
+    },
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map"
+    },
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css"
+    },
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css"
+    },
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css.map"
+    },
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css"
+    },
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css"
+    },
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map"
+    },
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css"
+    },
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js"
+    },
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map"
+    },
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js"
+    },
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map"
+    },
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js"
+    },
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map"
+    },
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js"
+    },
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map"
+    },
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js"
+    },
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js.map"
+    },
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js"
+    },
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map"
+    },
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
+    },
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js"
+    },
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js"
+    },
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\LICENSE.md"
+    },
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.js"
+    },
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.min.js"
+    },
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.js"
+    },
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.min.js"
+    },
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\lib\\jquery\\LICENSE.txt",
+      "PackagePath": "staticwebassets\\lib\\jquery\\LICENSE.txt"
+    },
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\lib\\jquery\\dist\\jquery.js",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.js"
+    },
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.js"
+    },
+    {
+      "Id": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.CakeHut.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.CakeHut.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.CakeHut.props",
+      "PackagePath": "build\\CakeHut.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.CakeHut.props",
+      "PackagePath": "buildMultiTargeting\\CakeHut.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.CakeHut.props",
+      "PackagePath": "buildTransitive\\CakeHut.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

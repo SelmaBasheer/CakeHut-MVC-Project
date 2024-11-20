@@ -1,0 +1,166 @@
+﻿<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <!-- User Information Card -->
+            <div class="card shadow-sm mb-4 border-light rounded-3">
+                <div class="card-header bg-primary text-white text-center">
+                    <h4>User Details</h4>
+                </div>
+                <div class="card-body">
+                    @if (TempData["ErrorMessage"] != null)
+                    {
+                        <div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                            <strong>@TempData["ErrorMessage"]</strong>
+                            <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                        </div>
+                    }
+                    else if (TempData["SuccessMessage"] != null)
+                    {
+                        <div class='alert alert-success alert-dismissible fade show' role='alert'>
+                            <strong>@TempData["SuccessMessage"]</strong>
+                            <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                        </div>
+                    }
+
+                    <!-- User Info Section -->
+                    <div class="row mb-3">
+                        <div class="col-md-4"><strong>First Name:</strong></div>
+                        <div class="col-md-8">@Model.FirstName</div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-4"><strong>Last Name:</strong></div>
+                        <div class="col-md-8">@Model.LastName</div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-4"><strong>Email:</strong></div>
+                        <div class="col-md-8">@Model.Email</div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-4"><strong>Phone:</strong></div>
+                        <div class="col-md-8">@Model.PhoneNumber</div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-4"><strong>Created At:</strong></div>
+                        <div class="col-md-8">@Model.CreatedDate</div>
+                    </div>
+
+                    <!-- Account Status and Role Section -->
+                    <div class="row mb-3">
+                        <div class="col-md-4"><strong>Status:</strong></div>
+                        <div class="col-md-8">
+                            @if (Model.IsBlocked)
+                            {
+                                <span class="badge bg-danger">
+                                    <i class="bi bi-lock"></i> Blocked
+                                </span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-success">
+                                    <i class="bi bi-unlock"></i> Active
+                                </span>
+                            }
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-4"><strong>Role:</strong></div>
+                        <div class="col-md-8">
+                            @{
+                                var roles = ViewBag.Roles;
+                                var rolesStr = String.Join(", ", roles);
+
+                                string color = "bg-secondary";
+                                if (roles.Contains("admin"))
+                                {
+                                    color = "bg-danger";
+                                }
+                                else if (roles.Contains("user"))
+                                {
+                                    color = "bg-info text-dark";
+                                }
+
+                                <span class="badge rounded-pill @color">@rolesStr</span>
+                            }
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons: Block/Unblock and Back Button (Aligned) -->
+                    <div class="d-flex justify-content-between align-items-center mt-4">
+                        <!-- Block/Unblock Button with Confirmation Modal -->
+                        <div>
+                            @if (Model.IsBlocked)
+                            {
+                                <!-- Button to unblock user with confirmation modal -->
+                                <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#unblockModal">
+                                    <i class="bi bi-unlock"></i> Unblock
+                                </button>
+                            }
+                            else
+                            {
+                                <!-- Button to block user with confirmation modal -->
+                                <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#blockModal">
+                                    <i class="bi bi-lock"></i> Block
+                                </button>
+                            }
+                        </div>
+
+                        <!-- Back Button -->
+                        <div>
+                            <a class="btn btn-secondary" asp-controller="Users" asp-action="Index">
+                                <i class="bi bi-arrow-left"></i> Back
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Block Confirmation Modal -->
+                    <div class="modal fade" id="blockModal" tabindex="-1" aria-labelledby="blockModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="blockModalLabel">Block User</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    Are you sure you want to block this user?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                    <form method="post" asp-controller="Users" asp-action="BlockUser" asp-route-id="@Model.Id">
+                                        <button type="submit" class="btn btn-danger">Confirm Block</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Unblock Confirmation Modal -->
+                    <div class="modal fade" id="unblockModal" tabindex="-1" aria-labelledby="unblockModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="unblockModalLabel">Unblock User</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    Are you sure you want to unblock this user?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                    <form method="post" asp-controller="Users" asp-action="UnblockUser" asp-route-id="@Model.Id">
+                                        <button type="submit" class="btn btn-warning">Confirm Unblock</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

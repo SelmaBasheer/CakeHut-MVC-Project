@@ -1,0 +1,51 @@
+﻿@model Address
+
+<h2 class="text-center my-4">Add New Address</h2>
+
+<div class="container">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <form asp-action="Add" method="post" class="p-4 border rounded bg-light shadow">
+                <div class="form-group mb-3">
+                    <label asp-for="HomeAddress"></label>
+                    <input asp-for="HomeAddress" class="form-control" />
+                    <span asp-validation-for="HomeAddress" class="text-danger"></span>
+                </div>
+                <div class="form-group mb-3">
+                    <label asp-for="Street"></label>
+                    <input asp-for="Street" class="form-control" />
+                    <span asp-validation-for="Street" class="text-danger"></span>
+                </div>
+                <div class="form-group mb-3">
+                    <label asp-for="City"></label>
+                    <input asp-for="City" class="form-control" />
+                    <span asp-validation-for="City" class="text-danger"></span>
+                </div>
+                <div class="form-group mb-3">
+                    <label asp-for="State"></label>
+                    <input asp-for="State" class="form-control" />
+                    <span asp-validation-for="State" class="text-danger"></span>
+                </div>
+                <div class="form-group mb-3">
+                    <label asp-for="PostalCode"></label>
+                    <input asp-for="PostalCode" class="form-control" />
+                    <span asp-validation-for="PostalCode" class="text-danger"></span>
+                </div>
+                <div class="form-group mb-3">
+                    <label asp-for="Landmark"></label>
+                    <input asp-for="Landmark" class="form-control" />
+                </div>
+
+                <div class="row">
+                    <div class="col-6">
+                        <button type="submit" class="btn btn-primary w-100">Create</button>
+                    </div>
+                    <div class="col-6">
+                        <a asp-controller="Address" asp-action="Index" class="btn btn-secondary w-100">Back To List</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

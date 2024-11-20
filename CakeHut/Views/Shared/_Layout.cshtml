@@ -1,0 +1,311 @@
+﻿@using CakeHut.Data
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - CakeHut</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/CakeHut.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js" />
+    <!-- Include Cropper.js CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css" />
+
+    
+
+</head>
+<body>
+
+    <script>
+            function getShoppingCart() {
+                // document.cookie contains all the cookies of our website with the following format
+                // cookie1=value1; cookie2=value2; cookie3=value3;
+
+                const cookieName = "shopping_cart";
+                let cookiesArray = document.cookie.split(';');
+
+                for (let i = 0; i < cookiesArray.length; i++) {
+                    let cookie = cookiesArray[i];
+                    if (cookie.includes(cookieName)) {
+                        let cookie_value = cookie.substring(cookie.indexOf("=") + 1);
+
+                        try {
+                            let cart = JSON.parse(atob(cookie_value));
+                            //let cart = JSON.parse(cookie_value);
+                            return cart;
+                        }
+                        catch (exception) {
+                            break;
+                        }
+                    }
+                }
+
+                return {};
+            }
+
+
+            function saveCart(cart) {
+                let cartStr = btoa(JSON.stringify(cart))
+                //let cartStr = JSON.stringify(cart)
+
+                // save cookie
+                let d = new Date();
+                d.setDate(d.getDate() + 365); // this cookie expires after 365 days (1 year)
+                let expires = d.toUTCString();
+                document.cookie = "shopping_cart=" + cartStr + ";expires=" + expires + ";path=/; SameSite=Strict; Secure";
+            }
+
+        function addToCart(button, id, availableStock) {
+            let cart = getShoppingCart();
+
+            // Calculate total items in the cart
+            let totalItems = Object.values(cart).reduce((sum, quantity) => sum + Number(quantity), 0);
+
+            // Check if adding another item would exceed the limit
+            if (totalItems >= 5) {
+                alert("You can only have a maximum of 5 items in your cart.");
+                return; // Prevent adding more
+            }
+
+            // Get the current quantity of the item being added
+            let quantity = cart[id] || 0;
+
+            // Check if the item can be added based on available stock
+            if (quantity >= availableStock) {
+                alert("Out of stock");
+                return; // Prevent adding more than available stock
+            }
+
+            // Increment the item's quantity
+            cart[id] = Number(quantity) + 1;
+
+            saveCart(cart);
+            button.innerHTML = "Added <i class='bi bi-check-lg'></i>";
+
+            // Update the cart size display
+            updateCartSize();
+        }
+
+        function increase(id) {
+            let cart = getShoppingCart();
+
+            // Calculate total items in the cart
+            let totalItems = Object.values(cart).reduce((sum, quantity) => sum + Number(quantity), 0);
+
+            let quantity = cart[id] || 0;
+
+            // Check if increasing this item would exceed the limit
+            if (totalItems >= 5) {
+                alert("You can only have a maximum of 5 items in your cart.");
+                return; // Prevent increasing quantity
+            }
+
+            // Check if we can increase the quantity based on available stock
+            if (quantity >= availableStock) {
+                alert("Out of stock");
+                return; // Prevent increasing quantity beyond stock
+            }
+
+            // Increment the item's quantity
+            cart[id] = Number(quantity) + 1;
+
+            saveCart(cart);
+            location.reload(); // Refresh to update the cart display
+        }
+
+        function decrease(id) {
+            let cart = getShoppingCart();
+
+            let quantity = cart[id];
+
+            if (isNaN(quantity)) {
+                return; // Exit if quantity is not a number
+            }
+
+            quantity = Number(quantity);
+
+            if (quantity > 1) {
+                cart[id] = quantity - 1;
+                saveCart(cart);
+                location.reload(); // Refresh to update the cart display
+            } else {
+                // Optionally remove the item from the cart if quantity is 1
+                remove(id);
+            }
+        }
+
+        function remove(id) {
+            let cart = getShoppingCart();
+
+            if (cart[id]) {
+                delete cart[id]; // Remove item from cart
+                saveCart(cart);
+                location.reload(); // Refresh to update the cart display
+            }
+        }
+
+        function updateCartSize() {
+            let cart = getShoppingCart();
+            let cartSize = Object.values(cart).reduce((sum, quantity) => sum + Number(quantity), 0);
+
+            document.getElementById("CartSize").innerHTML = cartSize;
+        }
+
+
+            document.addEventListener("DOMContentLoaded", function () {
+            fetchWishlistCount();
+        });
+
+        function fetchWishlistCount() {
+            fetch('/Wishlist/Count')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('WishlistSize').innerText = data.count;
+                })
+                .catch(error => console.error('Error fetching wishlist count:', error));
+        }
+                
+
+        
+
+    </script>
+
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm bg-primary navbar-light border-bottom box-shadow mb-3">
+            <div class="container-fluid">
+                @if (SignInManager.IsSignedIn(User) && User.IsInRole("admin"))
+                {
+                    <!-- Admin-specific landing page -->
+                    @* <a class="navbar-brand text-white" asp-area="" asp-controller="Home" asp-action="AdminHome">WELCOME ADMIN!</a> *@
+                    <a class="navbar-brand text-white" asp-area="" asp-controller="Dashboard" asp-action="Index">WELCOME ADMIN!</a>
+                }
+                else
+                {
+                    <!-- Default landing page for signed-in users and guests -->
+                    <a class="navbar-brand text-white" asp-area="" asp-controller="Home" asp-action="Index">CakeHut</a>
+                }
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+
+                @if (SignInManager.IsSignedIn(User))
+                {
+                    @* var user = await UserManager.GetUserAsync(User); *@
+                    @* var roles = await UserManager.GetRolesAsync(user); *@
+                    @* bool isAdmin = roles.Contains("Admin"); *@
+
+                    if (User.IsInRole("admin"))
+                    {
+                        <ul class="navbar-nav flex-grow-1">
+                            <li class="nav-item">
+                                    @* <a class="dropdown-item" asp-area="" asp-controller="Home" asp-action="AdminHome">Home</a> *@
+                            </li>
+                        </ul>
+                    }
+                    else
+                    {
+                            <ul class="navbar-nav flex-grow-1">
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                                </li>
+                                <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Store" asp-action="Index">CakeStore</a>
+                                </li>
+                        
+                            </ul>
+
+                            <ul class="navbar-nav me-2">
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Cart" asp-action="Index">
+                                        <i class="bi bi-cart4 text-danger h3"></i>
+                                        <span id="CartSize" class="badge rounded-pill bg-danger" style="vertical-align: top">
+                                            @CartHelper.GetCartSize(Context.Request, Context.Response)
+                                        </span>
+                                    </a>
+                                </li>
+
+                                <!-- Wishlist Icon -->
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Wishlist" asp-action="Index">
+                                        <i class="bi bi-heart text-danger h3"></i>
+                                        <span id="WishlistSize" class="badge rounded-pill bg-danger" style="vertical-align: top">
+                                    
+                                        </span>
+                                    </a>
+                                </li>
+                            </ul>
+                            
+                    }
+                }
+                    else
+                    {
+                        <ul class="navbar-nav flex-grow-1">
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-controller="Store" asp-action="Index">CakeStore</a>
+                            </li>
+
+                        </ul>
+
+                        <ul class="navbar-nav me-2">
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Cart" asp-action="Index">
+                                    <i class="bi bi-cart4 text-danger h3"></i>
+                                    <span id="CartSize" class="badge rounded-pill bg-danger" style="vertical-align: top">
+                                        @CartHelper.GetCartSize(Context.Request, Context.Response)
+                                    </span>
+                                </a>
+                            </li>
+
+                            <!-- Wishlist Icon -->
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Wishlist" asp-action="Index">
+                                    <i class="bi bi-heart text-danger h3"></i>
+                                    <span id="WishlistSize" class="badge rounded-pill bg-danger" style="vertical-align: top">
+
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
+
+                    }
+                    <partial name="_LoginPartial.cshtml" />
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            <partial name="_Notification" />
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer bg-primary text-muted">
+        <div class="container text-white">
+            &copy; 2024 - CakeHut
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="https://cdn.tiny.cloud/1/g28lhnxtlihu4l4a381gw7tz47voznshwbi10lmsvlekrfme/tinymce/6/tinymce.min.js" referrerpolicy="origin">
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+     @await RenderSectionAsync("Scripts", required: false)
+
+    <!-- Include Cropper.js JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
+    <script src="https://cdn.rawgit.com/mark-rolich/Magnifier.js/gh-pages/magnifier.js"></script>
+
+</body>
+</html>

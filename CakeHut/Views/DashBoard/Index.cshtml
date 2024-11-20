@@ -1,0 +1,431 @@
+﻿@using CakeHut.Models.ViewModels
+@model DashboardVM
+
+<section class="content-main">
+    <div class="content-header text-center">
+        <h1 class="content-title card-title">DASHBOARD</h1>
+        <p>Comprehensive Data About Your Business</p>
+        @* <a asp-action="GenerateReport" asp-controller="Dashboard" class="btn btn-primary"> *@
+        @*     <i class="material-icons md-post_add"></i> Create Report *@
+        @* </a> *@
+    </div>
+
+    <!-- Overview Cards -->
+    <div class="row mt-4">
+        <!-- Revenue Card -->
+        <div class="col-lg-3 col-md-6">
+            <div class="card card-body mb-4 shadow-sm" style="background: linear-gradient(135deg, #42a5f5, #478ed1); color: #fff; border-radius: 10px;">
+                <article class="icontext d-flex align-items-center">
+                    <div class="text">
+                        <h6 class="card-title">Revenue</h6>
+                        <span style="font-size: 1.5em;">@Model.TotalSales.ToString("₹#,##0.00")</span>
+                        <p class="text-sm text-light">Total earnings to date</p>
+                    </div>
+                </article>
+            </div>
+        </div>
+
+        <!-- Orders Card -->
+        <div class="col-lg-3 col-md-6">
+            <div class="card card-body mb-4 shadow-sm" style="background: linear-gradient(135deg, #66bb6a, #43a047); color: #fff; border-radius: 10px;">
+                <article class="icontext">
+                    <div class="text">
+                        <h6 class="card-title">Orders</h6>
+                        <span style="font-size: 1.5em;">@Model.OrderCount</span>
+                        <p class="text-sm text-light">Total number of orders</p>
+                    </div>
+                </article>
+            </div>
+        </div>
+
+        <!-- Products Card -->
+        <div class="col-lg-3 col-md-6">
+            <div class="card card-body mb-4 shadow-sm" style="background: linear-gradient(135deg, #ffca28, #fdd835); color: #fff; border-radius: 10px;">
+                <article class="icontext">
+                    <div class="text">
+                        <h6 class="card-title">Products</h6>
+                        <span style="font-size: 1.5em;">@Model.ProductCount</span>
+                        <p class="text-sm text-light">Active products</p>
+                    </div>
+                </article>
+            </div>
+        </div>
+
+        <!-- Categories Card -->
+        <div class="col-lg-3 col-md-6">
+            <div class="card card-body mb-4 shadow-sm" style="background: linear-gradient(135deg, #ec407a, #d81b60); color: #fff; border-radius: 10px;">
+                <article class="icontext">
+                    <div class="text">
+                        <h6 class="card-title">Categories</h6>
+                        <span style="font-size: 1.5em;">@Model.CategoryCount</span>
+                        <p class="text-sm text-light">Available categories</p>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sale Statistics Chart with Top Selling -->
+    <div class="row">
+        <!-- Sale Statistics Chart -->
+        <div class="col-lg-8">
+            <div class="card mb-4 shadow-sm" style="border-radius: 10px;">
+                <header class="card-header d-flex justify-content-between align-items-center">
+                    <h4 class="card-title mb-0">Sale Statistics</h4>
+                    <select id="filterSelect" class="form-select w-auto"> 
+                        <option>Select</option>
+                        <option value="daily">Daily</option> 
+                        <option value="weekly">Weekly</option>
+                        <option value="monthly">Monthly</option>
+                        <option value="yearly">Yearly</option>
+                    </select>
+                </header>
+                <article class="card-body">
+                    <canvas id="salesChart" height="100"></canvas>
+                </article>
+            </div>
+        </div>
+
+        <!-- Top Selling Products and Categories -->
+        <div class="col-lg-4">
+            <!-- Top Selling Products -->
+            <div class="card card-body mb-4 shadow-sm" style="background: linear-gradient(135deg, #8e44ad, #9b59b6); color: #fff; border-radius: 10px;">
+                <h5 class="card-title">Top Selling Products</h5>
+                <ul class="list-unstyled">
+                    @if (Model.TopSellingProducts != null && Model.TopSellingProducts.Any())
+                    {
+                        foreach (var product in Model.TopSellingProducts)
+                        {
+                            <li class="mb-1">
+                                @product.Name - @Model.ProductQuantitiesSold[product.Id] sold
+                            </li>
+                        }
+                    }
+                    else
+                    {
+                        <li>No sales data available for products.</li>
+                    }
+                </ul>
+            </div>
+
+            <!-- Top Selling Categories -->
+            <div class="card card-body shadow-sm" style="background: linear-gradient(135deg, #e57373, #f44336); color: #fff; border-radius: 10px;">
+                <h5 class="card-title">Top Selling Categories</h5>
+                <ul class="list-unstyled">
+                    @if (Model.TopSellingCategories.Any())
+                    {
+                        var topCategory = Model.TopSellingCategories.First();
+                        if (Model.CategorySales.TryGetValue(topCategory.Id, out var soldQuantity))
+                        {
+                            <li>@topCategory.Name - @soldQuantity items sold</li>
+                        }
+                        else
+                        {
+                            <li>@topCategory.Name - No sales data available.</li>
+                        }
+                    }
+                    else
+                    {
+                        <li>No sales data for categories.</li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+
+   
+
+
+    <!-- Latest Orders -->
+    <div class="card mb-4 shadow-sm">
+        <header class="card-header d-flex justify-content-between align-items-center bg-primary text-white">
+            <h4 class="card-title mb-0">Latest Orders</h4>
+            <a asp-action="Index" asp-controller="AdminOrders" class="btn btn-light btn-sm text-primary">
+                Manage Orders
+            </a>
+        </header>
+        <div class="card-body">
+            <table class="table table-striped table-hover table-bordered align-middle">
+                <thead class="bg-dark text-white">
+                    <tr>
+                        <th>Order ID</th>
+                        <th>Client</th>
+                        <th>Units</th>
+                        <th>Total</th>
+                        <th>Payment Method</th>
+                        <th>Payment Status</th>
+                        <th>Order Status</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (Order order in ViewBag.Orders)
+                    {
+                        int count = order.Items.Sum(item => item.Quantity);
+                        decimal total = order.ShippingFee + order.Items.Sum(item => item.Quantity * item.UnitPrice);
+                        <tr>
+                            <td class="fw-bold">@order.Id</td>
+                            <td>@order.Client.FirstName</td>
+                            <td class="text-center">@count</td>
+                            <td class="text-success fw-bold">@total.ToString("₹#,##0.00")</td>
+                            <td>@order.PaymentMethod</td>
+                            <td>
+                                <span class="badge
+                                @(order.PaymentStatus == "Paid" ? "bg-success" :
+                                  order.PaymentStatus == "Pending" ? "bg-warning text-dark" : "bg-danger")">
+                                    @order.PaymentStatus
+                                </span>
+                            </td>
+                            <td>
+                                <span class="badge
+                                @(order.OrderStatus == "Shipped" ? "bg-info text-dark" :
+                                  order.OrderStatus == "Cancelled" ? "bg-danger" : "bg-success")">
+                                    @order.OrderStatus
+                                </span>
+                            </td>
+                            <td>@order.CreatedAt.ToShortDateString()</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="d-flex justify-content-end"> 
+        <a asp-action="DownloadSalesReportExcel" class="btn btn-primary me-2">Download Excel</a>
+        <a asp-action="DownloadSalesReportPDF" class="btn btn-danger">Download PDF</a>
+    </div>
+</section>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const chartLabels = @Html.Raw(Json.Serialize(Model.ChartLabels));
+        const chartData = @Html.Raw(Json.Serialize(Model.ChartData));
+
+        const ctx = document.getElementById('salesChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: chartLabels,
+                datasets: [{
+                    label: 'Revenue',
+                    data: chartData,
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    fill: true,
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'top'
+                    }
+                },
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Time Period'
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Revenue (₹)'
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+}
+
+
+
+
+
+
+
+@* @model CakeHut.Models.ViewModels.DashboardVM *@
+
+@* <section class="content-main"> *@
+@*     <div class="content-header d-flex justify-content-between align-items-center"> *@
+@*         <div> *@
+@*             <h1 class="content-title">Dashboard</h1> *@
+@*             <p>Overview of your business metrics.</p> *@
+@*         </div> *@
+
+@*         <!-- Filter Dropdown --> *@
+@*         <form asp-action="Index" method="get" class="d-inline-block"> *@
+@*             <label for="filter" class="me-2">Filter by:</label> *@
+@*             <select id="filter" name="filter" onchange="this.form.submit()" class="form-select d-inline-block w-auto"> *@
+@*                 <option value="Weekly" selected="@("Weekly" == ViewBag.SelectedFilter)">Weekly</option> *@
+@*                 <option value="Monthly" selected="@("Monthly" == ViewBag.SelectedFilter)">Monthly</option> *@
+@*                 <option value="Yearly" selected="@("Yearly" == ViewBag.SelectedFilter)">Yearly</option> *@
+@*             </select> *@
+@*         </form> *@
+@*     </div> *@
+
+
+@*     <div class="row"> *@
+@*         <!-- Revenue --> *@
+@*         <div class="col-lg-3"> *@
+@*             <div class="card card-body mb-4"> *@
+@*                 <article class="icontext"> *@
+@*                     <span class="icon icon-sm rounded-circle bg-primary-light"><i class="text-primary material-icons md-monetization_on"></i></span> *@
+@*                     <div class="text"> *@
+@*                         <h6 class="mb-1 card-title">Revenue</h6> *@
+@*                         <span>&#x20B9;@Model.TotalRevenue.ToString("N2")</span> *@
+@*                         <span class="text-sm">Total Revenue</span> *@
+@*                     </div> *@
+@*                 </article> *@
+@*             </div> *@
+@*         </div> *@
+
+@*         <!-- Orders --> *@
+@*         <div class="col-lg-3"> *@
+@*             <div class="card card-body mb-4"> *@
+@*                 <article class="icontext"> *@
+@*                     <span class="icon icon-sm rounded-circle bg-success-light"><i class="text-success material-icons md-local_shipping"></i></span> *@
+@*                     <div class="text"> *@
+@*                         <h6 class="mb-1 card-title">Orders</h6> *@
+@*                         <span>@Model.TotalOrders</span> *@
+@*                         <span class="text-sm">Total Orders</span> *@
+@*                     </div> *@
+@*                 </article> *@
+@*             </div> *@
+@*         </div> *@
+
+@*         <!-- Products --> *@
+@*         <div class="col-lg-3"> *@
+@*             <div class="card card-body mb-4"> *@
+@*                 <article class="icontext"> *@
+@*                     <span class="icon icon-sm rounded-circle bg-warning-light"><i class="text-warning material-icons md-qr_code"></i></span> *@
+@*                     <div class="text"> *@
+@*                         <h6 class="mb-1 card-title">Products</h6> *@
+@*                         <span>@Model.TotalProducts</span> *@
+@*                         <span class="text-sm">Total Products</span> *@
+@*                     </div> *@
+@*                 </article> *@
+@*             </div> *@
+@*         </div> *@
+
+@*         <!-- Categories --> *@
+@*         <div class="col-lg-3"> *@
+@*             <div class="card card-body mb-4"> *@
+@*                 <article class="icontext"> *@
+@*                     <span class="icon icon-sm rounded-circle bg-info-light"><i class="text-info material-icons md-category"></i></span> *@
+@*                     <div class="text"> *@
+@*                         <h6 class="mb-1 card-title">Categories</h6> *@
+@*                         <span>@Model.TotalCategories</span> *@
+@*                         <span class="text-sm">Total Categories</span> *@
+@*                     </div> *@
+@*                 </article> *@
+@*             </div> *@
+@*         </div> *@
+@*     </div> *@
+
+@*     <div class="row"> *@
+@*         <!-- Sales Statistics Chart --> *@
+@*         <div class="col-xl-8 col-lg-12"> *@
+@*             <div class="card mb-4"> *@
+@*                 <article class="card-body"> *@
+@*                     <h5 class="card-title">Sales Statistics (@ViewBag.SelectedFilter)</h5> *@
+@*                     <canvas id="myChart" height="120"></canvas> *@
+@*                 </article> *@
+@*             </div> *@
+@*         </div> *@
+
+@*         <!-- Top Selling Products & Categories --> *@
+@*         <div class="col-xl-4 col-lg-12"> *@
+@*             <div class="card mb-4"> *@
+@*                 <article class="card-body"> *@
+@*                     <h5 class="card-title">Top Selling Products</h5> *@
+@*                     <ul class="list-unstyled"> *@
+@*                         @if (Model.TopSellingProducts != null && Model.TopSellingProducts.Any()) *@
+@*                         { *@
+@*                             foreach (var product in Model.TopSellingProducts) *@
+@*                             { *@
+@*                                 <li class="mb-1"> *@
+@*                                     @product.Name - @Model.ProductQuantitiesSold[product.Id] sold *@
+@*                                 </li> *@
+@*                             } *@
+@*                         } *@
+@*                         else *@
+@*                         { *@
+@*                             <li>No sales data available for products.</li> *@
+@*                         } *@
+@*                     </ul> *@
+@*                 </article> *@
+@*             </div> *@
+@*             <div class="card mb-4"> *@
+@*                 <article class="card-body"> *@
+@*                     <h5 class="card-title">Top Selling Category</h5> *@
+@*                     <ul class="list-unstyled"> *@
+@*                         @if (Model.TopSellingCategories.Any()) *@
+@*                         { *@
+@*                             var topCategory = Model.TopSellingCategories.First(); *@
+@*                             // Check if the category ID exists in the CategorySales dictionary *@
+@*                             if (Model.CategorySales.TryGetValue(topCategory.Id, out var soldQuantity)) *@
+@*                             { *@
+@*                                 <li>@topCategory.Name - @soldQuantity items sold</li> *@
+@*                             } *@
+@*                             else *@
+@*                             { *@
+@*                                 <li>@topCategory.Name - No sales data available.</li> *@
+@*                             } *@
+@*                         } *@
+@*                         else *@
+@*                         { *@
+@*                             <li>No sales data for categories.</li> *@
+@*                         } *@
+@*                     </ul> *@
+@*                 </article> *@
+@*             </div> *@
+@*         </div> *@
+@*     </div> *@
+@*     <div class="d-flex justify-content-end"> *@
+@*         <a asp-action="DownloadSalesReportExcel" class="btn btn-primary me-2">Download Excel</a> *@
+@*         <a asp-action="DownloadSalesReportPDF" class="btn btn-danger">Download PDF</a> *@
+@*     </div> *@
+@* </section> *@
+
+@* @section Scripts { *@
+@*     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> *@
+@*     <script> *@
+@*         $(document).ready(function () { *@
+@*             var ctx = document.getElementById('myChart').getContext('2d'); *@
+@*             var myChart = new Chart(ctx, { *@
+@*                 type: 'bar', *@
+@*                 data: { *@
+@*                     labels: ['Revenue', 'Orders', 'Products'], *@
+@*                     datasets: [{ *@
+@*                         label: 'Statistics (@ViewBag.SelectedFilter)', *@
+@*                         data: [@Model.TotalRevenue, @Model.TotalOrders, @Model.TotalProducts], *@
+@*                         backgroundColor: [ *@
+@*                             'rgba(255, 99, 132, 0.2)', *@
+@*                             'rgba(54, 162, 235, 0.2)', *@
+@*                             'rgba(255, 206, 86, 0.2)' *@
+@*                         ], *@
+@*                         borderColor: [ *@
+@*                             'rgba(255, 99, 132, 1)', *@
+@*                             'rgba(54, 162, 235, 1)', *@
+@*                             'rgba(255, 206, 86, 1)' *@
+@*                         ], *@
+@*                         borderWidth: 1 *@
+@*                     }] *@
+@*                 }, *@
+@*                 options: { *@
+@*                     scales: { *@
+@*                         y: { *@
+@*                             beginAtZero: true *@
+@*                         } *@
+@*                     } *@
+@*                 } *@
+@*             }); *@
+@*         }); *@
+@*     </script> *@
+@* } *@

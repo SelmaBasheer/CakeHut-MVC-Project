@@ -1,0 +1,186 @@
+﻿@model CheckoutDto
+
+<div class="row  rounded-3 shadow border-0 mt-4">
+    <div class="col-md-8 p-3">
+        <h4>Shopping Cart</h4>
+        <hr />
+
+        @if (ViewBag.ErrorMessage != null)
+        {
+            <div class="alert alert-warning alert-dismissible fade show mt-4" role="alert">
+                <strong>@ViewBag.ErrorMessage</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        }
+        else
+        {
+            <!-- Only show cart items when the cart is not empty -->
+            <table class="table align-middle">
+                <tbody>
+                    @foreach (var item in ViewBag.CartItems)
+                    {
+                        <tr>
+                            <td>
+                                <img src="/cakes/@item.Product.ImageUrl" width="100" class="rounded" alt="...">
+                            </td>
+                            <td>
+                                <h4>@item.Product.Name</h4>
+                                <p>
+                                    Product ID: @item.Product.Id<br>
+                                    Name: @item.Product.Name<br>
+                                    Price:
+                                        @if (item.Product.DiscountedPrice < item.Product.Price)
+                                        {
+
+                                            <span class="text-danger text-decoration-line-through">@item.Product.Price Rs</span>
+                                            <span>@item.Product.DiscountedPrice Rs</span>
+                                        }
+                                        else
+                                        {
+                                            <span>@item.Product.Price Rs</span>
+                                        }
+                                    
+                                </p>
+                            </td>
+                            <td style="white-space:nowrap">
+                                <button type="button" class="btn btn-outline-secondary btn-sm"
+                                        onclick="decrease(@item.Product.Id)">
+                                    -
+                                </button>
+                                <span class="border rounded-3 p-2 m-1">@item.Quantity</span>
+                                <button type="button" class="btn btn-outline-secondary btn-sm"
+                                        onclick="increase(@item.Product.Id)">
+                                    +
+                                </button>
+                            </td>
+                            @* <td>@(item.UnitPrice * item.Quantity) Rs</td> *@
+                           
+                                @if (item.Product.DiscountedPrice < item.Product.Price)
+                                {
+                                <td>@(item.Product.DiscountedPrice * item.Quantity) Rs</td>
+                                }
+                                else
+                                {
+                                <td>
+                                        @(item.UnitPrice * item.Quantity) Rs
+                                </td>
+                                }
+                            
+                            <td>
+                                <i class="bi bi-trash text-danger h4" style="cursor: pointer" onclick="remove(@item.Product.Id)"></i>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    </div>
+    <div class="col-md-4">
+        @if (ViewBag.ErrorMessage == null)
+        {
+            <div class="text-white rounded my-2 p-3" style="background-color: #08618d;">
+                <h4>Order Summary</h4>
+                <hr />
+
+                @if (ViewBag.CartItems != null && ViewBag.CartItems.Count > 0)
+                {
+                    <form method="post">
+                        <div class="mb-3">
+                            <h4>Select Delivery Address</h4>
+                            <div class="form-group mb-3">
+                                <select class="form-select" asp-for="DeliveryAddress">
+
+                                    @if (ViewBag.Addresses != null && ViewBag.Addresses.Count > 0)
+                                    {
+                                        <!--
+                                        <option value="">Select an Address</option>
+                                        -->
+                                        @foreach (var address in ViewBag.Addresses)
+                                        {
+                                            <option value="@address.HomeAddress, @address.Street, @address.City, @address.State, @address.PostalCode">
+                                                @address.HomeAddress, @address.Street, @address.City, @address.State
+                                            </option>
+                                        }
+                                    }
+                                    
+                                    else
+                                    {
+                                        <option value="">No addresses available!</option>
+                                    }
+                                    
+                                </select>
+                                <span asp-validation-for="DeliveryAddress" class="text-danger"></span>
+                            </div>
+                            <a href="@Url.Action("Add", "Address")" class="btn btn-outline-primary">Add New Address</a>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Payment Method</label>
+                            <select class="form-select" asp-for="PaymentMethod">
+                                <option value="cash">Cash on Delivery</option>
+                                <option value="credit_card">Credit Card</option>
+                                <option value="paypal">Paypal</option>
+                            </select>
+                        </div>
+
+                        <hr>
+
+                        <div class="row">
+                            <div class="col">
+                                <p>Subtotal:</p>
+                            </div>
+                            <div class="col">
+                                <p class="text-end">@(ViewBag.Subtotal) Rs</p>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col">
+                                <p>Shipping:</p>
+                            </div>
+                            <div class="col">
+                                <p class="text-end">@(ViewBag.ShippingFee) Rs</p>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <h4>Select Coupon</h4>
+                            <div class="form-group mb-3">
+                                @if (ViewBag.ActiveCoupons != null && ViewBag.ActiveCoupons.Count > 0)
+                                {
+                                    <select class="form-select" asp-for="SelectedCouponId">
+                                        <option value="">Select a Coupon</option>
+                                        @foreach (var coupon in ViewBag.ActiveCoupons)
+                                        {
+                                            <option value="@coupon.Id">@coupon.Code - @coupon.DiscountPercentage% off</option>
+                                        }
+                                    </select>
+                                }
+                                else
+                                {
+                                    <p>No active coupons available at the moment.</p>
+                                }
+                                <span asp-validation-for="SelectedCouponId" class="text-danger"></span>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col">
+                                <p>Total:</p>
+                            </div>
+                            <div class="col">
+                                <p class="text-end">@(ViewBag.Total) Rs</p>
+                            </div>
+                        </div>
+
+
+                        <div class="d-grid">
+                            <button class="btn btn-outline-light" type="submit">Checkout</button>
+                        </div>
+                    </form>
+                }
+            </div>
+        }
+    </div>
+</div>

@@ -1,0 +1,108 @@
+﻿@model CakeHut.Models.ViewModels.OfferVM
+
+<div class="card shadow border-0 mt-4">
+    <div class="card-header bg-secondary bg-gradient">
+        <h2 class="text-white text-center py-3">Create Offer</h2>
+    </div>
+    <div class="card-body p-4">
+        <form asp-action="Create" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Offer.OfferCode" class="form-label">Offer Code</label>
+                <input asp-for="Offer.OfferCode" class="form-control" />
+                <span asp-validation-for="Offer.OfferCode" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Offer.Offertype" class="form-label">Offer Type</label>
+                <select asp-for="Offer.Offertype" class="form-control" id="offerTypeSelect">
+                    <option value="0">Category</option>
+                    <option value="1">Product</option>
+                    <option value="2">Referral</option>
+                </select>
+                <span asp-validation-for="Offer.Offertype" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3" id="categorySelect" style="display:none;">
+                <label asp-for="SelectedCategoryId" class="form-label">Category</label>
+                <select asp-for="SelectedCategoryId" class="form-control">
+                    <option value="">Select a Category</option>
+                    @foreach (var category in Model.Categories)
+                    {
+                        <option value="@category.Id">@category.Name</option>
+                    }
+                </select>
+                <span asp-validation-for="SelectedCategoryId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3" id="productSelect" style="display:none;">
+                <label asp-for="SelectedProductId" class="form-label">Product</label>
+                <select asp-for="SelectedProductId" class="form-control">
+                    <option value="">Select a Product</option>
+                    @foreach (var product in Model.Products)
+                    {
+                        <option value="@product.Id">@product.Name</option>
+                    }
+                </select>
+                <span asp-validation-for="SelectedProductId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Offer.OfferDiscount" class="form-label">Discount Percentage</label>
+                <input asp-for="Offer.OfferDiscount" class="form-control" />
+                <span asp-validation-for="Offer.OfferDiscount" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Offer.OfferDescription" class="form-label">Description</label>
+                <input asp-for="Offer.OfferDescription" class="form-control" />
+                <span asp-validation-for="Offer.OfferDescription" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Offer.ExpiryDate" class="form-label">Expiry Date</label>
+                <input asp-for="Offer.ExpiryDate" class="form-control" type="date" />
+                <span asp-validation-for="Offer.ExpiryDate" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3 form-check">
+                <input asp-for="Offer.IsActive" class="form-check-input" type="checkbox" />
+                <label asp-for="Offer.IsActive" class="form-check-label">Is Active</label>
+                <span asp-validation-for="Offer.IsActive" class="text-danger"></span>
+            </div>
+
+            <div class="row justify-content-center mt-4">
+                <div class="col-6 col-md-3 text-center">
+                    <button type="submit" class="btn btn-primary w-100">Create</button>
+                </div>
+                <div class="col-6 col-md-3 text-center">
+                    <a asp-action="Index" class="btn btn-secondary w-100">Back To List</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $("#offerTypeSelect").change(function () {
+                var selectedValue = $(this).val();
+                if (selectedValue == 0) {
+                    $("#categorySelect").show();
+                    $("#productSelect").hide();
+                } else if (selectedValue == 1) {
+                    $("#categorySelect").hide();
+                    $("#productSelect").show();
+                } else {
+                    $("#categorySelect").hide();
+                    $("#productSelect").hide();
+                }
+            });
+
+            // Trigger change event on page load to set initial state
+            $("#offerTypeSelect").change();
+        });
+    </script>
+}

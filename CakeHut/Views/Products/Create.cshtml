@@ -1,0 +1,96 @@
+﻿@model ProductDto
+
+@{
+    ViewData["Title"] = "Create New Product";
+}
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <h2 class="text-center mb-5">New Product</h2>
+
+            @if (!ViewData.ModelState.IsValid)
+            {
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                        {
+                            <li>@error.ErrorMessage</li>
+                        }
+                    </ul>
+                </div>
+            }
+
+            <form method="post" enctype="multipart/form-data">
+                <div class="card">
+                    <div class="card-body">
+                        <!-- Product Name -->
+                        <div class="form-group mb-3">
+                            <label for="Name" class="form-label">Name</label>
+                            <input type="text" class="form-control" asp-for="Name" placeholder="Enter product name" />
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+
+                        <!-- Category -->
+                        <div class="form-group mb-3">
+                            <label for="CategoryId" class="form-label">Category</label>
+                            <select class="form-control" asp-items="@(ViewBag.CategoryList)" asp-for="CategoryId">
+                                <option value="">Select Category</option>
+                            </select>
+                            <span asp-validation-for="CategoryId" class="text-danger"></span>
+                        </div>
+
+                        <!-- Description -->
+                        <div class="form-group mb-3">
+                            <label for="Description" class="form-label">Description</label>
+                            <textarea class="form-control" asp-for="Description" placeholder="Enter product description"></textarea>
+                            <span asp-validation-for="Description" class="text-danger"></span>
+                        </div>
+
+                        <!-- Price -->
+                        <div class="form-group mb-3">
+                            <label for="Price" class="form-label">Price</label>
+                            <input type="number" class="form-control" asp-for="Price" placeholder="Enter product price" />
+                            <span asp-validation-for="Price" class="text-danger"></span>
+                        </div>
+
+                        <!-- Images -->
+                        <div class="form-group mb-3">
+                            <label for="ImageFiles" class="form-label">Images</label>
+                            <input type="file" class="form-control" asp-for="ImageFiles" multiple />
+                            <span asp-validation-for="ImageFiles" class="text-danger"></span>
+                        </div>
+
+                        <!-- Weight -->
+                        <div class="form-group mb-3">
+                            <label for="Weight" class="form-label">Weight</label>
+                            <input type="number" class="form-control" asp-for="Weight" placeholder="Enter product weight" />
+                            <span asp-validation-for="Weight" class="text-danger"></span>
+                        </div>
+
+                        <!-- Availability -->
+                        <div class="form-group mb-3">
+                            <label for="Availability" class="form-label">Availability</label>
+                            <select class="form-control" asp-for="Availability" asp-items="@(new SelectList(new[] { "In Stock", "Out of Stock", "Pre-Order" }))">
+                                <option value="">Select Availability</option>
+                            </select>
+                            <span asp-validation-for="Availability" class="text-danger"></span>
+                        </div>
+
+                        <!-- Stock -->
+                        <div class="form-group mb-3">
+                            <label for="Stock" class="form-label">Stock</label>
+                            <input type="number" class="form-control" asp-for="Stock" min="0" placeholder="Enter stock quantity" />
+                            <span asp-validation-for="Stock" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="card-footer text-center">
+                        <button type="submit" class="btn btn-primary">Create Product</button>
+                        <a asp-controller="Products" asp-action="Index" class="btn btn-outline-secondary ms-2">Cancel</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

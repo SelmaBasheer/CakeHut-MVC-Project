@@ -1,0 +1,88 @@
+﻿@model LoginDto
+@{
+}
+
+<style>
+    /* Style the asterisk for required fields */
+    .required-field::after {
+        content: " *";
+        color: red;
+    }
+
+    .left-image {
+        max-height: 400px;
+        object-fit: cover;
+        width: 100%;
+        border-radius: 10px;
+    }
+</style>
+
+<div class="row">
+    <div class="col-lg-8 mx-auto rounded border p-4 shadow-lg">
+        <h2 class="text-center mb-3">Please Log In</h2>
+        <hr />
+
+        @if (ViewBag.ErrorMessage != null)
+        {
+            <div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                <strong>@ViewBag.ErrorMessage</strong>
+                <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+            </div>
+        }
+
+        <div class="row">
+            <!-- Left Column for Image -->
+            <div class="col-lg-6 d-none d-lg-block ">
+                <img src="~/images/e7262a357155d1c6b535944d31d2cc14.jpg" alt="Login Image" class="img-fluid rounded left-image">
+            </div>
+
+            <!-- Right Column for Form -->
+            <div class="col-lg-6">
+                <form method="post" class="mt-4">
+                    <div class="mb-3 row">
+                        <label class="col-sm-4 col-form-label text-end required-field">Email</label>
+                        <div class="col-sm-8">
+                            <input class="form-control" asp-for="Email">
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="mb-3 row">
+                        <label class="col-sm-4 col-form-label text-end required-field">Password</label>
+                        <div class="col-sm-8">
+                            <input class="form-control" type="password" asp-for="Password">
+                            <span asp-validation-for="Password" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="mb-3 row">
+                        <div class="col-sm-8 offset-sm-4 form-check">
+                            <input class="form-check-input" type="checkbox" asp-for="RememberMe" />
+                            <label class="form-check-label">Remember Me</label>
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-between mt-4 mb-4">
+                        <div class="col-sm-6 d-grid">
+                            <button type="submit" class="btn btn-primary">Log in</button>
+                        </div>
+                        <div class="col-sm-6 d-grid text-end">
+                            <a class="btn btn-outline-primary" asp-controller="Home" asp-action="Index" role="button">
+                                Cancel
+                            </a>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-sm-12 text-center">
+                            <a class="btn btn-link" asp-controller="Account" asp-action="ForgotPassword">
+                                Forgot your password?
+                            </a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

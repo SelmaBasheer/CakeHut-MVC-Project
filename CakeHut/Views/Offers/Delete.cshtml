@@ -1,0 +1,54 @@
+﻿@model CakeHut.Models.Offer
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-lg border-0">
+                <div class="card-body text-center">
+                    <h2 class="mb-4 text-danger">Delete Offer</h2>
+                    <p class="lead mb-4">Are you sure you want to delete the offer <strong>@Model.OfferCode</strong>?</p>
+                    <p class="text-muted mb-4">This action cannot be undone, and the offer will be permanently removed from the system.</p>
+
+                    <dl class="row">
+                        <dt class="col-sm-4">Offer Type</dt>
+                        <dd class="col-sm-8">@Html.DisplayFor(model => model.Offertype)</dd>
+
+                        <dt class="col-sm-4">Discount</dt>
+                        <dd class="col-sm-8">@Html.DisplayFor(model => model.OfferDiscount)</dd>
+
+                        <dt class="col-sm-4">Description</dt>
+                        <dd class="col-sm-8">@Html.DisplayFor(model => model.OfferDescription)</dd>
+                    </dl>
+
+                    <form asp-action="Delete" class="d-inline-block">
+                        <input type="hidden" asp-for="OfferId" />
+                        <button type="submit" class="btn btn-danger btn-lg">
+                            <i class="bi bi-trash-fill"></i> Confirm Delete
+                        </button>
+                    </form>
+
+                    <a asp-controller="Offers" asp-action="Index" class="btn btn-secondary btn-lg ms-3">
+                        <i class="bi bi-x-circle-fill"></i> Cancel
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Additional CSS -->
+<style>
+    .card {
+        border-radius: 10px;
+        padding: 20px;
+    }
+
+    .lead {
+        font-size: 1.2rem;
+    }
+
+    .btn-lg {
+        padding: 10px 20px;
+        font-size: 1.1rem;
+    }
+</style>

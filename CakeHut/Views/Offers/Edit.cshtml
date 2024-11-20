@@ -1,0 +1,111 @@
+﻿@model CakeHut.Models.ViewModels.OfferVM
+
+@{
+    ViewData["Title"] = "Edit Offer";
+}
+
+<div class="card shadow border-0 mt-4">
+    <div class="card-header bg-secondary bg-gradient">
+        <h2 class="text-white text-center py-3">Edit Offer</h2>
+    </div>
+    <div class="card-body p-4">
+        <form asp-action="Edit" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+            @* Hidden input to bind OfferId *@
+            <input type="hidden" asp-for="Offer.OfferId" />
+
+            <div class="mb-3">
+                <label asp-for="Offer.OfferCode" class="form-label">Offer Code</label>
+                <input asp-for="Offer.OfferCode" class="form-control" />
+                <span asp-validation-for="Offer.OfferCode" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Offer.Offertype" class="form-label">Offer Type</label>
+                <select asp-for="Offer.Offertype" class="form-control" id="OfferTypeSelect">
+                    <option value="Product">Product</option>
+                    <option value="Category">Category</option>
+                    <option value="Referral">Referral</option>
+                </select>
+                <span asp-validation-for="Offer.Offertype" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Offer.OfferDiscount" class="form-label">Discount</label>
+                <input asp-for="Offer.OfferDiscount" class="form-control" />
+                <span asp-validation-for="Offer.OfferDiscount" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Offer.OfferDescription" class="form-label">Description</label>
+                <input asp-for="Offer.OfferDescription" class="form-control" />
+                <span asp-validation-for="Offer.OfferDescription" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Offer.ExpiryDate" class="form-label">Expiry Date</label>
+                <input asp-for="Offer.ExpiryDate" class="form-control" type="date" />
+                <span asp-validation-for="Offer.ExpiryDate" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3 form-check">
+                <input asp-for="Offer.IsActive" class="form-check-input" type="checkbox" />
+                <label asp-for="Offer.IsActive" class="form-check-label">Is Active</label>
+                <span asp-validation-for="Offer.IsActive" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3" id="CategorySelectDiv" style="display: none;">
+                <label asp-for="SelectedCategoryId" class="form-label">Category</label>
+                <select asp-for="SelectedCategoryId" class="form-control" asp-items="@(new SelectList(Model.Categories, "Id", "Name"))">
+                    <option value="">-- Select Category --</option>
+                </select>
+                <span asp-validation-for="SelectedCategoryId" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3" id="ProductSelectDiv" style="display: none;">
+                <label asp-for="SelectedProductId" class="form-label">Product</label>
+                <select asp-for="SelectedProductId" class="form-control" asp-items="@(new SelectList(Model.Products, "Id", "Name"))">
+                    <option value="">-- Select Product --</option>
+                </select>
+                <span asp-validation-for="SelectedProductId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group text-center mt-4">
+                <button type="submit" class="btn btn-primary">Save</button>
+                <a asp-action="Index" class="btn btn-secondary ml-2">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @* @await Html.RenderPartialAsync("_ValidationScriptsPartial") *@
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const offerTypeSelect = document.getElementById("OfferTypeSelect");
+            const categorySelectDiv = document.getElementById("CategorySelectDiv");
+            const productSelectDiv = document.getElementById("ProductSelectDiv");
+
+            function toggleSelectDivs() {
+                const selectedValue = offerTypeSelect.value;
+                if (selectedValue === "Product") {
+                    categorySelectDiv.style.display = "none";
+                    productSelectDiv.style.display = "block";
+                } else if (selectedValue === "Category") {
+                    categorySelectDiv.style.display = "block";
+                    productSelectDiv.style.display = "none";
+                } else {
+                    categorySelectDiv.style.display = "none";
+                    productSelectDiv.style.display = "none";
+                }
+            }
+
+            // Initial call to set the correct visibility based on the initial selection
+            toggleSelectDivs();
+
+            // Add event listener for change event
+            offerTypeSelect.addEventListener("change", toggleSelectDivs);
+        });
+    </script>
+}

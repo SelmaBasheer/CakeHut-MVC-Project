@@ -1,0 +1,127 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cake Hut - Category Management</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .sidebar {
+            height: 100vh;
+            background-color: #f4f4f4;
+            padding: 15px;
+            position: fixed;
+            width: 200px;
+        }
+        .sidebar ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        .sidebar ul li {
+            margin: 15px 0;
+        }
+        .sidebar ul li a {
+            text-decoration: none;
+            color: #000;
+            font-weight: bold;
+        }
+        .main-content {
+            margin-left: 220px;
+            padding: 20px;
+        }
+        .category-table {
+            width: 100%;
+            margin-top: 20px;
+        }
+        .add-category-btn {
+            float: right;
+            background-color: gold;
+            border: none;
+            padding: 10px 20px;
+            font-weight: bold;
+            color: white;
+            cursor: pointer;
+        }
+        .profile {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .profile img {
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+        }
+        .profile h4 {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="sidebar">
+        <div class="profile">
+            <img src="profile-image.jpg" alt="Profile Picture">
+            <h4>Alaa Mohamed</h4>
+        </div>
+        <ul>
+            <li><a href="#">Dashboard</a></li>
+            <li><a href="#">User Management</a></li>
+            <li><a href="#">Product Management</a></li>
+            <li><a href="#">Category Management</a></li>
+            <li><a href="#">Order Details</a></li>
+            <li><a href="#">Sales Reports</a></li>
+        </ul>
+    </div>
+
+    <div class="main-content">
+        <h2>Category</h2>
+        <p>Home > Category</p>
+
+        <button class="add-category-btn">+ Add Category</button>
+
+        <table class="table category-table">
+            <thead class="thead-light">
+                <tr>
+                    <th>ID</th>
+                    <th>Category</th>
+                    <th>Description</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Cakes</td>
+                    <td>--</td>
+                    <td>
+                        <button class="btn btn-primary btn-sm">✎</button>
+                        <button class="btn btn-danger btn-sm">🗑</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Cupcakes</td>
+                    <td>Pending</td>
+                    <td>
+                        <button class="btn btn-primary btn-sm">✎</button>
+                        <button class="btn btn-danger btn-sm">🗑</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Trending Cakes</td>
+                    <td>--</td>
+                    <td>
+                        <button class="btn btn-primary btn-sm">✎</button>
+                        <button class="btn btn-danger btn-sm">🗑</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</body>
+</html>
