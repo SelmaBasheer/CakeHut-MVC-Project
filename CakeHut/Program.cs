@@ -62,7 +62,7 @@ app.MapControllerRoute(
 
 
 // create the roles and the first admin user if not available yet
-/*
+
 using (var scope = app.Services.CreateScope())
 {
     var userManager = scope.ServiceProvider.GetService(typeof(UserManager<ApplicationUser>))
@@ -72,6 +72,6 @@ using (var scope = app.Services.CreateScope())
 
     await DatabaseInitializer.SeedDataAsync(userManager, roleManager);
 }
-*/
+
 
 app.Run();
