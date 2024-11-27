@@ -46,12 +46,6 @@
                 </h4>
                 <a class="btn btn-primary btn-sm mb-2" asp-controller="Store"
                    asp-action="Details" asp-route-id="@product.Id" role="button">Details</a>
-                   
-                   <!--
-                <button onclick="addToWishlist(@product.Id)" class="btn btn-warning btn-sm mb-2">
-                    <i class="bi bi-heart"></i>
-                </button>
-                -->
                 
                 <form asp-controller="Wishlist" asp-action="Add" method="post" class="d-inline">
                     <input type="hidden" name="productId" value="@product.Id" />
@@ -60,7 +54,7 @@
                     </button>
                 </form>
                 
-                <button type="button" class="btn btn-warning btn-sm mb-2" onclick="addToCart(this, @product.Id)">
+                <button type="button" class="btn btn-warning btn-sm mb-2" onclick="addToCart(this, @product.Id, @product.Stock)">
                     Add to Cart <i class="bi bi-cart4"></i>
                 </button>
             </div>

@@ -105,34 +105,24 @@ namespace CakeHut.Controllers
             }
 
             var order = await context.Orders.FirstOrDefaultAsync(o => o.Id == id && o.ClientId == currentUser.Id);
-            if (order == null || order.OrderStatus != "created") // Only allow cancellation if status is "created"
+            if (order == null || order.OrderStatus != "created") 
             {
                 return RedirectToAction("Details", new { id });
             }
 
-            //order.OrderStatus = "canceled";
-            //context.Update(order);
-            //await context.SaveChangesAsync();
-            //TempData["Message"] = "Order has been successfully canceled.";
-
-
-            //return RedirectToAction("Details", new { id });
 
             if (order.OrderStatus == "canceled")
             {
                 return BadRequest("Order is already canceled.");
             }
 
-            // Mark order as canceled
             order.OrderStatus = "canceled";
             order.CancellationDate = DateTime.UtcNow;
 
-            // Calculate the subtotal (without coupon discount)
             decimal subtotal = order.Items.Sum(i => i.UnitPrice * i.Quantity);
 
             Console.WriteLine($"subtotal: {subtotal}");
 
-            // Calculate the discount if coupon is applied
             decimal discountAmount = 0;
             if (order.AppliedCoupon != null)
             {
@@ -141,22 +131,16 @@ namespace CakeHut.Controllers
 
             Console.WriteLine($"discountAmount: {discountAmount}");
 
-            // Calculate the total paid amount (after applying the discount)
             decimal totalPaid = subtotal - discountAmount;
 
-            // Include the shipping fee in the refund
             decimal refundAmount = totalPaid + order.ShippingFee;
-
 
             Console.WriteLine($"Refund Amount: {refundAmount}");
 
-            // Add refund to user's wallet
             await _walletService.AddTransactionAsync(currentUser.Id, refundAmount, "Refund for canceled order", "Refund");
 
-            // Save changes
             await context.SaveChangesAsync();
 
-            // Notify user that refund has been added to their wallet
             TempData["Message"] = $"Your order has been canceled. A refund of {refundAmount:F2} Rs has been credited to your wallet.";
 
             return RedirectToAction("Index");

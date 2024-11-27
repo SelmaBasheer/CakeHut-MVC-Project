@@ -49,11 +49,10 @@
                                 </button>
                                 <span class="border rounded-3 p-2 m-1">@item.Quantity</span>
                                 <button type="button" class="btn btn-outline-secondary btn-sm"
-                                        onclick="increase(@item.Product.Id)">
+                                        onclick="increase(@item.Product.Id, @item.Product.Stock)">
                                     +
                                 </button>
                             </td>
-                            @* <td>@(item.UnitPrice * item.Quantity) Rs</td> *@
                            
                                 @if (item.Product.DiscountedPrice < item.Product.Price)
                                 {
@@ -92,9 +91,6 @@
 
                                     @if (ViewBag.Addresses != null && ViewBag.Addresses.Count > 0)
                                     {
-                                        <!--
-                                        <option value="">Select an Address</option>
-                                        -->
                                         @foreach (var address in ViewBag.Addresses)
                                         {
                                             <option value="@address.HomeAddress, @address.Street, @address.City, @address.State, @address.PostalCode">
@@ -111,15 +107,21 @@
                                 </select>
                                 <span asp-validation-for="DeliveryAddress" class="text-danger"></span>
                             </div>
-                            <a href="@Url.Action("Add", "Address")" class="btn btn-outline-primary">Add New Address</a>
+                            <a href="@Url.Action("Add", "Address")" class="btn btn-outline-primary text-white">Add New Address</a>
                         </div>
 
                         <div class="mb-3">
                             <label class="form-label">Payment Method</label>
                             <select class="form-select" asp-for="PaymentMethod">
-                                <option value="cash">Cash on Delivery</option>
-                                <option value="credit_card">Credit Card</option>
-                                <option value="paypal">Paypal</option>
+                                @if (ViewBag.Total != null && ViewBag.Subtotal > 2000)
+                                {
+                                    <option value="paypal">Paypal</option>
+                                }
+                                else
+                                {
+                                    <option value="cash">Cash on Delivery</option>
+                                    <option value="paypal">Paypal</option>
+                                }
                             </select>
                         </div>
 

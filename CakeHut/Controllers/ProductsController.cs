@@ -21,11 +21,10 @@ namespace CakeHut.Controllers
 
         public IActionResult Index(int? pageIndex)
         {
-            //List<Product> productsList = context.Products.ToList();
-
             IQueryable<Product> query = context.Products;
 
-            
+            query = query.OrderByDescending(p => p.CreatedAt);
+
             if (pageIndex == null || pageIndex < 1)
             {
                 pageIndex = 1;
@@ -62,7 +61,7 @@ namespace CakeHut.Controllers
         {
             if (productDto.ImageFiles == null || !productDto.ImageFiles.Any())
             {
-                ModelState.AddModelError("ImageFile", "At least one image file is required");
+                ModelState.AddModelError("ImageFiles", "At least one image file is required");
             }
 
             if (!ModelState.IsValid)
@@ -91,46 +90,49 @@ namespace CakeHut.Controllers
                 Description = productDto.Description,
                 Price = productDto.Price,
                 Weight = productDto.Weight,
-                Stock = productDto.Stock,  // Set stock from DTO
-                Availability = productDto.Stock > 0 ? "In Stock" : "Out of Stock"  // Set availability based on stock
-                //Availability = productDto.Availability
+                Stock = productDto.Stock,  
+                Availability = productDto.Stock > 0 ? "In Stock" : "Out of Stock",
+                DiscountedPrice = productDto.Price
             };
 
-            
             context.Products.Add(product);
             await context.SaveChangesAsync();
 
             
             List<ProductImage> images = new List<ProductImage>();
-            string primaryImageUrl = string.Empty; 
-            
+            string primaryImageUrl = string.Empty;
+
             foreach (var imageFile in productDto.ImageFiles)
             {
-               
+                var allowedExtensions = new[] { ".jpg", ".jpeg", ".png" };
+                var fileExtension = Path.GetExtension(imageFile.FileName).ToLower();
+
+                if (!allowedExtensions.Contains(fileExtension))
+                {
+                    ModelState.AddModelError("ImageFiles", "Only image files (.jpg, .jpeg, .png) are allowed.");
+                    return View(productDto);
+                }
+
                 string newFileName = $"{DateTime.Now:yyyyMMddHHmmssfff}_{imageFile.FileName}";
                 string imageFullPath = Path.Combine(environment.WebRootPath, "cakes", newFileName);
 
-               
                 using (var stream = new FileStream(imageFullPath, FileMode.Create))
                 {
                     await imageFile.CopyToAsync(stream);
                 }
 
-                
                 images.Add(new ProductImage
                 {
-                    ImageUrl = newFileName, 
+                    ImageUrl = newFileName,
                     ProductId = product.Id
                 });
 
-                
                 if (string.IsNullOrEmpty(primaryImageUrl))
                 {
-                    primaryImageUrl = newFileName; 
+                    primaryImageUrl = newFileName;
                 }
             }
 
-            
             context.ProductImages.AddRange(images);
             await context.SaveChangesAsync();
 
@@ -138,34 +140,6 @@ namespace CakeHut.Controllers
             product.ImageUrl = primaryImageUrl; 
             context.Products.Update(product);
             await context.SaveChangesAsync();
-
-            // save the image file
-            //string newFileName = DateTime.Now.ToString("yyyyMMddHHmmssfff");
-            //newFileName += Path.GetExtension(productDto.ImageFile!.FileName);
-
-            //string imageFullPath = Path.Combine(environment.WebRootPath, "cakes", newFileName);
-            //using (var stream = System.IO.File.Create(imageFullPath))
-            //{
-            //    productDto.ImageFile.CopyTo(stream);
-            //}
-
-
-
-            // save the new product in the database
-            //Product product = new Product()
-            //{
-            //    Name = productDto.Name,
-            //    CategoryId = productDto.CategoryId,
-            //    Description = productDto.Description,
-            //    Price = productDto.Price,
-            //    ImageUrl = imageFileNames.FirstOrDefault(),
-            //    Weight = productDto.Weight,
-            //    Availability = productDto.Availability
-            //};
-
-
-            //context.Products.Add(product);
-            //context.SaveChanges();
 
             return RedirectToAction("Index", "Products");
         }
@@ -189,7 +163,8 @@ namespace CakeHut.Controllers
                 Price = product.Price,
                 Weight = product.Weight,
                 Availability = product.Availability,
-                Images = product.Images.Select(i => new ProductImageDto { Id = i.Id, ImageUrl = i.ImageUrl }).ToList()
+                Images = product.Images.Select(i => new ProductImageDto { Id = i.Id, ImageUrl = i.ImageUrl }).ToList(),
+                Stock = product.Stock
             };
 
             List<Category> categories = await context.Categories.ToListAsync();
@@ -210,24 +185,21 @@ namespace CakeHut.Controllers
         public async Task<IActionResult> Edit(int id, ProductDto productDto, List<int> RemoveImageIds)
         {
             var product = await context.Products
-        .Include(p => p.Images) 
-        .FirstOrDefaultAsync(p => p.Id == id);
+                .Include(p => p.Images) 
+                .FirstOrDefaultAsync(p => p.Id == id);
 
             if (product == null)
             {
                 return RedirectToAction("Index", "Products");
             }
 
-            
             product.Name = productDto.Name;
             product.CategoryId = productDto.CategoryId;
             product.Description = productDto.Description;
             product.Price = productDto.Price;
             product.Weight = productDto.Weight;
-            //product.Availability = productDto.Availability;
-            product.Stock = productDto.Stock;  // Update stock
-            product.Availability = productDto.Stock > 0 ? "In Stock" : "Out of Stock";  // Update availability based on stock
-
+            product.Stock = productDto.Stock;  
+            product.Availability = productDto.Stock > 0 ? "In Stock" : "Out of Stock";  
 
 
             if (RemoveImageIds != null && RemoveImageIds.Any())
@@ -246,7 +218,6 @@ namespace CakeHut.Controllers
                     context.ProductImages.Remove(image);
                 }
             }
-
             
             if (productDto.ImageFiles != null && productDto.ImageFiles.Any())
             {
@@ -269,7 +240,6 @@ namespace CakeHut.Controllers
                 }
             }
 
-            
             context.Products.Update(product);
             await context.SaveChangesAsync();
 
@@ -296,15 +266,12 @@ namespace CakeHut.Controllers
                     System.IO.File.Delete(imagePath); 
                 }
             }
-
             
             context.Products.Remove(product);
             context.SaveChanges();
 
             return RedirectToAction("Index", "Products");
         }
-
-
 
     }
 }

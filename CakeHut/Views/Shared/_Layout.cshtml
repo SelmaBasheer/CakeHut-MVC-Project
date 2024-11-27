@@ -23,8 +23,6 @@
 
     <script>
             function getShoppingCart() {
-                // document.cookie contains all the cookies of our website with the following format
-                // cookie1=value1; cookie2=value2; cookie3=value3;
 
                 const cookieName = "shopping_cart";
                 let cookiesArray = document.cookie.split(';');
@@ -36,7 +34,6 @@
 
                         try {
                             let cart = JSON.parse(atob(cookie_value));
-                            //let cart = JSON.parse(cookie_value);
                             return cart;
                         }
                         catch (exception) {
@@ -48,74 +45,44 @@
                 return {};
             }
 
-
             function saveCart(cart) {
                 let cartStr = btoa(JSON.stringify(cart))
-                //let cartStr = JSON.stringify(cart)
 
-                // save cookie
                 let d = new Date();
-                d.setDate(d.getDate() + 365); // this cookie expires after 365 days (1 year)
+                d.setDate(d.getDate() + 365);
                 let expires = d.toUTCString();
                 document.cookie = "shopping_cart=" + cartStr + ";expires=" + expires + ";path=/; SameSite=Strict; Secure";
             }
 
         function addToCart(button, id, availableStock) {
+
+            if (availableStock <= 0) {
+                alert("This product is out of stock and cannot be added to the cart."); 
+                return; 
+            }
+
             let cart = getShoppingCart();
 
-            // Calculate total items in the cart
             let totalItems = Object.values(cart).reduce((sum, quantity) => sum + Number(quantity), 0);
 
-            // Check if adding another item would exceed the limit
             if (totalItems >= 5) {
                 alert("You can only have a maximum of 5 items in your cart.");
-                return; // Prevent adding more
+                return; 
             }
 
-            // Get the current quantity of the item being added
             let quantity = cart[id] || 0;
 
-            // Check if the item can be added based on available stock
             if (quantity >= availableStock) {
                 alert("Out of stock");
-                return; // Prevent adding more than available stock
+                return; 
             }
 
-            // Increment the item's quantity
             cart[id] = Number(quantity) + 1;
 
             saveCart(cart);
             button.innerHTML = "Added <i class='bi bi-check-lg'></i>";
 
-            // Update the cart size display
             updateCartSize();
-        }
-
-        function increase(id) {
-            let cart = getShoppingCart();
-
-            // Calculate total items in the cart
-            let totalItems = Object.values(cart).reduce((sum, quantity) => sum + Number(quantity), 0);
-
-            let quantity = cart[id] || 0;
-
-            // Check if increasing this item would exceed the limit
-            if (totalItems >= 5) {
-                alert("You can only have a maximum of 5 items in your cart.");
-                return; // Prevent increasing quantity
-            }
-
-            // Check if we can increase the quantity based on available stock
-            if (quantity >= availableStock) {
-                alert("Out of stock");
-                return; // Prevent increasing quantity beyond stock
-            }
-
-            // Increment the item's quantity
-            cart[id] = Number(quantity) + 1;
-
-            saveCart(cart);
-            location.reload(); // Refresh to update the cart display
         }
 
         function decrease(id) {
@@ -124,7 +91,7 @@
             let quantity = cart[id];
 
             if (isNaN(quantity)) {
-                return; // Exit if quantity is not a number
+                return; 
             }
 
             quantity = Number(quantity);
@@ -132,20 +99,58 @@
             if (quantity > 1) {
                 cart[id] = quantity - 1;
                 saveCart(cart);
-                location.reload(); // Refresh to update the cart display
+                location.reload(); 
             } else {
-                // Optionally remove the item from the cart if quantity is 1
                 remove(id);
             }
+        }
+
+
+        function increase(id, availableStock) {
+            let cart = getShoppingCart();
+
+            let quantity = cart[id] || 0;
+
+            let totalItems = Object.values(cart).reduce((sum, qty) => sum + Number(qty), 0);
+            if (totalItems >= 5) {
+                alert("You can only have a maximum of 5 items in your cart.");
+                return;
+            }
+
+            if (quantity >= availableStock) {
+                alert("You can't add more of this item, stock is limited.");
+                return;
+            }
+
+            cart[id] = quantity + 1;
+            saveCart(cart);
+
+            updateCartUI(id, cart[id]);
+
+            updateCartSize();
+        }
+
+        function updateCartUI(id, newQuantity) {
+            const quantityElement = document.getElementById(`cart-item-quantity-${id}`);
+            if (quantityElement) {
+                quantityElement.textContent = newQuantity;
+            }
+        }
+
+        function updateCartSize() {
+            let cart = getShoppingCart();
+            let cartSize = Object.values(cart).reduce((sum, quantity) => sum + Number(quantity), 0);
+
+            document.getElementById("CartSize").innerHTML = cartSize; 
         }
 
         function remove(id) {
             let cart = getShoppingCart();
 
             if (cart[id]) {
-                delete cart[id]; // Remove item from cart
+                delete cart[id]; 
                 saveCart(cart);
-                location.reload(); // Refresh to update the cart display
+                location.reload(); 
             }
         }
 
@@ -155,8 +160,6 @@
 
             document.getElementById("CartSize").innerHTML = cartSize;
         }
-
-
             document.addEventListener("DOMContentLoaded", function () {
             fetchWishlistCount();
         });
@@ -169,9 +172,6 @@
                 })
                 .catch(error => console.error('Error fetching wishlist count:', error));
         }
-                
-
-        
 
     </script>
 

@@ -1,10 +1,14 @@
 ﻿using CakeHut.Data;
 using CakeHut.Models;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.Google;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
 using System.Net.Mail;
+using System.Security.Claims;
 
 namespace CakeHut.Controllers
 {
@@ -35,8 +39,6 @@ namespace CakeHut.Controllers
             }
             try
             {
-
-
                 var user = new ApplicationUser()
                 {
                     FirstName = registerDto.FirstName,
@@ -51,45 +53,31 @@ namespace CakeHut.Controllers
 
                 if (result.Succeeded)
                 {
-                    // Generate OTP
                     string otp = GenerateOTP();
                     Console.WriteLine("OTP GENERATED : " + otp);
-                    // Store the OTP in TempData or Session 
                     TempData["OTP"] = otp;
                     TempData["UserId"] = user.Id;
                     TempData["OTPCreatedTime"] = DateTime.Now;
 
-
-                    // Send OTP via email
                     string subject = "OTP for Account Verification";
                     string message = $"Dear {user.FirstName},\n\nYour OTP for account verification is: {otp}";
 
-                    //string apiKey = configuration["BrevoSettings:ApiKey"];
                     string senderName = configuration["BrevoSettings:SenderName"] ?? "";
                     string senderEmail = configuration["BrevoSettings:SenderEmail"] ?? "";
 
                     EmailSender.SendEmail(senderName, senderEmail, $"{user.FirstName} {user.LastName}", user.Email, subject, message);
 
-                    // Redirect to OTP verification page
                     return RedirectToAction("VerifyOTP");
-
-                    //await userManager.AddToRoleAsync(user, "user");
-
-                    //await signInManager.SignInAsync(user, false);
-
-                    //return RedirectToAction("Index", "Home");
                 }
                 ViewBag.ErrorMessage = "User registration failed. Please try again.";
             }
             catch (SmtpException ex)
             {
-                
                 Console.WriteLine($"Email sending failed: {ex.Message}");
                 ViewBag.ErrorMessage = "There was an error sending the verification email. Please try again later.";
             }
             catch (Exception ex)
             {
-                
                 Console.WriteLine($"An error occurred: {ex.Message}");
                 ViewBag.ErrorMessage = "An unexpected error occurred. Please try again.";
             }
@@ -97,13 +85,14 @@ namespace CakeHut.Controllers
             return View(registerDto);
         }
 
+        //Generate OTP
         public string GenerateOTP(int length = 6)
         {
             Random random = new Random();
             string otp = "";
             for (int i = 0; i < length; i++)
             {
-                otp += random.Next(0, 10).ToString(); // Generates a random digit
+                otp += random.Next(0, 10).ToString(); 
             }
             return otp;
         }
@@ -148,12 +137,10 @@ namespace CakeHut.Controllers
         [HttpPost]
         public async Task<IActionResult> VerifyOTP(string otp)
         {
-            // Safely check and retrieve values from TempData
-            string storedOtp = TempData.Peek("OTP")?.ToString(); // Safely retrieve OTP from TempData
-            string userId = TempData.Peek("UserId")?.ToString(); // Safely retrieve UserId from TempData
+            string storedOtp = TempData.Peek("OTP")?.ToString(); 
+            string userId = TempData.Peek("UserId")?.ToString(); 
             DateTime? otpCreatedTime = TempData.Peek("OTPCreatedTime") as DateTime?;
 
-            // Ensure TempData values persist across requests
             TempData.Keep("OTP");
             TempData.Keep("UserId");
             TempData.Keep("OTPCreatedTime");
@@ -164,14 +151,12 @@ namespace CakeHut.Controllers
             Console.WriteLine("userId SAVED : " + userId);
             Console.WriteLine("otpCreatedTime SAVED : " + otpCreatedTime);
 
-            // Check if any of the required TempData values are null
             if (string.IsNullOrEmpty(storedOtp) || string.IsNullOrEmpty(userId) || otpCreatedTime == null)
             {
                 ViewBag.ErrorMessage = "OTP verification failed. Please request a new OTP.";
                 return View();
             }
 
-            // OTP expiry check
             TimeSpan otpExpiryDuration = TimeSpan.FromMinutes(5);
             DateTime otpExpiryTime = otpCreatedTime.Value.Add(otpExpiryDuration);
 
@@ -180,28 +165,21 @@ namespace CakeHut.Controllers
             if (DateTime.Now > otpExpiryTime)
             {
                 ViewBag.ErrorMessage = "Your OTP has expired. Please request a new OTP.";
-                return View(); // Return to the same view to request a new OTP
+                return View(); 
             }
 
-            // Null check on OTP before calling Trim()
-            //if (!string.IsNullOrEmpty(otp) && storedOtp.Trim() == otp.Trim())
             if (otp == storedOtp)
             {
-                // OTP matches, proceed with account verification
                 var user = await userManager.FindByIdAsync(userId);
                 if (user != null)
                 {
-                    // Mark email as confirmed
                     user.EmailConfirmed = true;
                     await userManager.UpdateAsync(user);
 
-                    // Assign user role after successful OTP verification
                     await userManager.AddToRoleAsync(user, "user");
 
-                    // Sign in the user
                     await signInManager.SignInAsync(user, false);
 
-                    // Clear OTP from TempData after successful verification
                     TempData.Remove("OTP");
                     TempData.Remove("OTPCreatedTime");
 
@@ -212,7 +190,7 @@ namespace CakeHut.Controllers
             else
             {
                 ViewBag.ErrorMessage = "Invalid OTP. Please try again.";
-                TempData.Keep("OTP"); // Ensure OTP stays in TempData for future attempts
+                TempData.Keep("OTP"); 
                 return View();
             }
 
@@ -220,10 +198,6 @@ namespace CakeHut.Controllers
             return View();
         }
 
-
-
-
-        
 
         public async Task<IActionResult> Logout()
         {
@@ -248,13 +222,10 @@ namespace CakeHut.Controllers
                 return View(loginDto);
             }
 
-			// Find the user by email
 			var user = await userManager.FindByEmailAsync(loginDto.Email);
 
-			// Check if the user exists and is blocked
 			if (user != null && user.IsBlocked)
 			{
-				// Blocked user: Display error message
 				ViewBag.ErrorMessage = "Your account has been blocked. Please contact support.";
 				return View(loginDto);
 			}
@@ -265,11 +236,11 @@ namespace CakeHut.Controllers
             {
                 if (await userManager.IsInRoleAsync(user, "admin"))
                 {
-                    return RedirectToAction("AdminHome", "Home"); // Redirect admin to AdminHome
+                    return RedirectToAction("AdminHome", "Home"); 
                 }
                 else if (await userManager.IsInRoleAsync(user, "user"))
                 {
-                    return RedirectToAction("Index", "Home"); // Redirect regular user to Store
+                    return RedirectToAction("Index", "Home"); 
                 }
             }
             else
@@ -310,14 +281,12 @@ namespace CakeHut.Controllers
                 return View(profileDto);
             }
 
-            // Get the current user
             var appUser = await userManager.GetUserAsync(User);
             if (appUser == null)
             {
                 return RedirectToAction("Index", "Home");
             }
 
-            // Update the user profile
             appUser.FirstName = profileDto.FirstName;
             appUser.LastName = profileDto.LastName;
             appUser.UserName = profileDto.Email;
@@ -380,7 +349,8 @@ namespace CakeHut.Controllers
 			return RedirectToAction("Profile");
 		}
 
-		public IActionResult ForgotPassword()
+        //Forgot Password
+        public IActionResult ForgotPassword()
 		{
             if (signInManager.IsSignedIn(User))
             {
@@ -416,7 +386,6 @@ namespace CakeHut.Controllers
                 Console.WriteLine("PASSWORD RESET LINK:" + restUrl);
 
                 //send url by email
-
                 string senderName = configuration["BrevoSettings:SenderName"] ?? "";
                 string senderEmail = configuration["BrevoSettings:SenderEmail"] ?? "";
                 string username = user.FirstName + " " + user.LastName;
@@ -434,6 +403,7 @@ namespace CakeHut.Controllers
             return View();
         }
 
+        //Reset Password
         public IActionResult ResetPassword(string? token)
         {
             if (signInManager.IsSignedIn(User) || token == null)
@@ -442,7 +412,6 @@ namespace CakeHut.Controllers
             }
             return View();
         }
-
 
         [HttpPost]
         public async Task<IActionResult> ResetPassword(string? token, PasswordResetDto passwordResetDto)
@@ -479,6 +448,88 @@ namespace CakeHut.Controllers
             }
 
             return RedirectToAction("Profile");
+        }
+
+        [HttpGet]
+        public IActionResult LoginWithGoogle()
+        {
+            var redirectUrl = Url.Action("GoogleResponse", "Account");
+            var properties = signInManager.ConfigureExternalAuthenticationProperties(GoogleDefaults.AuthenticationScheme, redirectUrl);
+            return Challenge(properties, GoogleDefaults.AuthenticationScheme);
+        }
+
+        // Handles Google Login Response
+        [HttpGet]
+        public async Task<IActionResult> GoogleResponse()
+        {
+            var result = await HttpContext.AuthenticateAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+
+            if (!result.Succeeded)
+            {
+                return RedirectToAction("Login");
+            }
+
+            var externalLoginInfo = await signInManager.GetExternalLoginInfoAsync();
+            if (externalLoginInfo == null)
+            {
+                ViewBag.ErrorMessage = "Error loading external login information.";
+                return RedirectToAction("Login");
+            }
+
+            // Check if user already exists in the system
+            var user = await userManager.FindByLoginAsync(externalLoginInfo.LoginProvider, externalLoginInfo.ProviderKey);
+            if (user == null)
+            {
+                // Retrieve email from external provider
+                var email = result.Principal.FindFirstValue(ClaimTypes.Email);
+                if (string.IsNullOrEmpty(email))
+                {
+                    ViewBag.ErrorMessage = "Email address is required.";
+                    return RedirectToAction("Login");
+                }
+
+                // Check if email exists in the system
+                user = await userManager.FindByEmailAsync(email);
+                if (user == null)
+                {
+                    // Create a new user if not found
+                    user = new ApplicationUser
+                    {
+                        UserName = email,
+                        Email = email,
+                        FirstName = result.Principal.FindFirstValue(ClaimTypes.GivenName),
+                        LastName = result.Principal.FindFirstValue(ClaimTypes.Surname),
+                        EmailConfirmed = true,
+                        CreatedDate = DateTime.Now
+                    };
+
+                    var createResult = await userManager.CreateAsync(user);
+                    if (!createResult.Succeeded)
+                    {
+                        ViewBag.ErrorMessage = "Error creating user.";
+                        return RedirectToAction("Login");
+                    }
+                }
+
+                // Add external login info
+                var addLoginResult = await userManager.AddLoginAsync(user, externalLoginInfo);
+                if (!addLoginResult.Succeeded)
+                {
+                    ViewBag.ErrorMessage = "Error adding external login.";
+                    return RedirectToAction("Login");
+                }
+            }
+
+            // Sign in the user
+            await signInManager.SignInAsync(user, isPersistent: false);
+
+            // Redirect to the appropriate page
+            if (await userManager.IsInRoleAsync(user, "admin"))
+            {
+                return RedirectToAction("AdminHome", "Home");
+            }
+
+            return RedirectToAction("Index", "Home");
         }
     }
 }

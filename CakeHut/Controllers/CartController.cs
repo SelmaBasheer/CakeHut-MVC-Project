@@ -68,14 +68,12 @@ namespace CakeHut.Controllers
             List<OrderItem> cartItems = CartHelper.GetCartItems(Request, Response, context);
             int maxQuantityPerPerson = 5;
 
-            // Track total quantity across all products
             int totalQuantity = 0;
 
             foreach (var item in cartItems)
             {
-                totalQuantity += item.Quantity; // Increment the total quantity
+                totalQuantity += item.Quantity; 
 
-                // Check if the total quantity exceeds the limit
                 if (totalQuantity > maxQuantityPerPerson)
                 {
                     ModelState.AddModelError("Quantity", $"You can only have a maximum of {maxQuantityPerPerson} items in total.");
@@ -91,18 +89,16 @@ namespace CakeHut.Controllers
                 // Check if the available stock is sufficient
                 if (product.Stock < item.Quantity)
                 {
-                    // Show an error if stock is insufficient
                     ViewBag.ErrorMessage = $"Insufficient stock for {product.Name}. Only {product.Stock} items left.";
                     return View(model);
                 }
             }
 
             decimal subtotal = CartHelper.GetSubtotal(cartItems);
-            decimal originalTotal = subtotal + shippingFee; // Calculate the original total
+            decimal originalTotal = subtotal + shippingFee; 
             ViewBag.OriginalTotal = originalTotal;
 
             // Apply coupon if selected
-           // decimal discount = 0;
             if (model.SelectedCouponId.HasValue)
             {
                 var selectedCoupon = await context.Coupons
@@ -113,11 +109,10 @@ namespace CakeHut.Controllers
                    
                     decimal discount = ((decimal)selectedCoupon.DiscountPercentage / 100) * subtotal;
                     ViewBag.Discount = discount;
-                    decimal discountedTotal = originalTotal - discount; // Calculate discounted total
-                    ViewBag.Total = discountedTotal; // Update total with discount
-                    TempData["DiscountedTotal"] = discountedTotal.ToString("F2"); // Store discounted total in TempData
-                    //ViewBag.CouponMessage = $"Coupon applied! You got {selectedCoupon.DiscountPercentage}% discount. New total: {discountedTotal:C2}.";
-
+                    decimal discountedTotal = originalTotal - discount; 
+                    ViewBag.Total = discountedTotal; 
+                    TempData["DiscountedTotal"] = discountedTotal.ToString("F2"); 
+                    
                     TempData["CouponMessage"] = $"Coupon applied! You got {selectedCoupon.DiscountPercentage}% discount.";
                     TempData["CouponId"] = selectedCoupon.Id.ToString();
                 }
@@ -127,18 +122,13 @@ namespace CakeHut.Controllers
                 TempData.Remove("DiscountedTotal");
                 TempData.Remove("CouponMessage");
                 TempData.Remove("CouponId");
-                ViewBag.Total = originalTotal; // No coupon applied
+                ViewBag.Total = originalTotal; 
             }
-           
-
 
             ViewBag.CartItems = cartItems;
             ViewBag.ShippingFee = shippingFee;
             ViewBag.Subtotal = subtotal;
-            
 
-
-            //var discountedPrice = product.Price - (product.Price * coupon.DiscountPercentage / 100);
 
             if (!ModelState.IsValid)
             {
@@ -154,7 +144,6 @@ namespace CakeHut.Controllers
 
             TempData["DeliveryAddress"] = model.DeliveryAddress;
             TempData["PaymentMethod"] = model.PaymentMethod;
-            //TempData["DiscountedTotal"] = (subtotal + shippingFee - discount).ToString("F2");
 
             if (model.PaymentMethod == "paypal" || model.PaymentMethod == "credit_card")
             {
@@ -163,7 +152,6 @@ namespace CakeHut.Controllers
 
             return RedirectToAction("Confirm");
         }
-
 
 
         public IActionResult Confirm()
@@ -237,10 +225,9 @@ namespace CakeHut.Controllers
             }
             else
             {
-                total = CartHelper.GetSubtotal(cartItems) + shippingFee; // Fallback to original total if no discount
+                total = CartHelper.GetSubtotal(cartItems) + shippingFee; 
             }
 
-            // save the order
             var order = new Order
             {
                 ClientId = appUser.Id,
@@ -268,23 +255,18 @@ namespace CakeHut.Controllers
                 var product = await context.Products.FindAsync(item.ProductId);
                 if (product != null)
                 {
-                    // Decrease stock based on the quantity purchased
                     product.Stock -= item.Quantity;
 
                     if (product.Stock < 0)
                     {
-                        // Handle case where stock becomes negative, which should not happen if cart is validated properly
-                        //return BadRequest($"Insufficient stock for {product.Name}.");
                         ViewBag.ErrorMessage = $"Insufficient stock for {product.Name}.";
                     }
 
-                    // Update the product stock in the database
                     context.Products.Update(product);
                 }
             }
 
             context.SaveChanges();
-
 
             // delete the shopping cart cookie
             Response.Cookies.Delete("shopping_cart");
@@ -293,7 +275,6 @@ namespace CakeHut.Controllers
 
             return View();
         }
-
 
     }
 }

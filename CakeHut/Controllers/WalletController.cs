@@ -16,7 +16,6 @@ namespace CakeHut.Controllers
             _walletService = walletService;
         }
 
-        // Display the wallet details for the logged-in user
         public async Task<IActionResult> Index()
         {
             var currentUser = await _userManager.GetUserAsync(User);
@@ -28,7 +27,7 @@ namespace CakeHut.Controllers
             var wallet = await _walletService.GetWalletAsync(currentUser.Id);
             if (wallet == null)
             {
-                return View(new Wallet()); // If no wallet exists, pass an empty wallet model
+                return View(new Wallet()); 
             }
 
 

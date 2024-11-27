@@ -13,9 +13,6 @@ namespace CakeHut.Models
         [Phone(ErrorMessage = "The format of the Phone Number is not valid"), MaxLength(20)]
         public string PhoneNumber { get; set; }
 
-        [Required, MaxLength(200)]
-        public string Address { get; set; }
-
         [Required, EmailAddress, MaxLength(100)]
         public string Email { get; set; }
 

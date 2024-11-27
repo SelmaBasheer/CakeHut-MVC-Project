@@ -9,20 +9,20 @@ namespace CakeHut.Models
 
         [Required]
         [MaxLength(50)]
-        public string Code { get; set; } // Coupon Code
+        public string Code { get; set; } 
 
         [Required]
         [Range(1, 100)]
         [Display(Name = "Discount Percentage")]
-        public int DiscountPercentage { get; set; } // Discount Percentage
+        public int DiscountPercentage { get; set; } 
 
         [Required]
         [DataType(DataType.Date)]
         [Display(Name = "Expiry Date")]
-        public DateTime ExpiryDate { get; set; } // Expiry Date
+        public DateTime ExpiryDate { get; set; } 
 
         [Required]
-        public bool IsActive { get; set; } // Whether the coupon is active
+        public bool IsActive { get; set; } 
 
         public DateTime CreatedDate { get; set; } = DateTime.UtcNow;
     }

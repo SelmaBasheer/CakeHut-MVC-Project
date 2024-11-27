@@ -20,9 +20,9 @@ namespace CakeHut.Models
         public decimal Price { get; set; }
 
         [Required]
-        public IEnumerable<IFormFile>? ImageFiles { get; set; }
+        public IEnumerable<IFormFile> ImageFiles { get; set; } 
 
-        public List<ProductImageDto> Images { get; set; }
+        public List<ProductImageDto> Images { get; set; } = new List<ProductImageDto>();
 
         [Required]
         [Range(0.01, double.MaxValue, ErrorMessage = "Weight must be greater than zero")]

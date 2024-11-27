@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "qmx9Y4Fo4w/XlVbQll0Ju4RLM1GIy9sPg5uonT6SwrQ=",
+  "Hash": "w/5tDDrIdGutwjP2a5L0DgRDjKD0doeL4Sn6JomxrkA=",
   "Source": "CakeHut",
   "BasePath": "_content/CakeHut",
   "Mode": "Default",
@@ -729,6 +729,132 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\cakes\\20241004145021623_FruitsCake1.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\cakes\\20241126183707629_728f7177a9d2421d7ed14cd85621c0d1.jpg",
+      "SourceId": "CakeHut",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\",
+      "BasePath": "_content/CakeHut",
+      "RelativePath": "cakes/20241126183707629_728f7177a9d2421d7ed14cd85621c0d1#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "me5xherjwd",
+      "Integrity": "nrLJNdFer6EmUEVgHLJXuW6nV49S5utKRsOjJLUn+q8=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\cakes\\20241126183707629_728f7177a9d2421d7ed14cd85621c0d1.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\cakes\\20241126183707639_cad7f534624ecd6f855ccad70a095687.jpg",
+      "SourceId": "CakeHut",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\",
+      "BasePath": "_content/CakeHut",
+      "RelativePath": "cakes/20241126183707639_cad7f534624ecd6f855ccad70a095687#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "k4bthqwqx6",
+      "Integrity": "bEl1GBExxovALGEtELVhqDVUzD/vkGB8vZeAnLIpnWw=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\cakes\\20241126183707639_cad7f534624ecd6f855ccad70a095687.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\cakes\\20241126183707641_02143e901f3b36ac0eb31be54ad13dbc.jpg",
+      "SourceId": "CakeHut",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\",
+      "BasePath": "_content/CakeHut",
+      "RelativePath": "cakes/20241126183707641_02143e901f3b36ac0eb31be54ad13dbc#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "8wscv4y2ff",
+      "Integrity": "SMzl/lRUMDgkut/2D74bh78gx5nktuuVQeA1jup0nP4=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\cakes\\20241126183707641_02143e901f3b36ac0eb31be54ad13dbc.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\cakes\\20241126200542021_fudge3.jpg",
+      "SourceId": "CakeHut",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\",
+      "BasePath": "_content/CakeHut",
+      "RelativePath": "cakes/20241126200542021_fudge3#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "977soll5pu",
+      "Integrity": "dS9vuFGLeSNrDL/TgZJB8aFKxcIWkqiMHr6x6ZwSO38=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\cakes\\20241126200542021_fudge3.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\cakes\\20241126200542038_fudge2.jpg",
+      "SourceId": "CakeHut",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\",
+      "BasePath": "_content/CakeHut",
+      "RelativePath": "cakes/20241126200542038_fudge2#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "y11h6zc4zx",
+      "Integrity": "au7weqkbBXzZ9NOvqqczKpvKNjiaMyIulzogVlEbsRE=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\cakes\\20241126200542038_fudge2.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\cakes\\20241126200542042_Choco-fudge.jpg",
+      "SourceId": "CakeHut",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\",
+      "BasePath": "_content/CakeHut",
+      "RelativePath": "cakes/20241126200542042_Choco-fudge#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "oecg9s7azb",
+      "Integrity": "MNScOckp4JOazVUKss0TVN2xzOWhgdaN3iiwzL8gCcs=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\cakes\\20241126200542042_Choco-fudge.jpg"
     },
     {
       "Identity": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\cakes\\banner-macarons.jpeg",
@@ -5365,6 +5491,498 @@
         {
           "Name": "integrity",
           "Value": "sha256-NA9wu55ZkS6uNRWO+Ym/AZA7u/XvN3fzZz4bNYBGNoc="
+        }
+      ]
+    },
+    {
+      "Route": "cakes/20241126183707629_728f7177a9d2421d7ed14cd85621c0d1.jpg",
+      "AssetFile": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\cakes\\20241126183707629_728f7177a9d2421d7ed14cd85621c0d1.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "131234"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"nrLJNdFer6EmUEVgHLJXuW6nV49S5utKRsOjJLUn+q8=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 27 Nov 2024 08:50:57 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-nrLJNdFer6EmUEVgHLJXuW6nV49S5utKRsOjJLUn+q8="
+        }
+      ]
+    },
+    {
+      "Route": "cakes/20241126183707629_728f7177a9d2421d7ed14cd85621c0d1.me5xherjwd.jpg",
+      "AssetFile": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\cakes\\20241126183707629_728f7177a9d2421d7ed14cd85621c0d1.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "131234"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"nrLJNdFer6EmUEVgHLJXuW6nV49S5utKRsOjJLUn+q8=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 27 Nov 2024 08:50:57 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "me5xherjwd"
+        },
+        {
+          "Name": "label",
+          "Value": "cakes/20241126183707629_728f7177a9d2421d7ed14cd85621c0d1.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-nrLJNdFer6EmUEVgHLJXuW6nV49S5utKRsOjJLUn+q8="
+        }
+      ]
+    },
+    {
+      "Route": "cakes/20241126183707639_cad7f534624ecd6f855ccad70a095687.jpg",
+      "AssetFile": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\cakes\\20241126183707639_cad7f534624ecd6f855ccad70a095687.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "89059"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"bEl1GBExxovALGEtELVhqDVUzD/vkGB8vZeAnLIpnWw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 27 Nov 2024 08:50:57 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-bEl1GBExxovALGEtELVhqDVUzD/vkGB8vZeAnLIpnWw="
+        }
+      ]
+    },
+    {
+      "Route": "cakes/20241126183707639_cad7f534624ecd6f855ccad70a095687.k4bthqwqx6.jpg",
+      "AssetFile": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\cakes\\20241126183707639_cad7f534624ecd6f855ccad70a095687.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "89059"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"bEl1GBExxovALGEtELVhqDVUzD/vkGB8vZeAnLIpnWw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 27 Nov 2024 08:50:57 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "k4bthqwqx6"
+        },
+        {
+          "Name": "label",
+          "Value": "cakes/20241126183707639_cad7f534624ecd6f855ccad70a095687.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-bEl1GBExxovALGEtELVhqDVUzD/vkGB8vZeAnLIpnWw="
+        }
+      ]
+    },
+    {
+      "Route": "cakes/20241126183707641_02143e901f3b36ac0eb31be54ad13dbc.8wscv4y2ff.jpg",
+      "AssetFile": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\cakes\\20241126183707641_02143e901f3b36ac0eb31be54ad13dbc.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "69912"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"SMzl/lRUMDgkut/2D74bh78gx5nktuuVQeA1jup0nP4=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 27 Nov 2024 08:50:57 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "8wscv4y2ff"
+        },
+        {
+          "Name": "label",
+          "Value": "cakes/20241126183707641_02143e901f3b36ac0eb31be54ad13dbc.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-SMzl/lRUMDgkut/2D74bh78gx5nktuuVQeA1jup0nP4="
+        }
+      ]
+    },
+    {
+      "Route": "cakes/20241126183707641_02143e901f3b36ac0eb31be54ad13dbc.jpg",
+      "AssetFile": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\cakes\\20241126183707641_02143e901f3b36ac0eb31be54ad13dbc.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "69912"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"SMzl/lRUMDgkut/2D74bh78gx5nktuuVQeA1jup0nP4=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 27 Nov 2024 08:50:57 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-SMzl/lRUMDgkut/2D74bh78gx5nktuuVQeA1jup0nP4="
+        }
+      ]
+    },
+    {
+      "Route": "cakes/20241126200542021_fudge3.977soll5pu.jpg",
+      "AssetFile": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\cakes\\20241126200542021_fudge3.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "58108"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"dS9vuFGLeSNrDL/TgZJB8aFKxcIWkqiMHr6x6ZwSO38=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 27 Nov 2024 08:50:57 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "977soll5pu"
+        },
+        {
+          "Name": "label",
+          "Value": "cakes/20241126200542021_fudge3.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-dS9vuFGLeSNrDL/TgZJB8aFKxcIWkqiMHr6x6ZwSO38="
+        }
+      ]
+    },
+    {
+      "Route": "cakes/20241126200542021_fudge3.jpg",
+      "AssetFile": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\cakes\\20241126200542021_fudge3.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "58108"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"dS9vuFGLeSNrDL/TgZJB8aFKxcIWkqiMHr6x6ZwSO38=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 27 Nov 2024 08:50:57 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-dS9vuFGLeSNrDL/TgZJB8aFKxcIWkqiMHr6x6ZwSO38="
+        }
+      ]
+    },
+    {
+      "Route": "cakes/20241126200542038_fudge2.jpg",
+      "AssetFile": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\cakes\\20241126200542038_fudge2.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "77747"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"au7weqkbBXzZ9NOvqqczKpvKNjiaMyIulzogVlEbsRE=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 27 Nov 2024 08:50:57 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-au7weqkbBXzZ9NOvqqczKpvKNjiaMyIulzogVlEbsRE="
+        }
+      ]
+    },
+    {
+      "Route": "cakes/20241126200542038_fudge2.y11h6zc4zx.jpg",
+      "AssetFile": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\cakes\\20241126200542038_fudge2.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "77747"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"au7weqkbBXzZ9NOvqqczKpvKNjiaMyIulzogVlEbsRE=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 27 Nov 2024 08:50:57 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "y11h6zc4zx"
+        },
+        {
+          "Name": "label",
+          "Value": "cakes/20241126200542038_fudge2.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-au7weqkbBXzZ9NOvqqczKpvKNjiaMyIulzogVlEbsRE="
+        }
+      ]
+    },
+    {
+      "Route": "cakes/20241126200542042_Choco-fudge.jpg",
+      "AssetFile": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\cakes\\20241126200542042_Choco-fudge.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "16300"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"MNScOckp4JOazVUKss0TVN2xzOWhgdaN3iiwzL8gCcs=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 27 Nov 2024 08:50:57 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-MNScOckp4JOazVUKss0TVN2xzOWhgdaN3iiwzL8gCcs="
+        }
+      ]
+    },
+    {
+      "Route": "cakes/20241126200542042_Choco-fudge.oecg9s7azb.jpg",
+      "AssetFile": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\wwwroot\\cakes\\20241126200542042_Choco-fudge.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "16300"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"MNScOckp4JOazVUKss0TVN2xzOWhgdaN3iiwzL8gCcs=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 27 Nov 2024 08:50:57 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "oecg9s7azb"
+        },
+        {
+          "Name": "label",
+          "Value": "cakes/20241126200542042_Choco-fudge.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-MNScOckp4JOazVUKss0TVN2xzOWhgdaN3iiwzL8gCcs="
         }
       ]
     },

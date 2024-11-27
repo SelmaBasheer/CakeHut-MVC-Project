@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CakeHut")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2348dc6b5bdeecb7d4afbfc18d2d9a27b9b920c5")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e496b9c00b3acac48e09abbe187e51b79c8d16ec")]
 [assembly: System.Reflection.AssemblyProductAttribute("CakeHut")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CakeHut")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

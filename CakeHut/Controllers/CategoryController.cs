@@ -19,11 +19,8 @@ namespace CakeHut.Controllers
         }
         public IActionResult Index(int? pageIndex)
         {
-            //List<Category> categoriesList = _applicationDb.Categories.ToList();
 
             IQueryable<Category> query = _applicationDb.Categories;
-
-           // IQueryable<ApplicationUser> query = userManager.Users.OrderByDescending(u => u.CreatedDate);
 
             // pagination functionality
             if (pageIndex == null || pageIndex < 1)
@@ -81,7 +78,6 @@ namespace CakeHut.Controllers
             }
 
             Category? categoryData = _applicationDb.Categories.FirstOrDefault(c => c.Id == id);
-            //Category? category = _applicationDb.Categories.Find(id);
             if (categoryData == null) {
                 return NotFound();
             }
@@ -125,7 +121,6 @@ namespace CakeHut.Controllers
             }
 
             Category? categoryData = _applicationDb.Categories.FirstOrDefault(c => c.Id == id);
-            //Category? category = _applicationDb.Categories.Find(id);
             if (categoryData == null)
             {
                 return NotFound();

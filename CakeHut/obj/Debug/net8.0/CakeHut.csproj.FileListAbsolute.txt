@@ -317,3 +317,6 @@ C:\Users\selma\source\repos\CakeHut\CakeHut\bin\Debug\net8.0\ExcelNumberFormat.d
 C:\Users\selma\source\repos\CakeHut\CakeHut\bin\Debug\net8.0\RBush.dll
 C:\Users\selma\source\repos\CakeHut\CakeHut\bin\Debug\net8.0\SixLabors.Fonts.dll
 C:\Users\selma\source\repos\CakeHut\CakeHut\bin\Debug\net8.0\System.IO.Packaging.dll
+C:\Users\selma\source\repos\CakeHut\CakeHut\obj\Debug\net8.0\CakeHut.sourcelink.json
+C:\Users\selma\source\repos\CakeHut\CakeHut\bin\Debug\net8.0\appsettings.Production.json
+C:\Users\selma\source\repos\CakeHut\CakeHut\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.Google.dll

@@ -181,7 +181,6 @@ namespace CakeHut.Controllers
         {
             try
             {
-                // get cart items
                 var cartItems = CartHelper.GetCartItems(Request, Response, context);
 
                 var appUser = await userManager.GetUserAsync(User);
@@ -190,7 +189,6 @@ namespace CakeHut.Controllers
                     return;
                 }
 
-                // save the order
                 var order = new Order
                 {
                     ClientId = appUser.Id,
@@ -200,15 +198,13 @@ namespace CakeHut.Controllers
                     PaymentMethod = "paypal",
                     PaymentStatus = "accepted",
                     PaymentDetails = paypalResponse,
-                    OrderStatus = "pending",
+                    OrderStatus = "created",
                     CreatedAt = DateTime.Now,
                 };
 
                 context.Orders.Add(order);
                 context.SaveChanges();
 
-
-                // delete the shopping cart cookie
                 Response.Cookies.Delete("shopping_cart");
             }
             catch (Exception ex)
@@ -255,7 +251,6 @@ namespace CakeHut.Controllers
                     }
                 }
             }
-
 
             return accessToken;
         }

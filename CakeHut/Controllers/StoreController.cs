@@ -17,7 +17,6 @@ namespace CakeHut.Controllers
 
         public IActionResult Index(int? pageIndex, string? search, string? sort)
         {
-            //var products = context.Products.OrderByDescending(p => p.Id).ToList();
 
             IQueryable<Product> query = context.Products;
 
@@ -58,7 +57,6 @@ namespace CakeHut.Controllers
                 query = query.OrderByDescending(p => p.Id);
             }
 
-
             if (pageIndex == null || pageIndex < 1)
             {
                 pageIndex = 1;
@@ -79,8 +77,6 @@ namespace CakeHut.Controllers
                 Sort = sort
             };
 
-            //return View(users);
-
             ViewBag.Products = products;
             return View(storeSearchModel);
         }
@@ -96,16 +92,12 @@ namespace CakeHut.Controllers
                 return RedirectToAction("Index", "Store");
             }
 
-            //product.DiscountedPrice = CalculateDiscountedPrice(product);
-
             return View(product);
         }
 
         [HttpPost]
         public IActionResult SubmitRating(int ProductId, int Rating, string CustomerName, string Content)
         {
-            // Find the product by ID
-            //var product = context.Products.Include(p => p.Reviews).FirstOrDefault(p => p.Id == ProductId);
 
             var product = context.Products.Include(p => p.Reviews)
                                   .FirstOrDefault(p => p.Id == ProductId);
@@ -114,7 +106,6 @@ namespace CakeHut.Controllers
                 return NotFound();
             }
 
-            
             var review = new Review
             {
                 ProductId = ProductId,
@@ -124,21 +115,15 @@ namespace CakeHut.Controllers
                 Date = DateTime.Now
             };
 
-            
             context.Reviews.Add(review);
 
-            
             product.Ratings = context.Reviews.Where(r => r.ProductId == ProductId)
                                       .Average(r => r.Rating);
 
-            
-            //context.Products.Update(product);
             context.SaveChanges();
 
-            
             return RedirectToAction("Details", new { id = ProductId });
         }
         
-
     }
 }

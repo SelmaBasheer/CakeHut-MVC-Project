@@ -27,8 +27,6 @@ namespace CakeHut.Controllers
 
         public IActionResult Index(int page = 1, int itemsPerPage = 5, string filter = "weekly")
         {
-
-
             // Retrieve all data
             var orders = _context.Orders
                 .Include(o => o.Client)
@@ -147,9 +145,6 @@ namespace CakeHut.Controllers
 
             Console.WriteLine($"OrdersLastWeek Count: {ordersLastWeek.Count}");
 
-            
-
-
             // Prepare ViewModel
             var dashboardVM = new DashboardVM
             {
@@ -182,179 +177,10 @@ namespace CakeHut.Controllers
             return View(dashboardVM);
         }
 
-
-
-        //    /*
-        //    private readonly ApplicationDbContext _context;
-
-        //    [BindProperty]
-        //    public DashboardVM dashboardVm { get; set; }
-
-        //    public DashBoardController(ApplicationDbContext context)
-        //    {
-        //        _context = context;
-        //    }
-        //    /*
-        //    public IActionResult Index(string filter = "Weekly")
-        //    {
-        //        var viewModel = new DashboardVM();
-        //        viewModel.TotalProducts = _context.Products.Count();
-        //        viewModel.TotalCategories = _context.Categories.Count();
-
-        //        // Set revenue and order count based on filter
-        //        switch (filter)
-        //        {
-        //            case "Weekly":
-        //                viewModel.TotalRevenue = GetWeeklyRevenue();
-        //                viewModel.TotalOrders = GetWeeklyOrders();
-        //                viewModel.TopSellingProducts = GetTopSellingProducts("Weekly");
-        //                viewModel.TopSellingCategories = GetTopSellingCategories("Weekly");
-        //                break;
-        //            case "Monthly":
-        //                viewModel.TotalRevenue = GetMonthlyRevenue();
-        //                viewModel.TotalOrders = GetMonthlyOrders();
-        //                viewModel.TopSellingProducts = GetTopSellingProducts("Monthly");
-        //                viewModel.TopSellingCategories = GetTopSellingCategories("Monthly");
-        //                break;
-        //            case "Yearly":
-        //                viewModel.TotalRevenue = GetYearlyRevenue();
-        //                viewModel.TotalOrders = GetYearlyOrders();
-        //                viewModel.TopSellingProducts = GetTopSellingProducts("Yearly");
-        //                viewModel.TopSellingCategories = GetTopSellingCategories("Yearly");
-        //                break;
-        //            default:
-        //                viewModel.TotalRevenue = GetWeeklyRevenue();
-        //                viewModel.TotalOrders = GetWeeklyOrders();
-        //                viewModel.TopSellingProducts = GetTopSellingProducts("Weekly");
-        //                viewModel.TopSellingCategories = GetTopSellingCategories("Weekly");
-        //                break;
-        //        }
-
-        //        return View(viewModel);
-        //    }
-
-        //    private decimal GetWeeklyRevenue()
-        //    {
-        //        var startDate = DateTime.Now.AddDays(-7); // 7 days ago
-        //        return _context.Orders
-        //            .Where(o => o.CreatedAt >= startDate)
-        //            .Sum(o => o.TotalAmount);
-        //    }
-
-        //    private decimal GetMonthlyRevenue()
-        //    {
-        //        var startDate = DateTime.Now.AddMonths(-1); // 1 month ago
-        //        return _context.Orders
-        //            .Where(o => o.CreatedAt >= startDate)
-        //            .Sum(o => o.TotalAmount);
-        //    }
-
-        //    private decimal GetYearlyRevenue()
-        //    {
-        //        var startDate = DateTime.Now.AddYears(-1); // 1 year ago
-        //        return _context.Orders
-        //            .Where(o => o.CreatedAt >= startDate)
-        //            .Sum(o => o.TotalAmount);
-        //    }
-
-        //    private int GetWeeklyOrders()
-        //    {
-        //        var startDate = DateTime.Now.AddDays(-7); // 7 days ago
-        //        return _context.Orders
-        //            .Where(o => o.CreatedAt >= startDate)
-        //            .Count();
-        //    }
-
-        //    private int GetMonthlyOrders()
-        //    {
-        //        var startDate = DateTime.Now.AddMonths(-1); // 1 month ago
-        //        return _context.Orders
-        //            .Where(o => o.CreatedAt >= startDate)
-        //            .Count();
-        //    }
-
-        //    private int GetYearlyOrders()
-        //    {
-        //        var startDate = DateTime.Now.AddYears(-1); // 1 year ago
-        //        return _context.Orders
-        //            .Where(o => o.CreatedAt >= startDate)
-        //            .Count();
-        //    }
-
-        //    private List<Product> GetTopSellingProducts(string period)
-        //    {
-        //        // Determine the start date based on the specified period
-        //        var startDate = period switch
-        //        {
-        //            "Weekly" => DateTime.Now.AddDays(-7),
-        //            "Monthly" => DateTime.Now.AddMonths(-1),
-        //            "Yearly" => DateTime.Now.AddYears(-1),
-        //            _ => DateTime.Now.AddDays(-7) // Default to weekly if the period is unrecognized
-        //        };
-
-        //        // Query to get the top selling products
-        //        var topSellingProducts = _context.Orders
-        //            .Where(o => o.CreatedAt >= startDate) // Filter orders by date
-        //            .SelectMany(o => o.Items) // Flatten the order items
-        //            .GroupBy(oi => oi.ProductId) // Group by ProductId
-        //            .Select(g => new
-        //            {
-        //                ProductId = g.Key, // Product ID
-        //                TotalQuantitySold = g.Sum(oi => oi.Quantity) // Calculate total quantity sold
-        //            })
-        //            .OrderByDescending(ps => ps.TotalQuantitySold) // Order by quantity sold
-        //            .Take(5) // Take the top 5
-        //            .ToList(); // Execute the query and convert to a list
-
-        //        // Get the products corresponding to the top-selling product IDs
-        //        var productIds = topSellingProducts.Select(tp => tp.ProductId).ToList();
-        //        var products = _context.Products
-        //            .Where(p => productIds.Contains(p.Id)) // Filter to get product details
-        //            .ToList(); // Execute the query and convert to a list
-
-        //        return products;
-        //    }
-
-
-        //    private List<Category> GetTopSellingCategories(string period)
-        //    {
-        //        // Determine the start date based on the specified period
-        //        var startDate = period switch
-        //        {
-        //            "Weekly" => DateTime.Now.AddDays(-7),
-        //            "Monthly" => DateTime.Now.AddMonths(-1),
-        //            "Yearly" => DateTime.Now.AddYears(-1),
-        //            _ => DateTime.Now.AddDays(-7) // Default to weekly if the period is unrecognized
-        //        };
-
-        //        // Get the top selling categories directly
-        //        var topSellingCategoriesData = _context.Orders
-        //            .Where(o => o.CreatedAt >= startDate) // Filter orders by date
-        //            .SelectMany(o => o.Items) // Flatten the order items
-        //            .GroupBy(oi => oi.Product.CategoryId) // Group by CategoryId
-        //            .Select(g => new
-        //            {
-        //                CategoryId = g.Key, // Category ID
-        //                TotalQuantitySold = g.Sum(oi => oi.Quantity) // Calculate total quantity sold
-        //            })
-        //            .OrderByDescending(tc => tc.TotalQuantitySold) // Order by total quantity sold
-        //            .Take(2) // Take the top 2 categories
-        //            .ToList(); // Execute the query and convert to a list
-
-        //        // Get the category IDs from the top selling categories
-        //        var categoryIds = topSellingCategoriesData.Select(tc => tc.CategoryId).ToList();
-
-        //        // Retrieve the categories based on the top selling category IDs
-        //        var categories = _context.Categories
-        //            .Where(c => categoryIds.Contains(c.Id)) // Filter categories by IDs
-        //            .ToList(); // Execute the query and convert to a list
-        //        var categorySales = topSellingCategoriesData.ToDictionary(cs => cs.CategoryId, cs => cs.TotalQuantitySold);
-
-        //        return categories; // Return the top selling categories
-        //    }
-
-        //    */
-
+        public IActionResult GetRevenueData()
+        {
+            return View();
+        }
 
         public IActionResult DownloadSalesReportExcel()
         {

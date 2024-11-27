@@ -1,0 +1,928 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\selma\\source\\repos\\CakeHut\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{C2E42D5D-251F-48FB-A889-382A46C5CDCC}|CakeHut\\CakeHut.csproj|c:\\users\\selma\\source\\repos\\cakehut\\cakehut\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C2E42D5D-251F-48FB-A889-382A46C5CDCC}|CakeHut\\CakeHut.csproj|solutionrelative:cakehut\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C2E42D5D-251F-48FB-A889-382A46C5CDCC}|CakeHut\\CakeHut.csproj|c:\\users\\selma\\source\\repos\\cakehut\\cakehut\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C2E42D5D-251F-48FB-A889-382A46C5CDCC}|CakeHut\\CakeHut.csproj|solutionrelative:cakehut\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C2E42D5D-251F-48FB-A889-382A46C5CDCC}|CakeHut\\CakeHut.csproj|c:\\users\\selma\\source\\repos\\cakehut\\cakehut\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{C2E42D5D-251F-48FB-A889-382A46C5CDCC}|CakeHut\\CakeHut.csproj|solutionrelative:cakehut\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C2E42D5D-251F-48FB-A889-382A46C5CDCC}|CakeHut\\CakeHut.csproj|c:\\users\\selma\\source\\repos\\cakehut\\cakehut\\appsettings.production.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{C2E42D5D-251F-48FB-A889-382A46C5CDCC}|CakeHut\\CakeHut.csproj|solutionrelative:cakehut\\appsettings.production.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C2E42D5D-251F-48FB-A889-382A46C5CDCC}|CakeHut\\CakeHut.csproj|c:\\users\\selma\\source\\repos\\cakehut\\cakehut\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{C2E42D5D-251F-48FB-A889-382A46C5CDCC}|CakeHut\\CakeHut.csproj|solutionrelative:cakehut\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C2E42D5D-251F-48FB-A889-382A46C5CDCC}|CakeHut\\CakeHut.csproj|c:\\users\\selma\\source\\repos\\cakehut\\cakehut\\views\\account\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C2E42D5D-251F-48FB-A889-382A46C5CDCC}|CakeHut\\CakeHut.csproj|solutionrelative:cakehut\\views\\account\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C2E42D5D-251F-48FB-A889-382A46C5CDCC}|CakeHut\\CakeHut.csproj|c:\\users\\selma\\source\\repos\\cakehut\\cakehut\\views\\account\\register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C2E42D5D-251F-48FB-A889-382A46C5CDCC}|CakeHut\\CakeHut.csproj|solutionrelative:cakehut\\views\\account\\register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C2E42D5D-251F-48FB-A889-382A46C5CDCC}|CakeHut\\CakeHut.csproj|c:\\users\\selma\\source\\repos\\cakehut\\cakehut\\views\\account\\forgotpassword.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C2E42D5D-251F-48FB-A889-382A46C5CDCC}|CakeHut\\CakeHut.csproj|solutionrelative:cakehut\\views\\account\\forgotpassword.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C2E42D5D-251F-48FB-A889-382A46C5CDCC}|CakeHut\\CakeHut.csproj|c:\\users\\selma\\source\\repos\\cakehut\\cakehut\\views\\account\\accessdenied.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C2E42D5D-251F-48FB-A889-382A46C5CDCC}|CakeHut\\CakeHut.csproj|solutionrelative:cakehut\\views\\account\\accessdenied.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C2E42D5D-251F-48FB-A889-382A46C5CDCC}|CakeHut\\CakeHut.csproj|c:\\users\\selma\\source\\repos\\cakehut\\cakehut\\views\\cart\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C2E42D5D-251F-48FB-A889-382A46C5CDCC}|CakeHut\\CakeHut.csproj|solutionrelative:cakehut\\views\\cart\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C2E42D5D-251F-48FB-A889-382A46C5CDCC}|CakeHut\\CakeHut.csproj|c:\\users\\selma\\source\\repos\\cakehut\\cakehut\\controllers\\cartcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C2E42D5D-251F-48FB-A889-382A46C5CDCC}|CakeHut\\CakeHut.csproj|solutionrelative:cakehut\\controllers\\cartcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C2E42D5D-251F-48FB-A889-382A46C5CDCC}|CakeHut\\CakeHut.csproj|c:\\users\\selma\\source\\repos\\cakehut\\cakehut\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C2E42D5D-251F-48FB-A889-382A46C5CDCC}|CakeHut\\CakeHut.csproj|solutionrelative:cakehut\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C2E42D5D-251F-48FB-A889-382A46C5CDCC}|CakeHut\\CakeHut.csproj|c:\\users\\selma\\source\\repos\\cakehut\\cakehut\\views\\shared\\_loginpartial.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C2E42D5D-251F-48FB-A889-382A46C5CDCC}|CakeHut\\CakeHut.csproj|solutionrelative:cakehut\\views\\shared\\_loginpartial.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C2E42D5D-251F-48FB-A889-382A46C5CDCC}|CakeHut\\CakeHut.csproj|c:\\users\\selma\\source\\repos\\cakehut\\cakehut\\models\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C2E42D5D-251F-48FB-A889-382A46C5CDCC}|CakeHut\\CakeHut.csproj|solutionrelative:cakehut\\models\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C2E42D5D-251F-48FB-A889-382A46C5CDCC}|CakeHut\\CakeHut.csproj|c:\\users\\selma\\source\\repos\\cakehut\\cakehut\\views\\store\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C2E42D5D-251F-48FB-A889-382A46C5CDCC}|CakeHut\\CakeHut.csproj|solutionrelative:cakehut\\views\\store\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C2E42D5D-251F-48FB-A889-382A46C5CDCC}|CakeHut\\CakeHut.csproj|c:\\users\\selma\\source\\repos\\cakehut\\cakehut\\controllers\\storecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C2E42D5D-251F-48FB-A889-382A46C5CDCC}|CakeHut\\CakeHut.csproj|solutionrelative:cakehut\\controllers\\storecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C2E42D5D-251F-48FB-A889-382A46C5CDCC}|CakeHut\\CakeHut.csproj|c:\\users\\selma\\source\\repos\\cakehut\\cakehut\\controllers\\checkoutcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C2E42D5D-251F-48FB-A889-382A46C5CDCC}|CakeHut\\CakeHut.csproj|solutionrelative:cakehut\\controllers\\checkoutcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C2E42D5D-251F-48FB-A889-382A46C5CDCC}|CakeHut\\CakeHut.csproj|c:\\users\\selma\\source\\repos\\cakehut\\cakehut\\controllers\\clientorderscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C2E42D5D-251F-48FB-A889-382A46C5CDCC}|CakeHut\\CakeHut.csproj|solutionrelative:cakehut\\controllers\\clientorderscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C2E42D5D-251F-48FB-A889-382A46C5CDCC}|CakeHut\\CakeHut.csproj|c:\\users\\selma\\source\\repos\\cakehut\\cakehut\\models\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C2E42D5D-251F-48FB-A889-382A46C5CDCC}|CakeHut\\CakeHut.csproj|solutionrelative:cakehut\\models\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C2E42D5D-251F-48FB-A889-382A46C5CDCC}|CakeHut\\CakeHut.csproj|c:\\users\\selma\\source\\repos\\cakehut\\cakehut\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C2E42D5D-251F-48FB-A889-382A46C5CDCC}|CakeHut\\CakeHut.csproj|solutionrelative:cakehut\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C2E42D5D-251F-48FB-A889-382A46C5CDCC}|CakeHut\\CakeHut.csproj|c:\\users\\selma\\source\\repos\\cakehut\\cakehut\\views\\clientorders\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C2E42D5D-251F-48FB-A889-382A46C5CDCC}|CakeHut\\CakeHut.csproj|solutionrelative:cakehut\\views\\clientorders\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C2E42D5D-251F-48FB-A889-382A46C5CDCC}|CakeHut\\CakeHut.csproj|c:\\users\\selma\\source\\repos\\cakehut\\cakehut\\data\\walletservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C2E42D5D-251F-48FB-A889-382A46C5CDCC}|CakeHut\\CakeHut.csproj|solutionrelative:cakehut\\data\\walletservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C2E42D5D-251F-48FB-A889-382A46C5CDCC}|CakeHut\\CakeHut.csproj|c:\\users\\selma\\source\\repos\\cakehut\\cakehut\\views\\wallet\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C2E42D5D-251F-48FB-A889-382A46C5CDCC}|CakeHut\\CakeHut.csproj|solutionrelative:cakehut\\views\\wallet\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C2E42D5D-251F-48FB-A889-382A46C5CDCC}|CakeHut\\CakeHut.csproj|c:\\users\\selma\\source\\repos\\cakehut\\cakehut\\controllers\\walletcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C2E42D5D-251F-48FB-A889-382A46C5CDCC}|CakeHut\\CakeHut.csproj|solutionrelative:cakehut\\controllers\\walletcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C2E42D5D-251F-48FB-A889-382A46C5CDCC}|CakeHut\\CakeHut.csproj|c:\\users\\selma\\source\\repos\\cakehut\\cakehut\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C2E42D5D-251F-48FB-A889-382A46C5CDCC}|CakeHut\\CakeHut.csproj|solutionrelative:cakehut\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C2E42D5D-251F-48FB-A889-382A46C5CDCC}|CakeHut\\CakeHut.csproj|c:\\users\\selma\\source\\repos\\cakehut\\cakehut\\controllers\\paymentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C2E42D5D-251F-48FB-A889-382A46C5CDCC}|CakeHut\\CakeHut.csproj|solutionrelative:cakehut\\controllers\\paymentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C2E42D5D-251F-48FB-A889-382A46C5CDCC}|CakeHut\\CakeHut.csproj|c:\\users\\selma\\source\\repos\\cakehut\\cakehut\\controllers\\productscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C2E42D5D-251F-48FB-A889-382A46C5CDCC}|CakeHut\\CakeHut.csproj|solutionrelative:cakehut\\controllers\\productscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C2E42D5D-251F-48FB-A889-382A46C5CDCC}|CakeHut\\CakeHut.csproj|c:\\users\\selma\\source\\repos\\cakehut\\cakehut\\controllers\\offerscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C2E42D5D-251F-48FB-A889-382A46C5CDCC}|CakeHut\\CakeHut.csproj|solutionrelative:cakehut\\controllers\\offerscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C2E42D5D-251F-48FB-A889-382A46C5CDCC}|CakeHut\\CakeHut.csproj|c:\\users\\selma\\source\\repos\\cakehut\\cakehut\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C2E42D5D-251F-48FB-A889-382A46C5CDCC}|CakeHut\\CakeHut.csproj|solutionrelative:cakehut\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C2E42D5D-251F-48FB-A889-382A46C5CDCC}|CakeHut\\CakeHut.csproj|c:\\users\\selma\\source\\repos\\cakehut\\cakehut\\controllers\\couponcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C2E42D5D-251F-48FB-A889-382A46C5CDCC}|CakeHut\\CakeHut.csproj|solutionrelative:cakehut\\controllers\\couponcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C2E42D5D-251F-48FB-A889-382A46C5CDCC}|CakeHut\\CakeHut.csproj|c:\\users\\selma\\source\\repos\\cakehut\\cakehut\\controllers\\categorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C2E42D5D-251F-48FB-A889-382A46C5CDCC}|CakeHut\\CakeHut.csproj|solutionrelative:cakehut\\controllers\\categorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C2E42D5D-251F-48FB-A889-382A46C5CDCC}|CakeHut\\CakeHut.csproj|c:\\users\\selma\\source\\repos\\cakehut\\cakehut\\models\\viewmodels\\offervm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C2E42D5D-251F-48FB-A889-382A46C5CDCC}|CakeHut\\CakeHut.csproj|solutionrelative:cakehut\\models\\viewmodels\\offervm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C2E42D5D-251F-48FB-A889-382A46C5CDCC}|CakeHut\\CakeHut.csproj|c:\\users\\selma\\source\\repos\\cakehut\\cakehut\\views\\offers\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C2E42D5D-251F-48FB-A889-382A46C5CDCC}|CakeHut\\CakeHut.csproj|solutionrelative:cakehut\\views\\offers\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C2E42D5D-251F-48FB-A889-382A46C5CDCC}|CakeHut\\CakeHut.csproj|c:\\users\\selma\\source\\repos\\cakehut\\cakehut\\views\\coupon\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C2E42D5D-251F-48FB-A889-382A46C5CDCC}|CakeHut\\CakeHut.csproj|solutionrelative:cakehut\\views\\coupon\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C2E42D5D-251F-48FB-A889-382A46C5CDCC}|CakeHut\\CakeHut.csproj|c:\\users\\selma\\source\\repos\\cakehut\\cakehut\\models\\coupon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C2E42D5D-251F-48FB-A889-382A46C5CDCC}|CakeHut\\CakeHut.csproj|solutionrelative:cakehut\\models\\coupon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C2E42D5D-251F-48FB-A889-382A46C5CDCC}|CakeHut\\CakeHut.csproj|c:\\users\\selma\\source\\repos\\cakehut\\cakehut\\models\\offer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C2E42D5D-251F-48FB-A889-382A46C5CDCC}|CakeHut\\CakeHut.csproj|solutionrelative:cakehut\\models\\offer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C2E42D5D-251F-48FB-A889-382A46C5CDCC}|CakeHut\\CakeHut.csproj|c:\\users\\selma\\source\\repos\\cakehut\\cakehut\\views\\offers\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C2E42D5D-251F-48FB-A889-382A46C5CDCC}|CakeHut\\CakeHut.csproj|solutionrelative:cakehut\\views\\offers\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C2E42D5D-251F-48FB-A889-382A46C5CDCC}|CakeHut\\CakeHut.csproj|c:\\users\\selma\\source\\repos\\cakehut\\cakehut\\controllers\\addresscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C2E42D5D-251F-48FB-A889-382A46C5CDCC}|CakeHut\\CakeHut.csproj|solutionrelative:cakehut\\controllers\\addresscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C2E42D5D-251F-48FB-A889-382A46C5CDCC}|CakeHut\\CakeHut.csproj|c:\\users\\selma\\source\\repos\\cakehut\\cakehut\\models\\productdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C2E42D5D-251F-48FB-A889-382A46C5CDCC}|CakeHut\\CakeHut.csproj|solutionrelative:cakehut\\models\\productdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C2E42D5D-251F-48FB-A889-382A46C5CDCC}|CakeHut\\CakeHut.csproj|c:\\users\\selma\\source\\repos\\cakehut\\cakehut\\views\\products\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C2E42D5D-251F-48FB-A889-382A46C5CDCC}|CakeHut\\CakeHut.csproj|solutionrelative:cakehut\\views\\products\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C2E42D5D-251F-48FB-A889-382A46C5CDCC}|CakeHut\\CakeHut.csproj|c:\\users\\selma\\source\\repos\\cakehut\\cakehut\\controllers\\adminorderscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C2E42D5D-251F-48FB-A889-382A46C5CDCC}|CakeHut\\CakeHut.csproj|solutionrelative:cakehut\\controllers\\adminorderscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C2E42D5D-251F-48FB-A889-382A46C5CDCC}|CakeHut\\CakeHut.csproj|c:\\users\\selma\\source\\repos\\cakehut\\cakehut\\views\\products\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C2E42D5D-251F-48FB-A889-382A46C5CDCC}|CakeHut\\CakeHut.csproj|solutionrelative:cakehut\\views\\products\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C2E42D5D-251F-48FB-A889-382A46C5CDCC}|CakeHut\\CakeHut.csproj|c:\\users\\selma\\source\\repos\\cakehut\\cakehut\\views\\dashboard\\new.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C2E42D5D-251F-48FB-A889-382A46C5CDCC}|CakeHut\\CakeHut.csproj|solutionrelative:cakehut\\views\\dashboard\\new.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C2E42D5D-251F-48FB-A889-382A46C5CDCC}|CakeHut\\CakeHut.csproj|c:\\users\\selma\\source\\repos\\cakehut\\cakehut\\views\\users\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C2E42D5D-251F-48FB-A889-382A46C5CDCC}|CakeHut\\CakeHut.csproj|solutionrelative:cakehut\\views\\users\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C2E42D5D-251F-48FB-A889-382A46C5CDCC}|CakeHut\\CakeHut.csproj|c:\\users\\selma\\source\\repos\\cakehut\\cakehut\\models\\register.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C2E42D5D-251F-48FB-A889-382A46C5CDCC}|CakeHut\\CakeHut.csproj|solutionrelative:cakehut\\models\\register.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C2E42D5D-251F-48FB-A889-382A46C5CDCC}|CakeHut\\CakeHut.csproj|c:\\users\\selma\\source\\repos\\cakehut\\cakehut\\models\\address.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C2E42D5D-251F-48FB-A889-382A46C5CDCC}|CakeHut\\CakeHut.csproj|solutionrelative:cakehut\\models\\address.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C2E42D5D-251F-48FB-A889-382A46C5CDCC}|CakeHut\\CakeHut.csproj|c:\\users\\selma\\source\\repos\\cakehut\\cakehut\\views\\adminorders\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C2E42D5D-251F-48FB-A889-382A46C5CDCC}|CakeHut\\CakeHut.csproj|solutionrelative:cakehut\\views\\adminorders\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C2E42D5D-251F-48FB-A889-382A46C5CDCC}|CakeHut\\CakeHut.csproj|c:\\users\\selma\\source\\repos\\cakehut\\cakehut\\cakehut.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
+      "RelativeMoniker": "D:0:0:{C2E42D5D-251F-48FB-A889-382A46C5CDCC}|CakeHut\\CakeHut.csproj|solutionrelative:cakehut\\cakehut.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C2E42D5D-251F-48FB-A889-382A46C5CDCC}|CakeHut\\CakeHut.csproj|c:\\users\\selma\\source\\repos\\cakehut\\cakehut\\views\\home\\adminhome.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C2E42D5D-251F-48FB-A889-382A46C5CDCC}|CakeHut\\CakeHut.csproj|solutionrelative:cakehut\\views\\home\\adminhome.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C2E42D5D-251F-48FB-A889-382A46C5CDCC}|CakeHut\\CakeHut.csproj|c:\\users\\selma\\source\\repos\\cakehut\\cakehut\\views\\dashboard\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C2E42D5D-251F-48FB-A889-382A46C5CDCC}|CakeHut\\CakeHut.csproj|solutionrelative:cakehut\\views\\dashboard\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C2E42D5D-251F-48FB-A889-382A46C5CDCC}|CakeHut\\CakeHut.csproj|c:\\users\\selma\\source\\repos\\cakehut\\cakehut\\models\\viewmodels\\dashboardvm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C2E42D5D-251F-48FB-A889-382A46C5CDCC}|CakeHut\\CakeHut.csproj|solutionrelative:cakehut\\models\\viewmodels\\dashboardvm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C2E42D5D-251F-48FB-A889-382A46C5CDCC}|CakeHut\\CakeHut.csproj|c:\\users\\selma\\source\\repos\\cakehut\\cakehut\\models\\wallettransaction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C2E42D5D-251F-48FB-A889-382A46C5CDCC}|CakeHut\\CakeHut.csproj|solutionrelative:cakehut\\models\\wallettransaction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C2E42D5D-251F-48FB-A889-382A46C5CDCC}|CakeHut\\CakeHut.csproj|c:\\users\\selma\\source\\repos\\cakehut\\cakehut\\models\\wallet.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C2E42D5D-251F-48FB-A889-382A46C5CDCC}|CakeHut\\CakeHut.csproj|solutionrelative:cakehut\\models\\wallet.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C2E42D5D-251F-48FB-A889-382A46C5CDCC}|CakeHut\\CakeHut.csproj|c:\\users\\selma\\source\\repos\\cakehut\\cakehut\\views\\clientorders\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C2E42D5D-251F-48FB-A889-382A46C5CDCC}|CakeHut\\CakeHut.csproj|solutionrelative:cakehut\\views\\clientorders\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 1,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedHeight": 249,
+          "SelectedChildIndex": 5,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:132:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:133:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\appsettings.json",
+              "RelativeDocumentMoniker": "CakeHut\\appsettings.json",
+              "ToolTip": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\appsettings.json",
+              "RelativeToolTip": "CakeHut\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAADAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-11-26T20:20:28.19Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AccountController.cs",
+              "DocumentMoniker": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\Controllers\\AccountController.cs",
+              "RelativeDocumentMoniker": "CakeHut\\Controllers\\AccountController.cs",
+              "ToolTip": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\Controllers\\AccountController.cs",
+              "RelativeToolTip": "CakeHut\\Controllers\\AccountController.cs",
+              "ViewState": "AgIAAMcBAAAAAAAAAAAAABUCAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-26T20:04:40.12Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Login.cshtml",
+              "DocumentMoniker": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\Views\\Account\\Login.cshtml",
+              "RelativeDocumentMoniker": "CakeHut\\Views\\Account\\Login.cshtml",
+              "ToolTip": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\Views\\Account\\Login.cshtml",
+              "RelativeToolTip": "CakeHut\\Views\\Account\\Login.cshtml",
+              "ViewState": "AgIAAEIAAAAAAAAAAAAAAEsAAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-11-26T19:09:44.141Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "appsettings.Production.json",
+              "DocumentMoniker": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\appsettings.Production.json",
+              "RelativeDocumentMoniker": "CakeHut\\appsettings.Production.json",
+              "ToolTip": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\appsettings.Production.json",
+              "RelativeToolTip": "CakeHut\\appsettings.Production.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAADAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-11-26T16:12:40.106Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "ForgotPassword.cshtml",
+              "DocumentMoniker": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\Views\\Account\\ForgotPassword.cshtml",
+              "RelativeDocumentMoniker": "CakeHut\\Views\\Account\\ForgotPassword.cshtml",
+              "ToolTip": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\Views\\Account\\ForgotPassword.cshtml",
+              "RelativeToolTip": "CakeHut\\Views\\Account\\ForgotPassword.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-11-26T19:09:46.09Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\Program.cs",
+              "RelativeDocumentMoniker": "CakeHut\\Program.cs",
+              "ToolTip": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\Program.cs",
+              "RelativeToolTip": "CakeHut\\Program.cs",
+              "ViewState": "AgIAABoAAAAAAAAAAAAAACQAAAADAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-18T19:28:42.426Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "appsettings.Development.json",
+              "DocumentMoniker": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\appsettings.Development.json",
+              "RelativeDocumentMoniker": "CakeHut\\appsettings.Development.json",
+              "ToolTip": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\appsettings.Development.json",
+              "RelativeToolTip": "CakeHut\\appsettings.Development.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-11-27T08:51:25.825Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Register.cshtml",
+              "DocumentMoniker": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\Views\\Account\\Register.cshtml",
+              "RelativeDocumentMoniker": "CakeHut\\Views\\Account\\Register.cshtml",
+              "ToolTip": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\Views\\Account\\Register.cshtml",
+              "RelativeToolTip": "CakeHut\\Views\\Account\\Register.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-11-26T19:09:50.159Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "AccessDenied.cshtml",
+              "DocumentMoniker": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\Views\\Account\\AccessDenied.cshtml",
+              "RelativeDocumentMoniker": "CakeHut\\Views\\Account\\AccessDenied.cshtml",
+              "ToolTip": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\Views\\Account\\AccessDenied.cshtml",
+              "RelativeToolTip": "CakeHut\\Views\\Account\\AccessDenied.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-11-26T19:09:42.058Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "CakeHut\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "CakeHut\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAAGEAAAAAAAAAAAAAAF8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-11-18T19:22:52.775Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "_LoginPartial.cshtml",
+              "DocumentMoniker": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\Views\\Shared\\_LoginPartial.cshtml",
+              "RelativeDocumentMoniker": "CakeHut\\Views\\Shared\\_LoginPartial.cshtml",
+              "ToolTip": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\Views\\Shared\\_LoginPartial.cshtml",
+              "RelativeToolTip": "CakeHut\\Views\\Shared\\_LoginPartial.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-11-18T19:22:55.469Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "CartController.cs",
+              "DocumentMoniker": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\Controllers\\CartController.cs",
+              "RelativeDocumentMoniker": "CakeHut\\Controllers\\CartController.cs",
+              "ToolTip": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\Controllers\\CartController.cs",
+              "RelativeToolTip": "CakeHut\\Controllers\\CartController.cs",
+              "ViewState": "AgIAAOkAAAAAAAAAAAAAAJEAAAA8AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-26T16:12:54.225Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "Product.cs",
+              "DocumentMoniker": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\Models\\Product.cs",
+              "RelativeDocumentMoniker": "CakeHut\\Models\\Product.cs",
+              "ToolTip": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\Models\\Product.cs",
+              "RelativeToolTip": "CakeHut\\Models\\Product.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-26T12:12:58.2Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "StoreController.cs",
+              "DocumentMoniker": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\Controllers\\StoreController.cs",
+              "RelativeDocumentMoniker": "CakeHut\\Controllers\\StoreController.cs",
+              "ToolTip": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\Controllers\\StoreController.cs",
+              "RelativeToolTip": "CakeHut\\Controllers\\StoreController.cs",
+              "ViewState": "AgIAADwAAAAAAAAAAAAAABQAAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-26T16:27:16.075Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\Views\\Cart\\Index.cshtml",
+              "RelativeDocumentMoniker": "CakeHut\\Views\\Cart\\Index.cshtml",
+              "ToolTip": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\Views\\Cart\\Index.cshtml",
+              "RelativeToolTip": "CakeHut\\Views\\Cart\\Index.cshtml",
+              "ViewState": "AgIAAG0AAAAAAAAAAAAAAHYAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-11-21T15:05:24.231Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "Details.cshtml",
+              "DocumentMoniker": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\Views\\Store\\Details.cshtml",
+              "RelativeDocumentMoniker": "CakeHut\\Views\\Store\\Details.cshtml",
+              "ToolTip": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\Views\\Store\\Details.cshtml",
+              "RelativeToolTip": "CakeHut\\Views\\Store\\Details.cshtml",
+              "ViewState": "AgIAACcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-11-26T15:57:48.508Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "CheckoutController.cs",
+              "DocumentMoniker": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\Controllers\\CheckoutController.cs",
+              "RelativeDocumentMoniker": "CakeHut\\Controllers\\CheckoutController.cs",
+              "ToolTip": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\Controllers\\CheckoutController.cs",
+              "RelativeToolTip": "CakeHut\\Controllers\\CheckoutController.cs",
+              "ViewState": "AgIAAM8AAAAAAAAAAAAAAMsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-26T16:24:01.088Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "CouponController.cs",
+              "DocumentMoniker": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\Controllers\\CouponController.cs",
+              "RelativeDocumentMoniker": "CakeHut\\Controllers\\CouponController.cs",
+              "ToolTip": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\Controllers\\CouponController.cs",
+              "RelativeToolTip": "CakeHut\\Controllers\\CouponController.cs",
+              "ViewState": "AgIAAN4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-26T16:25:29.098Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "ClientOrdersController.cs",
+              "DocumentMoniker": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\Controllers\\ClientOrdersController.cs",
+              "RelativeDocumentMoniker": "CakeHut\\Controllers\\ClientOrdersController.cs",
+              "ToolTip": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\Controllers\\ClientOrdersController.cs",
+              "RelativeToolTip": "CakeHut\\Controllers\\ClientOrdersController.cs",
+              "ViewState": "AgIAAJIAAAAAAAAAAAAAAHYAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-18T16:40:30.088Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\Views\\Wallet\\Index.cshtml",
+              "RelativeDocumentMoniker": "CakeHut\\Views\\Wallet\\Index.cshtml",
+              "ToolTip": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\Views\\Wallet\\Index.cshtml",
+              "RelativeToolTip": "CakeHut\\Views\\Wallet\\Index.cshtml",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAAACkAAABDAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-11-18T19:22:06.417Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "WalletService.cs",
+              "DocumentMoniker": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\Data\\WalletService.cs",
+              "RelativeDocumentMoniker": "CakeHut\\Data\\WalletService.cs",
+              "ToolTip": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\Data\\WalletService.cs",
+              "RelativeToolTip": "CakeHut\\Data\\WalletService.cs",
+              "ViewState": "AgIAABEAAAAAAAAAAADgvxcAAABFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-18T18:44:05.504Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "CakeHut\\Controllers\\HomeController.cs",
+              "ToolTip": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "CakeHut\\Controllers\\HomeController.cs",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAAB8AAAA3AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-20T10:17:35.754Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "PaymentController.cs",
+              "DocumentMoniker": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\Controllers\\PaymentController.cs",
+              "RelativeDocumentMoniker": "CakeHut\\Controllers\\PaymentController.cs",
+              "ToolTip": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\Controllers\\PaymentController.cs",
+              "RelativeToolTip": "CakeHut\\Controllers\\PaymentController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-26T16:25:47.696Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "Order.cs",
+              "DocumentMoniker": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\Models\\Order.cs",
+              "RelativeDocumentMoniker": "CakeHut\\Models\\Order.cs",
+              "ToolTip": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\Models\\Order.cs",
+              "RelativeToolTip": "CakeHut\\Models\\Order.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-26T17:40:31.937Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "Details.cshtml",
+              "DocumentMoniker": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\Views\\ClientOrders\\Details.cshtml",
+              "RelativeDocumentMoniker": "CakeHut\\Views\\ClientOrders\\Details.cshtml",
+              "ToolTip": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\Views\\ClientOrders\\Details.cshtml",
+              "RelativeToolTip": "CakeHut\\Views\\ClientOrders\\Details.cshtml",
+              "ViewState": "AgIAAJoAAAAAAAAAAAAAAJ4AAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-11-18T16:41:49.901Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "ApplicationDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\Data\\ApplicationDbContext.cs",
+              "RelativeDocumentMoniker": "CakeHut\\Data\\ApplicationDbContext.cs",
+              "ToolTip": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\Data\\ApplicationDbContext.cs",
+              "RelativeToolTip": "CakeHut\\Data\\ApplicationDbContext.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAQwBUAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-18T18:44:45.559Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "WalletController.cs",
+              "DocumentMoniker": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\Controllers\\WalletController.cs",
+              "RelativeDocumentMoniker": "CakeHut\\Controllers\\WalletController.cs",
+              "ToolTip": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\Controllers\\WalletController.cs",
+              "RelativeToolTip": "CakeHut\\Controllers\\WalletController.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAADgvyUAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-26T16:28:17.903Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "CategoryController.cs",
+              "DocumentMoniker": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\Controllers\\CategoryController.cs",
+              "RelativeDocumentMoniker": "CakeHut\\Controllers\\CategoryController.cs",
+              "ToolTip": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\Controllers\\CategoryController.cs",
+              "RelativeToolTip": "CakeHut\\Controllers\\CategoryController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAHoAAABfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-26T16:23:10.467Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "UsersController.cs",
+              "DocumentMoniker": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\Controllers\\UsersController.cs",
+              "RelativeDocumentMoniker": "CakeHut\\Controllers\\UsersController.cs",
+              "ToolTip": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\Controllers\\UsersController.cs",
+              "RelativeToolTip": "CakeHut\\Controllers\\UsersController.cs",
+              "ViewState": "AgIAAG8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-23T10:58:39.384Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "OffersController.cs",
+              "DocumentMoniker": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\Controllers\\OffersController.cs",
+              "RelativeDocumentMoniker": "CakeHut\\Controllers\\OffersController.cs",
+              "ToolTip": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\Controllers\\OffersController.cs",
+              "RelativeToolTip": "CakeHut\\Controllers\\OffersController.cs",
+              "ViewState": "AgIAAE4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-26T15:55:33.693Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "ProductsController.cs",
+              "DocumentMoniker": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\Controllers\\ProductsController.cs",
+              "RelativeDocumentMoniker": "CakeHut\\Controllers\\ProductsController.cs",
+              "ToolTip": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\Controllers\\ProductsController.cs",
+              "RelativeToolTip": "CakeHut\\Controllers\\ProductsController.cs",
+              "ViewState": "AgIAAE4AAAAAAAAAAAAAAF4AAAAyAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-26T14:14:39.861Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "OfferVM.cs",
+              "DocumentMoniker": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\Models\\ViewModels\\OfferVM.cs",
+              "RelativeDocumentMoniker": "CakeHut\\Models\\ViewModels\\OfferVM.cs",
+              "ToolTip": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\Models\\ViewModels\\OfferVM.cs",
+              "RelativeToolTip": "CakeHut\\Models\\ViewModels\\OfferVM.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-26T16:11:24.783Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 33,
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\Views\\Coupon\\Create.cshtml",
+              "RelativeDocumentMoniker": "CakeHut\\Views\\Coupon\\Create.cshtml",
+              "ToolTip": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\Views\\Coupon\\Create.cshtml",
+              "RelativeToolTip": "CakeHut\\Views\\Coupon\\Create.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-11-26T16:04:35.335Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 34,
+              "Title": "Coupon.cs",
+              "DocumentMoniker": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\Models\\Coupon.cs",
+              "RelativeDocumentMoniker": "CakeHut\\Models\\Coupon.cs",
+              "ToolTip": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\Models\\Coupon.cs",
+              "RelativeToolTip": "CakeHut\\Models\\Coupon.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-26T16:05:33.336Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 35,
+              "Title": "Offer.cs",
+              "DocumentMoniker": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\Models\\Offer.cs",
+              "RelativeDocumentMoniker": "CakeHut\\Models\\Offer.cs",
+              "ToolTip": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\Models\\Offer.cs",
+              "RelativeToolTip": "CakeHut\\Models\\Offer.cs",
+              "ViewState": "AgIAABUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-26T16:06:08.808Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 32,
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\Views\\Offers\\Create.cshtml",
+              "RelativeDocumentMoniker": "CakeHut\\Views\\Offers\\Create.cshtml",
+              "ToolTip": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\Views\\Offers\\Create.cshtml",
+              "RelativeToolTip": "CakeHut\\Views\\Offers\\Create.cshtml",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAGYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-11-26T16:03:37.471Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 36,
+              "Title": "Edit.cshtml",
+              "DocumentMoniker": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\Views\\Offers\\Edit.cshtml",
+              "RelativeDocumentMoniker": "CakeHut\\Views\\Offers\\Edit.cshtml",
+              "ToolTip": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\Views\\Offers\\Edit.cshtml",
+              "RelativeToolTip": "CakeHut\\Views\\Offers\\Edit.cshtml",
+              "ViewState": "AgIAACoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-11-26T16:04:11.359Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 41,
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\Views\\Products\\Create.cshtml",
+              "RelativeDocumentMoniker": "CakeHut\\Views\\Products\\Create.cshtml",
+              "ToolTip": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\Views\\Products\\Create.cshtml",
+              "RelativeToolTip": "CakeHut\\Views\\Products\\Create.cshtml",
+              "ViewState": "AgIAADEAAAAAAAAAAAAwwDwAAABdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-11-26T12:00:29.665Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 38,
+              "Title": "ProductDto.cs",
+              "DocumentMoniker": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\Models\\ProductDto.cs",
+              "RelativeDocumentMoniker": "CakeHut\\Models\\ProductDto.cs",
+              "ToolTip": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\Models\\ProductDto.cs",
+              "RelativeToolTip": "CakeHut\\Models\\ProductDto.cs",
+              "ViewState": "AgIAABIAAAAAAAAAAAAAwBgAAABYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-26T12:01:15.64Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 37,
+              "Title": "AddressController.cs",
+              "DocumentMoniker": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\Controllers\\AddressController.cs",
+              "RelativeDocumentMoniker": "CakeHut\\Controllers\\AddressController.cs",
+              "ToolTip": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\Controllers\\AddressController.cs",
+              "RelativeToolTip": "CakeHut\\Controllers\\AddressController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-23T10:57:56.227Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 42,
+              "Title": "New.cshtml",
+              "DocumentMoniker": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\Views\\DashBoard\\New.cshtml",
+              "RelativeDocumentMoniker": "CakeHut\\Views\\DashBoard\\New.cshtml",
+              "ToolTip": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\Views\\DashBoard\\New.cshtml",
+              "RelativeToolTip": "CakeHut\\Views\\DashBoard\\New.cshtml",
+              "ViewState": "AgIAADkAAAAAAAAAAAAAAEkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-11-26T08:50:36.297Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 39,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\Views\\Products\\Index.cshtml",
+              "RelativeDocumentMoniker": "CakeHut\\Views\\Products\\Index.cshtml",
+              "ToolTip": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\Views\\Products\\Index.cshtml",
+              "RelativeToolTip": "CakeHut\\Views\\Products\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAATAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-11-26T14:16:22.011Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 40,
+              "Title": "AdminOrdersController.cs",
+              "DocumentMoniker": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\Controllers\\AdminOrdersController.cs",
+              "RelativeDocumentMoniker": "CakeHut\\Controllers\\AdminOrdersController.cs",
+              "ToolTip": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\Controllers\\AdminOrdersController.cs",
+              "RelativeToolTip": "CakeHut\\Controllers\\AdminOrdersController.cs",
+              "ViewState": "AgIAAEUAAAAAAAAAAAAAAEgAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-19T07:57:19.058Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 43,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\Views\\Users\\Index.cshtml",
+              "RelativeDocumentMoniker": "CakeHut\\Views\\Users\\Index.cshtml",
+              "ToolTip": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\Views\\Users\\Index.cshtml",
+              "RelativeToolTip": "CakeHut\\Views\\Users\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADcAAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-11-26T08:32:01.626Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 45,
+              "Title": "Address.cs",
+              "DocumentMoniker": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\Models\\Address.cs",
+              "RelativeDocumentMoniker": "CakeHut\\Models\\Address.cs",
+              "ToolTip": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\Models\\Address.cs",
+              "RelativeToolTip": "CakeHut\\Models\\Address.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-25T19:44:05.223Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 44,
+              "Title": "Register.cs",
+              "DocumentMoniker": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\Models\\Register.cs",
+              "RelativeDocumentMoniker": "CakeHut\\Models\\Register.cs",
+              "ToolTip": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\Models\\Register.cs",
+              "RelativeToolTip": "CakeHut\\Models\\Register.cs",
+              "ViewState": "AgIAAAEAAAAAAAAAAABBwA0AAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-25T19:44:12.3Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 46,
+              "Title": "Details.cshtml",
+              "DocumentMoniker": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\Views\\AdminOrders\\Details.cshtml",
+              "RelativeDocumentMoniker": "CakeHut\\Views\\AdminOrders\\Details.cshtml",
+              "ToolTip": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\Views\\AdminOrders\\Details.cshtml",
+              "RelativeToolTip": "CakeHut\\Views\\AdminOrders\\Details.cshtml",
+              "ViewState": "AgIAAA0BAAAAAAAAAABBwD8BAAA4AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-11-23T15:04:15.384Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 47,
+              "Title": "CakeHut",
+              "DocumentMoniker": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\CakeHut.csproj",
+              "RelativeDocumentMoniker": "CakeHut\\CakeHut.csproj",
+              "ToolTip": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\CakeHut.csproj",
+              "RelativeToolTip": "CakeHut\\CakeHut.csproj",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2024-11-23T04:54:00.328Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 49,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\Views\\DashBoard\\Index.cshtml",
+              "RelativeDocumentMoniker": "CakeHut\\Views\\DashBoard\\Index.cshtml",
+              "ToolTip": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\Views\\DashBoard\\Index.cshtml",
+              "RelativeToolTip": "CakeHut\\Views\\DashBoard\\Index.cshtml",
+              "ViewState": "AgIAAE8AAAAAAAAAAABBwAkAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-11-18T16:29:39.817Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 48,
+              "Title": "AdminHome.cshtml",
+              "DocumentMoniker": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\Views\\Home\\AdminHome.cshtml",
+              "RelativeDocumentMoniker": "CakeHut\\Views\\Home\\AdminHome.cshtml",
+              "ToolTip": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\Views\\Home\\AdminHome.cshtml",
+              "RelativeToolTip": "CakeHut\\Views\\Home\\AdminHome.cshtml",
+              "ViewState": "AgIAAAQAAAAAAAAAAABBwBQAAAByAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-11-19T07:53:48.813Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 50,
+              "Title": "DashboardVM.cs",
+              "DocumentMoniker": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\Models\\ViewModels\\DashboardVM.cs",
+              "RelativeDocumentMoniker": "CakeHut\\Models\\ViewModels\\DashboardVM.cs",
+              "ToolTip": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\Models\\ViewModels\\DashboardVM.cs",
+              "RelativeToolTip": "CakeHut\\Models\\ViewModels\\DashboardVM.cs",
+              "ViewState": "AgIAAAEAAAAAAAAAAABBwCYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-04T19:19:50.624Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 51,
+              "Title": "WalletTransaction.cs",
+              "DocumentMoniker": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\Models\\WalletTransaction.cs",
+              "RelativeDocumentMoniker": "CakeHut\\Models\\WalletTransaction.cs",
+              "ToolTip": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\Models\\WalletTransaction.cs",
+              "RelativeToolTip": "CakeHut\\Models\\WalletTransaction.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-18T18:39:16.506Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 52,
+              "Title": "Wallet.cs",
+              "DocumentMoniker": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\Models\\Wallet.cs",
+              "RelativeDocumentMoniker": "CakeHut\\Models\\Wallet.cs",
+              "ToolTip": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\Models\\Wallet.cs",
+              "RelativeToolTip": "CakeHut\\Models\\Wallet.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-18T18:38:20.983Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 53,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\Views\\ClientOrders\\Index.cshtml",
+              "RelativeDocumentMoniker": "CakeHut\\Views\\ClientOrders\\Index.cshtml",
+              "ToolTip": "C:\\Users\\selma\\source\\repos\\CakeHut\\CakeHut\\Views\\ClientOrders\\Index.cshtml",
+              "RelativeToolTip": "CakeHut\\Views\\ClientOrders\\Index.cshtml",
+              "ViewState": "AgIAAFIAAAAAAAAAAABBwGcAAABOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-11-18T16:41:36.452Z"
+            }
+          ]
+        },
+        {
+          "DockedHeight": 381,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:131:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:132:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:130:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

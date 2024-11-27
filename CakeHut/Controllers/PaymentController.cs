@@ -49,8 +49,6 @@ namespace CakeHut.Controllers
             List<OrderItem> cartItems = CartHelper.GetCartItems(Request, Response, context);
             decimal totalAmount = CartHelper.GetSubtotal(cartItems) + shippingFee;
 
-
-
             // create the request body
             JsonObject createOrderRequest = new JsonObject();
             createOrderRequest.Add("intent", "CAPTURE");
@@ -66,7 +64,6 @@ namespace CakeHut.Controllers
             purchaseUnits.Add(purchaseUnit1);
 
             createOrderRequest.Add("purchase_units", purchaseUnits);
-
 
             // get access token
             string accessToken = await GetPaypalAccessToken();
@@ -137,7 +134,6 @@ namespace CakeHut.Controllers
                 else
                 {
                     var errorResponse = await httpResponse.Content.ReadAsStringAsync();
-                    // Log error for debugging
                     Console.WriteLine("Error capturing order: " + errorResponse);
                 }
             }
@@ -147,13 +143,12 @@ namespace CakeHut.Controllers
 
         private async Task SaveOrder(string paypalResponse, string deliveryAddress)
         {
-            // Get cart items
             var cartItems = CartHelper.GetCartItems(Request, Response, context);
             var appUser = await userManager.GetUserAsync(User);
 
             if (appUser == null || cartItems == null || !cartItems.Any())
             {
-                return; // Handle this case appropriately
+                return; 
             }
 
             var order = new Order
@@ -172,103 +167,8 @@ namespace CakeHut.Controllers
             context.Orders.Add(order);
             await context.SaveChangesAsync();
 
-            // Delete the shopping cart cookie
             Response.Cookies.Delete("shopping_cart");
         }
-
-
-        /*
-        [HttpPost]
-        public async Task<JsonResult> CompleteOrder([FromBody] JsonObject data)
-        {
-            var orderId = data?["orderID"]?.ToString();
-            var deliveryAddress = data?["deliveryAddress"]?.ToString();
-
-            if (orderId == null || deliveryAddress == null)
-            {
-                return new JsonResult("error");
-            }
-
-            // get access token
-            string accessToken = await GetPaypalAccessToken();
-
-
-            string url = PaypalUrl + "/v2/checkout/orders/" + orderId + "/capture";
-
-
-            using (var client = new HttpClient())
-            {
-                client.DefaultRequestHeaders.Add("Authorization", "Bearer " + accessToken);
-
-                var requestMessage = new HttpRequestMessage(HttpMethod.Post, url);
-                requestMessage.Content = new StringContent("", null, "application/json");
-
-                var httpResponse = await client.SendAsync(requestMessage);
-
-                if (httpResponse.IsSuccessStatusCode)
-                {
-                    var strResponse = await httpResponse.Content.ReadAsStringAsync();
-                    var jsonResponse = JsonNode.Parse(strResponse);
-
-                    if (jsonResponse != null)
-                    {
-                        string paypalOrderStatus = jsonResponse["status"]?.ToString() ?? "";
-                        if (paypalOrderStatus == "COMPLETED")
-                        {
-                            // save the order in the database
-                            await SaveOrder(jsonResponse.ToString(), deliveryAddress);
-
-                            return new JsonResult("success");
-                        }
-                    }
-                }
-            }
-
-
-            return new JsonResult("error");
-        }
-
-        private async Task SaveOrder(string paypalResponse, string deliveryAddress)
-        {
-            // get cart items
-            var cartItems = CartHelper.GetCartItems(Request, Response, context);
-
-            var appUser = await userManager.GetUserAsync(User);
-            if (appUser == null)
-            {
-                return;
-            }
-
-            // save the order
-            var order = new Order
-            {
-                ClientId = appUser.Id,
-                Items = cartItems,
-                ShippingFee = shippingFee,
-                DeliveryAddress = deliveryAddress,
-                PaymentMethod = "paypal",
-                PaymentStatus = "accepted",
-                PaymentDetails = paypalResponse,
-                OrderStatus = "pending",
-                CreatedAt = DateTime.Now,
-            };
-
-            context.Orders.Add(order);
-            context.SaveChanges();
-
-
-            // delete the shopping cart cookie
-            Response.Cookies.Delete("shopping_cart");
-        }
-        */
-
-
-        /*
-        public async Task<string> Token()
-        {
-            return await GetPaypalAccessToken();
-        }
-        */
 
         private async Task<string> GetPaypalAccessToken()
         {

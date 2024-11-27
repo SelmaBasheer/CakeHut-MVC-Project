@@ -28,12 +28,10 @@ namespace CakeHut.Controllers
                 pageIndex = 1;
             }
 
-
             decimal count = query.Count();
             int totalPages = (int)Math.Ceiling(count / pageSize);
 
             query = query.Skip((pageIndex - 1) * pageSize).Take(pageSize);
-
 
             var orders = query.ToList();
 
@@ -44,12 +42,11 @@ namespace CakeHut.Controllers
             return View();
         }
 
-
+        // Order Details
         public async Task<IActionResult> Details(int id)
         {
             var order = context.Orders.Include(o => o.Client).Include(o => o.Items)
                 .ThenInclude(oi => oi.Product).FirstOrDefault(o => o.Id == id);
-
 
             if (order == null)
             {
@@ -62,21 +59,18 @@ namespace CakeHut.Controllers
 
             if (coupon != null)
             {
-                // Check if the AppliedCoupon is null
                 if (order.AppliedCoupon == null)
                 {
-                    // Log or inspect to see what the CouponId is
                     Console.WriteLine($"Order ID: {order.Id}, Coupon ID: {order.CouponId}");
                 }
             }
-
 
             ViewBag.NumOrders = context.Orders.Where(o => o.ClientId == order.ClientId).Count();
 
             return View(order);
         }
 
-
+        // Edit order status
         public IActionResult Edit(int id, string? payment_status, string? order_status)
         {
             var order = context.Orders.Find(id);
@@ -84,7 +78,6 @@ namespace CakeHut.Controllers
             {
                 return RedirectToAction("Index");
             }
-
 
             if (payment_status == null && order_status == null)
             {
@@ -102,7 +95,6 @@ namespace CakeHut.Controllers
             }
 
             context.SaveChanges();
-
 
             return RedirectToAction("Details", new { id });
         }

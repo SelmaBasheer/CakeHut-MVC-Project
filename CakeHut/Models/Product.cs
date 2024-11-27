@@ -13,7 +13,6 @@ namespace CakeHut.Models
         [MaxLength(30)]
         public string Name { get; set; }
 
-
         [Required]
         public int CategoryId { get; set; }
 
@@ -43,18 +42,6 @@ namespace CakeHut.Models
 
         public ICollection<Review> Reviews { get; set; } = new List<Review>();
 
-        //public decimal DiscountedPrice
-        //{
-        //    get
-        //    {
-        //        return DiscountPercentage > 0 ? Price - (Price * DiscountPercentage / 100) : Price;
-        //    }
-        //}
-
-        //[Range(0, 100)]
-        //public int DiscountPercentage { get; set; } = 0; 
-
-        //public string? CouponCode { get; set; }
 
         [Column(TypeName = "decimal(18,2)")]
         public decimal DiscountedPrice { get; set; }
@@ -65,6 +52,9 @@ namespace CakeHut.Models
         [Required]
         [Range(0, int.MaxValue, ErrorMessage = "Stock must be a non-negative number")]
         public int Stock { get; set; }
+
+        [Required]
+        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
     }
 }

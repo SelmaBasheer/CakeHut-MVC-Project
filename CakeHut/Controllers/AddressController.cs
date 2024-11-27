@@ -13,11 +13,13 @@ namespace CakeHut.Controllers
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly ApplicationDbContext _context;
         private readonly int pageSize = 5;
+
         public AddressController(UserManager<ApplicationUser> userManager, ApplicationDbContext context)
         {
             _userManager = userManager;
             _context = context;
         }
+
         public async Task<IActionResult> Index(int pageIndex)
         {
             var user = await _userManager.GetUserAsync(User);
@@ -33,12 +35,10 @@ namespace CakeHut.Controllers
                 pageIndex = 1;
             }
 
-
             decimal count = query.Count();
             int totalPages = (int)Math.Ceiling(count / pageSize);
 
             query = query.Skip((pageIndex - 1) * pageSize).Take(pageSize);
-
 
             var addresses = query.ToList();
 
@@ -49,6 +49,7 @@ namespace CakeHut.Controllers
             return View();
         }
 
+        // For adding new address
         public IActionResult Add()
         {
             return View();
@@ -71,27 +72,10 @@ namespace CakeHut.Controllers
                 ModelState.AddModelError(string.Empty, "User not found.");
             }
 
-            //var user = await _userManager.GetUserAsync(User);
-            //address.UserId = user?.Id;
-
-            //ModelState.Remove("User");
-
-            //if (ModelState.IsValid)
-            //{
-            //    _context.Addresses.Add(address);
-            //    await _context.SaveChangesAsync();
-            //    return RedirectToAction("Index");
-            //}
-
-            //var errors = ModelState.Values.SelectMany(v => v.Errors);
-            //foreach (var error in errors)
-            //{
-            //    Console.WriteLine(error.ErrorMessage); // Replace with logger if needed
-            //}
-
             return View(address);
         }
 
+        // For editing the address
         public async Task<IActionResult> Edit(int id)
         {
             var address = await _context.Addresses.FindAsync(id);
@@ -105,8 +89,6 @@ namespace CakeHut.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(int id, Address address)
         {
-            
-
             if (id != address.AddressId)
             {
                 return NotFound();
@@ -143,23 +125,12 @@ namespace CakeHut.Controllers
             var errors = ModelState.Values.SelectMany(v => v.Errors);
             foreach (var error in errors)
             {
-                Console.WriteLine(error.ErrorMessage); // Replace with logger if needed
+                Console.WriteLine(error.ErrorMessage); 
             }
             return View(address);
         }
-        
 
-        //[HttpPost]
-        //public async Task<IActionResult> Edit(Address address)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        _context.Addresses.Update(address);
-        //        await _context.SaveChangesAsync();
-        //        return RedirectToAction("Index");
-        //    }
-        //    return View(address);
-        //}
+        // For deleting the address
         public async Task<IActionResult> Delete(int id)
         {
             var address = await _context.Addresses.FindAsync(id);

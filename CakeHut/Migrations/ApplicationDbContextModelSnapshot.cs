@@ -397,6 +397,9 @@ namespace CakeHut.Migrations
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -436,6 +439,7 @@ namespace CakeHut.Migrations
                             Id = 1,
                             Availability = "In Stock",
                             CategoryId = 1,
+                            CreatedAt = new DateTime(2024, 11, 26, 14, 31, 40, 162, DateTimeKind.Utc).AddTicks(3099),
                             Description = "Moist chocolate cake with rich fudge frosting",
                             DiscountedPrice = 0m,
                             ImageUrl = "chocolate-fudge-cake.jpg",
@@ -450,6 +454,7 @@ namespace CakeHut.Migrations
                             Id = 2,
                             Availability = "In Stock",
                             CategoryId = 1,
+                            CreatedAt = new DateTime(2024, 11, 26, 14, 31, 40, 162, DateTimeKind.Utc).AddTicks(3114),
                             Description = "Delicate butterscotch cake with creamy praline frosting",
                             DiscountedPrice = 0m,
                             ImageUrl = "vanilla-bean-cake.jpg",
@@ -464,6 +469,7 @@ namespace CakeHut.Migrations
                             Id = 3,
                             Availability = "In Stock",
                             CategoryId = 1,
+                            CreatedAt = new DateTime(2024, 11, 26, 14, 31, 40, 162, DateTimeKind.Utc).AddTicks(3118),
                             Description = "Moist red velvet cake with cream cheese frosting",
                             DiscountedPrice = 0m,
                             ImageUrl = "red-velvet-cake.jpg",
