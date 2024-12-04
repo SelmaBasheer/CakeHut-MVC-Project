@@ -4,6 +4,7 @@ using CakeHut.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CakeHut.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241128190541_OrderItemsTableUpdated")]
+    partial class OrderItemsTableUpdated
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -360,12 +363,6 @@ namespace CakeHut.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime?>("DeliveredAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsReturned")
-                        .HasColumnType("bit");
-
                     b.Property<int?>("OrderId")
                         .HasColumnType("int");
 
@@ -374,12 +371,6 @@ namespace CakeHut.Migrations
 
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
-
-                    b.Property<string>("ReturnReason")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("ReturnRequestedAt")
-                        .HasColumnType("datetime2");
 
                     b.Property<string>("Status")
                         .IsRequired()
@@ -455,7 +446,7 @@ namespace CakeHut.Migrations
                             Id = 1,
                             Availability = "In Stock",
                             CategoryId = 1,
-                            CreatedAt = new DateTime(2024, 11, 30, 18, 20, 18, 600, DateTimeKind.Utc).AddTicks(5890),
+                            CreatedAt = new DateTime(2024, 11, 28, 19, 5, 40, 647, DateTimeKind.Utc).AddTicks(3256),
                             Description = "Moist chocolate cake with rich fudge frosting",
                             DiscountedPrice = 0m,
                             ImageUrl = "chocolate-fudge-cake.jpg",
@@ -470,7 +461,7 @@ namespace CakeHut.Migrations
                             Id = 2,
                             Availability = "In Stock",
                             CategoryId = 1,
-                            CreatedAt = new DateTime(2024, 11, 30, 18, 20, 18, 600, DateTimeKind.Utc).AddTicks(5903),
+                            CreatedAt = new DateTime(2024, 11, 28, 19, 5, 40, 647, DateTimeKind.Utc).AddTicks(3271),
                             Description = "Delicate butterscotch cake with creamy praline frosting",
                             DiscountedPrice = 0m,
                             ImageUrl = "vanilla-bean-cake.jpg",
@@ -485,7 +476,7 @@ namespace CakeHut.Migrations
                             Id = 3,
                             Availability = "In Stock",
                             CategoryId = 1,
-                            CreatedAt = new DateTime(2024, 11, 30, 18, 20, 18, 600, DateTimeKind.Utc).AddTicks(5907),
+                            CreatedAt = new DateTime(2024, 11, 28, 19, 5, 40, 647, DateTimeKind.Utc).AddTicks(3275),
                             Description = "Moist red velvet cake with cream cheese frosting",
                             DiscountedPrice = 0m,
                             ImageUrl = "red-velvet-cake.jpg",
@@ -611,9 +602,6 @@ namespace CakeHut.Migrations
 
                     b.Property<decimal>("Amount")
                         .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("CancelledId")
-                        .HasColumnType("int");
 
                     b.Property<string>("Description")
                         .IsRequired()

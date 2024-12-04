@@ -39,7 +39,28 @@ namespace CakeHut.Controllers
             try
             {
                 List<OrderItem> cartItems = CartHelper.GetCartItems(Request, Response, context);
-                decimal total = CartHelper.GetSubtotal(cartItems) + shippingFee;
+                decimal total = 0;
+                if (TempData["DiscountedTotal"] != null && decimal.TryParse(TempData["DiscountedTotal"].ToString(), out var discountedTotal))
+                {
+                    total = discountedTotal;
+                }
+                else
+                {
+                    total = CartHelper.GetSubtotal(cartItems) + shippingFee;
+                }
+
+                int cartSize = 0;
+                foreach (var item in cartItems)
+                {
+                    cartSize += item.Quantity;
+                }
+                if (cartSize == 0 || TempData["DeliveryAddress"] == null)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+
+                string couponMessage = TempData["CouponMessage"] as string ?? "";
+                ViewBag.CouponMessage = couponMessage;
 
                 string deliveryAddress = TempData["DeliveryAddress"] as string ?? "";
                 TempData.Keep();
@@ -47,6 +68,7 @@ namespace CakeHut.Controllers
                 ViewBag.DeliveryAddress = deliveryAddress;
                 ViewBag.Total = total;
                 ViewBag.PaypalClientId = PaypalClientId;
+                ViewBag.CartSize = cartSize;
                 return View();
 
             }
@@ -188,6 +210,15 @@ namespace CakeHut.Controllers
                 {
                     return;
                 }
+                decimal total;
+                if (TempData["DiscountedTotal"] != null && decimal.TryParse(TempData["DiscountedTotal"].ToString(), out var discountedTotal))
+                {
+                    total = discountedTotal;
+                }
+                else
+                {
+                    total = CartHelper.GetSubtotal(cartItems) + shippingFee;
+                }
 
                 var order = new Order
                 {
@@ -200,6 +231,8 @@ namespace CakeHut.Controllers
                     PaymentDetails = paypalResponse,
                     OrderStatus = "created",
                     CreatedAt = DateTime.Now,
+                    TotalAmount = total,
+                    CouponId = int.TryParse(TempData["CouponId"]?.ToString(), out var couponId) ? couponId : (int?)null
                 };
 
                 context.Orders.Add(order);

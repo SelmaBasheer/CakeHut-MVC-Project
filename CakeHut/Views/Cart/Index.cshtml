@@ -24,7 +24,11 @@
                                 <img src="/cakes/@item.Product.ImageUrl" width="100" class="rounded" alt="...">
                             </td>
                             <td>
-                                <h4>@item.Product.Name</h4>
+                                <h4>
+                                    <a asp-controller="Store" asp-action="Details" asp-route-id="@item.Product.Id" class="text-decoration-none text-dark">
+                                        @item.Product.Name
+                                    </a>
+                                </h4>
                                 <p>
                                     Product ID: @item.Product.Id<br>
                                     Name: @item.Product.Name<br>

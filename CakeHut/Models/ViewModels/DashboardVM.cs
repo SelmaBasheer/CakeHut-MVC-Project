@@ -14,9 +14,12 @@
         public double NumberOfOrdersLastWeek { get; set; }
 
         // Order status counts
-        public int ShippedCount { get; set; }
-        public int ApprovedCount { get; set; }
+        public int DeliveredCount { get; set; }
+        public int CreatedCount { get; set; }
         public int CancelledCount { get; set; }
+        public int ReturnedCount { get; set; }
+        public int PaymentAccepted { get; set; }
+        public int PaymentPending { get; set; }
 
         // Sales and revenue metrics
         public decimal TotalSales { get; set; }
@@ -27,62 +30,28 @@
 
         // Paginated data
         public int CurrentPage { get; set; }
-        public int ItemsPerPage { get; set; }
+        public int PageSize { get; set; }
+        public int TotalPages { get; set; }
+
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
 
         // Charts
         public List<string> ChartLabels { get; set; } = new List<string>();
         public List<double> ChartData { get; set; } = new List<double>();
+        public List<double> YAxisValues { get; set; } = new List<double>();
+        
 
-        public List<string> FilterChartLabels { get; set; } // Labels for the new chart
-        public List<double> FilterChartData { get; set; }   // Data for the new chart
-        public string SelectedFilter { get; set; }          // Currently selected filter (e.g., "weekly", "monthly", "yearly")
+        public List<string> FilterChartLabels { get; set; } 
+        public List<double> FilterChartData { get; set; }   
+        public string SelectedFilter { get; set; }          
 
 
         // Sales data by product and category
         public Dictionary<int, int> ProductQuantitiesSold { get; set; } = new Dictionary<int, int>();
         public Dictionary<int, int> CategorySales { get; set; } = new Dictionary<int, int>();
 
-
-        /*
-        public IEnumerable<Order> Orders { get; set; }
-        public IEnumerable<Product> Products { get; set; }
-        public int TotalOrders { get; set; }
-        public decimal TotalRevenue { get; set; }
-        public int TotalProducts { get; set; }
-        public int TotalCategories { get; set; }
-        public int ShippedCount { get; set; }
-        public int CancelledCount { get; set; }
-        public List<Product> TopSellingProducts { get; set; }
-        public Dictionary<int, int> ProductQuantitiesSold { get; set; }
-        public List<Category> TopSellingCategories { get; set; }
-        public Dictionary<int, int> CategorySales { get; set; }
-        public int CurrentPage { get; set; }
-        public int ItemsPerPage { get; set; }
-
-        public double WeeklyRevenue { get; set; }
-        public double MonthlyRevenue { get; set; }
-        public double YearlyRevenue { get; set; }
-        public int WeeklyOrders { get; set; }
-        public int MonthlyOrders { get; set; }
-        public int YearlyOrders { get; set; }
-
-        public string SelectedFilter { get; set; } // To store the selected filter (e.g., Daily, Weekly, etc.)
-        public DateTime? StartDate { get; set; } // For custom date range filtering
-        public DateTime? EndDate { get; set; }   // For custom date range filtering
-
-        public List<string> SalesChartLabels { get; set; } // Chart labels for the filtered sales
-        public List<double> SalesChartData { get; set; }   // Chart data for the filtered sales
-
-        // Constructor to initialize default values
-        public DashboardVM()
-        {
-            Orders = new List<Order>();
-            Products = new List<Product>();
-            TopSellingProducts = new List<Product>();
-            TopSellingCategories = new List<Category>();
-            ProductQuantitiesSold = new Dictionary<int, int>();
-            CategorySales = new Dictionary<int, int>();
-        }
-        */
+        
     }
+
 }

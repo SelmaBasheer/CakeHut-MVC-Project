@@ -1,0 +1,255 @@
+﻿<section class="content-main">
+    <div class="content-header text-center">
+        <h1 class="content-title card-title">SALES REPORT</h1>
+        <p>Overview of Filtered Sales</p>
+    </div>
+
+    <!-- Filter Section -->
+    <div class="card mt-4 shadow-sm" style="border-radius: 10px;">
+        <div class="card-body">
+            <form asp-action="Invoice" asp-controller="DashBoard" method="get" class="d-flex align-items-center justify-content-between">
+                <div class="row g-3 align-items-center">
+                    <div class="col-auto">
+                        <label for="startDate" class="col-form-label">Start Date:</label>
+                    </div>
+                    <div class="col-auto">
+                        <input type="date" id="startDate" name="startDate" class="form-control" value="@Model.StartDate.ToString("yyyy-MM-dd")">
+                    </div>
+                    <div class="col-auto">
+                        <label for="endDate" class="col-form-label">End Date:</label>
+                    </div>
+                    <div class="col-auto">
+                        <input type="date" id="endDate" name="endDate" class="form-control" value="@Model.EndDate.ToString("yyyy-MM-dd")">
+                    </div>
+                </div>
+                <button class="btn btn-primary" type="submit"><i class="fas fa-filter"></i> Apply Filter</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Overview Cards -->
+    <div class="row mt-4">
+        @{
+            var cardData = new[]
+            {
+        new { Title = "Total Revenue", Value = Model.TotalSales.ToString("₹#,##0.00"), Description = "Earnings in the selected period", Gradient = "linear-gradient(135deg, #ff9a9e, #fad0c4)" },
+        new { Title = "Total Orders", Value = Model.OrderCount.ToString(), Description = "Orders in the selected period", Gradient = "linear-gradient(135deg, #a18cd1, #fbc2eb)" },
+        new { Title = "Created Orders", Value = Model.CreatedCount.ToString(), Description = "Orders that were active", Gradient = "linear-gradient(135deg, #f6d365, #fda085)" },
+        new { Title = "Cancelled Orders", Value = Model.CancelledCount.ToString(), Description = "Orders that were canceled", Gradient = "linear-gradient(135deg, #ff6a88, #ff99ac)" },
+        new { Title = "Delivered Orders", Value = Model.DeliveredCount.ToString(), Description = "Orders that were delivered", Gradient = "linear-gradient(135deg, #43e97b, #38f9d7)" },
+        new { Title = "Returned Orders", Value = Model.ReturnedCount.ToString(), Description = "Orders that were returned", Gradient = "linear-gradient(135deg, #fa709a, #fee140)" },
+        new { Title = "Payment Accepted", Value = Model.PaymentAccepted.ToString(), Description = "Payment accepted orders", Gradient = "linear-gradient(135deg, #30cfd0, #330867)" },
+        new { Title = "Payment Pending", Value = Model.PaymentPending.ToString(), Description = "Pending payment orders", Gradient = "linear-gradient(135deg, #ff5f6d, #ffc371)" }
+        };
+        }
+
+        @foreach (var card in cardData)
+        {
+            <div class="col-md-3 mb-4">
+                <div class="card shadow" style="background: @card.Gradient; color: white; border: none;">
+                    <div class="card-body">
+                        <h5 class="card-title">@card.Title</h5>
+                        <h2 class="card-text font-weight-bold">@card.Value</h2>
+                        <p class="card-text">@card.Description</p>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+    <!-- Sales Table -->
+    <div class="card mt-4 shadow-sm" style="border-radius: 10px;">
+        <header class="card-header d-flex justify-content-between align-items-center bg-primary text-white">
+            <h4 class="card-title mb-0">Filtered Orders</h4>
+            <div>
+                <button class="btn btn-outline-light me-2" onclick="window.location.href='@Url.Action("ExportToPdf", new { startDate = ViewBag.StartDate, endDate = ViewBag.EndDate })'">
+                    <i class="fas fa-file-pdf"></i> PDF
+                </button>
+                <button class="btn btn-outline-light" onclick="window.location.href='@Url.Action("ExportToExcel", new { startDate = ViewBag.StartDate, endDate = ViewBag.EndDate })'">
+                    <i class="fas fa-file-excel"></i> Excel
+                </button>
+            </div>
+
+        </header>
+        <div class="card-body">
+            <table id="salesReportTable" class="table table-striped table-hover">
+                <thead style="background: linear-gradient(135deg, #84B0CA, #42a5f5); color: #fff;">
+                    <tr>
+                        <th>Date</th>
+                        <th>Order Number</th>
+                        <th>Customer</th>
+                        <th>Order Total</th>
+                        <th>Payment Status</th>
+                        <th>Order Status</th>
+                        <th>Delivery Address</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var order in Model.Orders)
+                    {
+                        <tr>
+                            <td>@order.CreatedAt.ToShortDateString()</td>
+                            <td>@order.Id</td>
+                            <td>@order.Client.FirstName</td>
+                            <td>@order.TotalAmount.ToString("₹#,##0.00")</td>
+                            <td>
+                                <span class="badge
+                                    @(order.PaymentStatus == "accepted" ? "bg-success" :
+                                      order.PaymentStatus == "pending" ? "bg-warning text-dark" : "bg-secondary text-light")">
+                                    @order.PaymentStatus
+                                </span>
+                            </td>
+                            <td>
+                                <span class="badge
+                                    @(order.OrderStatus == "created" ? "bg-info text-dark" :
+                                      order.OrderStatus == "accepted" ? "bg-primary" :
+                                      order.OrderStatus == "canceled" ? "bg-danger" :
+                                      order.OrderStatus == "delivered" ? "bg-success" :
+                                      order.OrderStatus == "returned" ? "bg-secondary text-light" : "bg-dark text-light")">
+                                    @order.OrderStatus
+                                </span>
+                            </td>
+                            <td>@order.DeliveryAddress</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <!-- Pagination Controls -->
+            <nav class="d-flex justify-content-center mt-4">
+                <ul class="pagination">
+                    @for (int i = 1; i <= ViewBag.TotalPages; i++)
+                    {
+                        <li class="page-item @(i == ViewBag.PageIndex ? "active" : "")">
+                            <a class="page-link"
+                               asp-action="Invoice"
+                               asp-route-pageIndex="@i"
+                               asp-route-startDate="@ViewBag.StartDate"
+                               asp-route-endDate="@ViewBag.EndDate">
+                                @i
+                            </a>
+                        </li>
+                    }
+                </ul>
+            </nav>
+
+
+        </div>
+    </div>
+
+    <!-- Improved Sale Statistics Chart Section -->
+    <div class="col-lg-8 mt-4">
+        <!-- Add top margin here -->
+        <div class="card mb-4 shadow-sm" style="border-radius: 10px;">
+            <header class="card-header d-flex justify-content-between align-items-center">
+                <h4 class="card-title mb-0">Sale Statistics</h4>
+                <select id="filterSelect" class="form-select w-auto" onchange="updateFilter()">
+                    <option value="weekly" selected="@(Model.SelectedFilter == "weekly" ? "selected" : null)">Weekly</option>
+                    <option value="monthly" selected="@(Model.SelectedFilter == "monthly" ? "selected" : null)">Monthly</option>
+                    <option value="yearly" selected="@(Model.SelectedFilter == "yearly" ? "selected" : null)">Yearly</option>
+                </select>
+            </header>
+            <article class="card-body">
+                <!-- Flex container for center alignment -->
+                <div class="d-flex justify-content-center">
+                    <canvas id="salesChart" style="max-width: 100%; height: auto;" class="w-100" height="263px"></canvas>
+                </div>
+            </article>
+        </div>
+    </div>
+
+
+</section>
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+            document.addEventListener("DOMContentLoaded", function () {
+        var ctx = document.getElementById('salesChart').getContext('2d');
+
+        var chartLabels = @Html.Raw(Json.Serialize(Model.ChartLabels));
+        var chartData = @Html.Raw(Json.Serialize(Model.ChartData));
+
+        if (!chartLabels || chartLabels.length === 0) chartLabels = ["No Data"];
+        if (!chartData || chartData.length === 0) chartData = [0];
+
+        // Determine Y-axis configuration based on the selected filter
+        const selectedFilter = "@ViewBag.Filter"; // Pass filter from backend
+        let yAxisTicks = [];
+        let yAxisMin = 0;
+        let yAxisMax = 10000;
+
+        switch (selectedFilter.toLowerCase()) {
+            case "weekly":
+                yAxisTicks = [1000, 2000, 3000, 4000, 5000];
+                yAxisMax = 5000;
+                break;
+            case "monthly":
+                yAxisTicks = [2000, 4000, 6000, 8000, 10000];
+                yAxisMax = 10000;
+                break;
+            case "yearly":
+                yAxisTicks = [10000, 15000, 20000, 25000, 30000];
+                yAxisMax = 30000;
+                break;
+            default:
+                yAxisTicks = [0, 1, 2, 3, 4]; // Default ticks for no filter
+                yAxisMax = 10;
+        }
+
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: chartLabels,
+                datasets: [{
+                    label: 'Revenue (₹)',
+                    data: chartData,
+                    backgroundColor: 'rgba(66, 165, 245, 0.2)',
+                    borderColor: '#42a5f5',
+                    borderWidth: 2,
+                    fill: true,
+                    tension: 0.3 // Adds a smooth curve to the line
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        min: yAxisMin, // Explicit minimum value
+                        max: yAxisMax, // Explicit maximum value
+                        ticks: {
+                            callback: (value) => '₹' + value.toLocaleString(),
+                            values: yAxisTicks, // Set explicit tick values
+                            autoSkip: false, // Ensure all ticks are displayed
+                            stepSize: (yAxisMax - yAxisMin) / (yAxisTicks.length - 1), // Step size to fit within the range
+                        },
+                        title: {
+                            display: true,
+                            text: 'Revenue (₹)'
+                        },
+                        beginAtZero: true
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'top'
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function (context) {
+                                return `₹${context.raw.toLocaleString()}`;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    });
+
+
+    function updateFilter() {
+        const selectedFilter = document.getElementById('filterSelect').value;
+        window.location.href = `@Url.Action("Invoice", "Dashboard")?filter=${selectedFilter}`;
+    }
+</script>

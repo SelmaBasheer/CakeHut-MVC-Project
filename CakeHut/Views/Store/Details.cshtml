@@ -57,15 +57,15 @@
                     {
                         if (i <= Math.Floor(@Model.Ratings))
                         {
-                            <i class="bi bi-star-fill text-warning"></i> <!-- Filled star -->
+                            <i class="bi bi-star-fill text-warning"></i> 
                         }
                         else if (i == Math.Ceiling(@Model.Ratings) && @Model.Ratings % 1 != 0)
                         {
-                            <i class="bi bi-star-half text-warning"></i> <!-- Half star -->
+                            <i class="bi bi-star-half text-warning"></i> 
                         }
                         else
                         {
-                            <i class="bi bi-star text-warning"></i> <!-- Empty star -->
+                            <i class="bi bi-star text-warning"></i> 
                         }
                     }
                 </span>
@@ -112,6 +112,8 @@
             <!-- User Rating Submission -->
             <hr />
             <div class="user-rating mt-4">
+                @if (User.Identity.IsAuthenticated)
+                {
                 <h5>Rate this product:</h5>
                 <form asp-action="SubmitRating" method="post">
                     <input type="hidden" name="ProductId" value="@Model.Id" />
@@ -136,6 +138,11 @@
                     </div>
                     <button type="submit" class="btn btn-primary mt-2">Submit Rating</button>
                 </form>
+                }
+                else
+                {
+                    <p class="text-muted">Please <a href="@Url.Action("Login", "Account")">log in</a> to submit a rating.</p>
+                }
             </div>
 
             <!-- Customer Reviews Section -->

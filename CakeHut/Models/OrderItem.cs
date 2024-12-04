@@ -10,10 +10,16 @@ namespace CakeHut.Models
         [Precision(16, 2)]
         public decimal UnitPrice { get; set; }
 
-        // Foreign key to Product
         public int ProductId { get; set; }
 
-        // navigation property
         public Product Product { get; set; } = new Product();
+
+        public string Status { get; set; } = "active";
+
+        public bool IsReturned { get; set; } = false;
+        public string? ReturnReason { get; set; }
+        public DateTime? ReturnRequestedAt { get; set; }
+
+        public DateTime? DeliveredAt { get; set; }
     }
 }

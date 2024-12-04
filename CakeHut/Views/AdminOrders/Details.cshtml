@@ -147,6 +147,7 @@
             <th></th>
             <th style="width:100px">Units</th>
             <th style="width:100px">Amount</th>
+            <th style="width:100px">Status</th>
         </tr>
     </thead>
     <tbody>
@@ -172,6 +173,20 @@
                     </td>
                     <td>@item.Quantity</td>
                     <td>@(item.UnitPrice * item.Quantity) Rs</td>
+                    <td>
+                        @if (item.Status == "active")
+                        {
+                            <span class="text-success">@item.Status</span>
+                        }
+                        else if (item.Status == "canceled")
+                        {
+                            <span class="text-muted">@item.Status</span> 
+                        }
+                        else
+                        {
+                            <span class="text-primary">@item.Status</span> 
+                        }
+                    </td>
                 </tr>
             }
         }
@@ -180,37 +195,60 @@
 
 
 <div class="ms-auto mb-3" style="width: 250px">
-    <div class="row">
-        <div class="col fw-bold">Subtotal:</div>
-        <div class="col text-end">@(subtotal) Rs</div>
-    </div>
-    <div class="row">
-        <div class="col fw-bold">Shipping Fee:</div>
-        <div class="col text-end">@(Model.ShippingFee) Rs</div>
-    </div>
-    <hr>
-    @if (Model.AppliedCoupon != null)
+    @if (Model.Items.All(i => i.Status == "canceled"))
     {
-        decimal discount = (decimal)Model.AppliedCoupon.DiscountPercentage / 100 * subtotal; // Assuming you have DiscountPercentage
-        decimal discountedTotal = subtotal + Model.ShippingFee - discount;
-
-        <div class="col fw-bold text-success">@Model.AppliedCoupon.Code Coupon applied!</div>
-
-        <div class="row">
-            <div class="col fw-bold">Discount:</div>
-            <div class="col text-end">- @discount Rs</div>
+        <div class="alert alert-warning">
+            All items in this order have been canceled.
         </div>
         <div class="row">
+            <div class="col fw-bold">Subtotal:</div>
+            <div class="col text-end">0 Rs</div>
+        </div>
+        <div class="row">
+            <div class="col fw-bold">Shipping Fee:</div>
+            <div class="col text-end">0 Rs</div>
+        </div>
+        <hr>
+        <div class="row">
             <div class="col fw-bold">Total:</div>
-            <div class="col text-end">@discountedTotal Rs</div>
+            <div class="col text-end">0 Rs</div>
         </div>
     }
     else
     {
         <div class="row">
-            <div class="col fw-bold">Total:</div>
-            <div class="col text-end">@((subtotal + Model.ShippingFee)) Rs</div>
+            <div class="col fw-bold">Subtotal:</div>
+            <div class="col text-end">@Model.Items.Where(i => i.Status != "canceled").Sum(i => i.UnitPrice * i.Quantity) Rs</div>
         </div>
+        <div class="row">
+            <div class="col fw-bold">Shipping Fee:</div>
+            <div class="col text-end">@(Model.ShippingFee) Rs</div>
+        </div>
+
+        <hr>
+        @if (Model.AppliedCoupon != null)
+        {
+            decimal discount = (decimal)Model.AppliedCoupon.DiscountPercentage / 100 * @Model.Items.Where(i => i.Status != "canceled").Sum(i => i.UnitPrice * i.Quantity); // Assuming you have DiscountPercentage
+            decimal discountedTotal = @Model.Items.Where(i => i.Status != "canceled").Sum(i => i.UnitPrice * i.Quantity) + Model.ShippingFee - discount;
+
+            <div class="col fw-bold text-success">@Model.AppliedCoupon.Code Coupon applied!</div>
+
+            <div class="row">
+                <div class="col fw-bold">Discount:</div>
+                <div class="col text-end">- @discount Rs</div>
+            </div>
+            <div class="row">
+                <div class="col fw-bold">Total:</div>
+                <div class="col text-end">@discountedTotal Rs</div>
+            </div>
+        }
+        else
+        {
+            <div class="row">
+                <div class="col fw-bold">Total:</div>
+                <div class="col text-end">@((subtotal + Model.ShippingFee)) Rs</div>
+            </div>
+        }
     }
 </div>
 

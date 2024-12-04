@@ -73,7 +73,9 @@ namespace CakeHut.Controllers
         // Edit order status
         public IActionResult Edit(int id, string? payment_status, string? order_status)
         {
-            var order = context.Orders.Find(id);
+            var order = context.Orders
+                .Include(o => o.Items) 
+                .FirstOrDefault(o => o.Id == id);
             if (order == null)
             {
                 return RedirectToAction("Index");
@@ -92,6 +94,18 @@ namespace CakeHut.Controllers
             if (order_status != null)
             {
                 order.OrderStatus = order_status;
+
+                if (order_status == "delivered")
+                {
+                    foreach (var item in order.Items)
+                    {
+                        if (item.Status == "active" || item.Status == "processing")
+                        {
+                            item.Status = "delivered";
+                            item.DeliveredAt = DateTime.UtcNow;
+                        }
+                    }
+                }
             }
 
             context.SaveChanges();

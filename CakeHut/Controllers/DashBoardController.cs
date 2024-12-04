@@ -12,6 +12,8 @@ using System.Linq;
 using System.Reflection.Metadata;
 using System.IO;
 using ClosedXML.Excel;
+using DocumentFormat.OpenXml.InkML;
+using OfficeOpenXml;
 
 
 namespace CakeHut.Controllers
@@ -19,6 +21,7 @@ namespace CakeHut.Controllers
     public class DashBoardController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly int pageSize = 10;
 
         public DashBoardController(ApplicationDbContext context)
         {
@@ -27,7 +30,6 @@ namespace CakeHut.Controllers
 
         public IActionResult Index(int page = 1, int itemsPerPage = 5, string filter = "weekly")
         {
-            // Retrieve all data
             var orders = _context.Orders
                 .Include(o => o.Client)
                 .Include(o => o.Items)
@@ -53,7 +55,7 @@ namespace CakeHut.Controllers
                     filterStartDate = today.AddYears(-1);
                     break;
                 default:
-                    filterStartDate = today.AddDays(-7); // Default to weekly
+                    filterStartDate = today.AddDays(-7);
                     break;
             }
 
@@ -110,7 +112,6 @@ namespace CakeHut.Controllers
             // Sales metrics
             decimal totalSales = orders.Sum(o => o.TotalAmount);
 
-            
             DateTime oneWeekAgo = today.AddDays(-7);
             DateTime oneMonthAgo = today.AddMonths(-1);
             DateTime oneYearAgo = today.AddYears(-1);
@@ -143,9 +144,6 @@ namespace CakeHut.Controllers
 
             var numberOfOrdersLastWeek = ordersLastWeek.Count;
 
-            Console.WriteLine($"OrdersLastWeek Count: {ordersLastWeek.Count}");
-
-            // Prepare ViewModel
             var dashboardVM = new DashboardVM
             {
                 Orders = ordersLastWeek,
@@ -156,8 +154,6 @@ namespace CakeHut.Controllers
                 ProductQuantitiesSold = productQuantitiesSold,
                 TopSellingCategories = topSellingCategories,
                 CategorySales = categorySales,
-                ShippedCount = shippedCount,
-                ApprovedCount = approvedCount,
                 CancelledCount = cancelledCount,
                 TotalSales = totalSales,
                 TotalRevenueToday = totalRevenueToday,
@@ -166,8 +162,6 @@ namespace CakeHut.Controllers
                 TotalRevenueThisYear = totalRevenueThisYear,
                 ChartData = chartData,
                 ChartLabels = chartLabels,
-                CurrentPage = page,
-                ItemsPerPage = itemsPerPage,
                 NumberOfOrdersLastWeek = numberOfOrdersLastWeek,
                 FilterChartLabels = filterChartLabels,
                 FilterChartData = filterChartData,
@@ -177,10 +171,425 @@ namespace CakeHut.Controllers
             return View(dashboardVM);
         }
 
-        public IActionResult GetRevenueData()
+
+        [HttpGet]
+        public IActionResult GetChartData(string filter = "weekly")
         {
-            return View();
+            var orders = _context.Orders
+                .Include(o => o.Client)
+                .Include(o => o.Items)
+                .OrderByDescending(o => o.Id)
+                .ToList();
+
+            DateTime today = DateTime.Now;
+            DateTime filterStartDate;
+
+            // Filter based on the selected time period
+            switch (filter.ToLower())
+            {
+                case "weekly":
+                    filterStartDate = today.AddDays(-(int)today.DayOfWeek + (int)DayOfWeek.Monday);
+                    break;
+                case "monthly":
+                    filterStartDate = new DateTime(today.Year, today.Month, 1);
+                    break;
+                case "yearly":
+                    filterStartDate = new DateTime(today.Year, 1, 1);
+                    break;
+                default:
+                    filterStartDate = today.AddDays(-7);
+                    break;
+            }
+
+            // Filter orders by the selected time period
+            var filteredOrders = orders
+                .Where(o => o.CreatedAt >= filterStartDate && o.CreatedAt <= today)
+                .OrderByDescending(o => o.CreatedAt)
+                .ToList();
+
+            var chartLabels = new List<string>();
+            var chartData = new List<double>();
+
+            switch (filter.ToLower())
+            {
+                case "weekly":
+                    chartLabels = Enum.GetNames(typeof(DayOfWeek)).ToList(); // Monday, Tuesday, ...
+                    chartData = Enumerable.Range(0, 7)
+                        .Select(i => filteredOrders
+                            .Where(o => o.CreatedAt.Date == filterStartDate.AddDays(i).Date)
+                            .Sum(o => (double)o.TotalAmount))
+                        .ToList();
+                    break;
+
+                case "monthly":
+                    var weeksInMonth = Enumerable.Range(0, 5)
+                        .Select(i => filterStartDate.AddDays(i * 7).ToString("MMM dd"))
+                        .ToList();
+                    chartLabels = weeksInMonth;
+                    chartData = weeksInMonth
+                        .Select(week => filteredOrders
+                            .Where(o => o.CreatedAt.Date >= filterStartDate.AddDays(chartLabels.IndexOf(week) * 7)
+                                        && o.CreatedAt.Date < filterStartDate.AddDays((chartLabels.IndexOf(week) + 1) * 7))
+                            .Sum(o => (double)o.TotalAmount))
+                        .ToList();
+                    break;
+
+                case "yearly":
+                    chartLabels = Enumerable.Range(1, 12)
+                        .Select(month => new DateTime(today.Year, month, 1).ToString("MMM"))
+                        .ToList();
+                    chartData = chartLabels
+                        .Select(month => filteredOrders
+                            .Where(o => o.CreatedAt.Month == chartLabels.IndexOf(month) + 1)
+                            .Sum(o => (double)o.TotalAmount))
+                        .ToList();
+                    break;
+            }
+
+            var maxValue = chartData.Any() ? chartData.Max() : 0; // Max value from chartData
+            var yAxisMax = Math.Ceiling(maxValue / 10000) * 10000; // Round up to the nearest 10,000
+            var yAxisStep = yAxisMax / 5; // Divide into 5 steps
+            var yAxisValues = Enumerable.Range(1, 5).Select(i => (int)(i * yAxisStep)).ToList();
+
+            // Return the updated chart data as JSON
+            return Json(new { ChartData = chartData, ChartLabels = chartLabels, YAxisValues = yAxisValues });
         }
+
+
+        //Sale Report Filtering
+        public IActionResult Invoice(DateTime? startDate, DateTime? endDate, int? pageIndex, string? filter = "weekly")
+        {
+            try
+            {
+                if (!startDate.HasValue || !endDate.HasValue)
+                {
+                    startDate = DateTime.Now.AddDays(-7);
+                    endDate = DateTime.Now;
+                }
+
+                var filteredOrders = _context.Orders
+                    .Include(o => o.Client)
+                    .Where(order => order.CreatedAt >= startDate && order.CreatedAt <= endDate)
+                    .OrderByDescending(order => order.CreatedAt);
+
+
+                // pagination functionality
+                if (pageIndex == null || pageIndex < 1)
+                {
+                    pageIndex = 1;
+                }
+
+                decimal count = filteredOrders.Count();
+                int totalPages = (int)Math.Ceiling(count / pageSize);
+
+                var paginatedOrders = filteredOrders
+                    .OrderByDescending(order => order.CreatedAt) 
+                    .Skip(((int)pageIndex - 1) * pageSize)
+                    .Take(pageSize)
+                    .ToList();
+
+                ViewBag.PageIndex = pageIndex;
+                ViewBag.TotalPages = totalPages;
+                ViewBag.StartDate = startDate;
+                ViewBag.EndDate = endDate;
+
+                double totalRevenue = (double)filteredOrders.Sum(order => order.TotalAmount);
+                int cancelledCount = filteredOrders.Count(order => order.OrderStatus == "canceled");
+                int deliveredCount = filteredOrders.Count(order => order.OrderStatus == "delivered");
+                int returnedCount = filteredOrders.Count(order => order.OrderStatus == "returned");
+                int createdCount = filteredOrders.Count(order => order.OrderStatus == "created");
+                int paymentAccepted = filteredOrders.Count(order => order.PaymentStatus == "accepted");
+                int paymentPending = filteredOrders.Count(order => order.PaymentStatus == "pending");
+
+
+                var orders = _context.Orders
+                .Include(o => o.Client)
+                .Include(o => o.Items)
+                .OrderByDescending(o => o.Id)
+                .ToList();
+
+                DateTime today = DateTime.Now;
+                DateTime filterStartDate;
+
+                // Filter based on the selected time period
+                switch (filter.ToLower())
+                {
+                    case "weekly":
+                        filterStartDate = today.AddDays(-(int)today.DayOfWeek + (int)DayOfWeek.Monday);
+                        break;
+                    case "monthly":
+                        filterStartDate = new DateTime(today.Year, today.Month, 1);
+                        break;
+                    case "yearly":
+                        filterStartDate = new DateTime(today.Year, 1, 1);
+                        break;
+                    default:
+                        filterStartDate = today.AddDays(-7);
+                        break;
+                }
+
+                // Filter orders by the selected time period
+                var filteredChartOrders = orders
+                    .Where(o => o.CreatedAt >= filterStartDate && o.CreatedAt <= today)
+                    .OrderByDescending(o => o.CreatedAt)
+                    .ToList();
+
+                var chartLabels = new List<string>();
+                var chartData = new List<double>();
+
+                switch (filter.ToLower())
+                {
+                    case "weekly":
+                        chartLabels = Enum.GetNames(typeof(DayOfWeek)).ToList(); // Monday, Tuesday, ...
+                        chartData = Enumerable.Range(0, 7)
+                            .Select(i => filteredChartOrders
+                                .Where(o => o.CreatedAt.Date == filterStartDate.AddDays(i).Date)
+                                .Sum(o => (double)o.TotalAmount))
+                            .ToList();
+                        break;
+
+                    case "monthly":
+                        var weeksInMonth = Enumerable.Range(0, 5)
+                            .Select(i => filterStartDate.AddDays(i * 7).ToString("MMM dd"))
+                            .ToList();
+                        chartLabels = weeksInMonth;
+                        chartData = weeksInMonth
+                            .Select(week => filteredChartOrders
+                                .Where(o => o.CreatedAt.Date >= filterStartDate.AddDays(chartLabels.IndexOf(week) * 7)
+                                            && o.CreatedAt.Date < filterStartDate.AddDays((chartLabels.IndexOf(week) + 1) * 7))
+                                .Sum(o => (double)o.TotalAmount))
+                            .ToList();
+                        break;
+
+                    case "yearly":
+                        chartLabels = Enumerable.Range(1, 12)
+                            .Select(month => new DateTime(today.Year, month, 1).ToString("MMM"))
+                            .ToList();
+                        chartData = chartLabels
+                            .Select(month => filteredChartOrders
+                                .Where(o => o.CreatedAt.Month == chartLabels.IndexOf(month) + 1)
+                                .Sum(o => (double)o.TotalAmount))
+                            .ToList();
+                        break;
+                }
+
+                var maxValue = chartData.Any() ? chartData.Max() : 0; // Max value from chartData
+                var yAxisMax = Math.Ceiling(maxValue / 10000) * 10000; // Round up to the nearest 10,000
+                var yAxisStep = yAxisMax / 5; // Divide into 5 steps
+                var yAxisValues = Enumerable.Range(1, 5).Select(i => (int)(i * yAxisStep)).ToList();
+
+                // Return the updated chart data as JSON
+                //return Json(new { ChartData = chartData, ChartLabels = chartLabels, YAxisValues = yAxisValues });
+
+
+                var viewModel = new DashboardVM
+                {
+                    Orders = paginatedOrders,
+                    TotalSales = (decimal)totalRevenue,
+                    CancelledCount = cancelledCount,
+                    CreatedCount = createdCount,
+                    DeliveredCount = deliveredCount,
+                    ReturnedCount = returnedCount,
+                    OrderCount = (int)count,
+                    PaymentAccepted = paymentAccepted,
+                    PaymentPending = paymentPending,
+                    StartDate = startDate.Value,
+                    EndDate = endDate.Value,
+                    ChartData = chartData,
+                    ChartLabels = chartLabels
+                };
+
+                ViewBag.Filter = filter;
+
+                return View(viewModel);
+            }
+            catch (Exception ex)
+            {
+                return View("Error");
+            }
+        }
+
+
+        public IActionResult ExportToExcel(DateTime? startDate, DateTime? endDate)
+        {
+            try
+            {
+                if (!startDate.HasValue || !endDate.HasValue)
+                {
+                    startDate = DateTime.Now.AddDays(-7);
+                    endDate = DateTime.Now;
+                }
+
+                var filteredOrders = _context.Orders
+                    .Include(o => o.Client)
+                    .Where(order => order.CreatedAt >= startDate && order.CreatedAt <= endDate)
+                    .OrderByDescending(order => order.CreatedAt)
+                    .ToList();
+
+                // Calculate metrics
+                double totalRevenue = (double)filteredOrders.Sum(order => order.TotalAmount);
+                int cancelledCount = filteredOrders.Count(order => order.OrderStatus == "canceled");
+                int deliveredCount = filteredOrders.Count(order => order.OrderStatus == "delivered");
+                int returnedCount = filteredOrders.Count(order => order.OrderStatus == "returned");
+                int createdCount = filteredOrders.Count(order => order.OrderStatus == "created");
+                int paymentAccepted = filteredOrders.Count(order => order.PaymentStatus == "accepted");
+                int paymentPending = filteredOrders.Count(order => order.PaymentStatus == "pending");
+
+                // Create an Excel package
+                using (var package = new ExcelPackage())
+                {
+                    var worksheet = package.Workbook.Worksheets.Add("Orders");
+
+                    // Add headers to the first row
+                    worksheet.Cells[1, 1].Value = "Order ID";
+                    worksheet.Cells[1, 2].Value = "Client Name";
+                    worksheet.Cells[1, 3].Value = "Total Amount";
+                    worksheet.Cells[1, 4].Value = "Order Status";
+                    worksheet.Cells[1, 5].Value = "Payment Status";
+                    worksheet.Cells[1, 6].Value = "Created At";
+
+                    // Add data rows
+                    int row = 2;
+                    foreach (var order in filteredOrders)
+                    {
+                        worksheet.Cells[row, 1].Value = order.Id;
+                        worksheet.Cells[row, 2].Value = order.Client?.FirstName;
+                        worksheet.Cells[row, 3].Value = order.TotalAmount;
+                        worksheet.Cells[row, 4].Value = order.OrderStatus;
+                        worksheet.Cells[row, 5].Value = order.PaymentStatus;
+                        worksheet.Cells[row, 6].Value = order.CreatedAt;
+                        row++;
+                    }
+
+                    // Add metrics to the Excel sheet below the order data
+                    worksheet.Cells[row + 1, 1].Value = "Total Sales";
+                    worksheet.Cells[row + 1, 2].Value = totalRevenue;
+                    worksheet.Cells[row + 2, 1].Value = "Cancelled Orders";
+                    worksheet.Cells[row + 2, 2].Value = cancelledCount;
+                    worksheet.Cells[row + 3, 1].Value = "Delivered Orders";
+                    worksheet.Cells[row + 3, 2].Value = deliveredCount;
+                    worksheet.Cells[row + 4, 1].Value = "Returned Orders";
+                    worksheet.Cells[row + 4, 2].Value = returnedCount;
+                    worksheet.Cells[row + 5, 1].Value = "Created Orders";
+                    worksheet.Cells[row + 5, 2].Value = createdCount;
+                    worksheet.Cells[row + 6, 1].Value = "Payment Accepted";
+                    worksheet.Cells[row + 6, 2].Value = paymentAccepted;
+                    worksheet.Cells[row + 7, 1].Value = "Payment Pending";
+                    worksheet.Cells[row + 7, 2].Value = paymentPending;
+
+                    // Set the response headers for the file download
+                    var file = package.GetAsByteArray();
+                    return File(file, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Orders_Report.xlsx");
+                }
+            }
+            catch (Exception ex)
+            {
+                return View("Error");
+            }
+        }
+
+
+
+        public IActionResult ExportToPdf(DateTime? startDate, DateTime? endDate)
+        {
+            try
+            {
+                if (!startDate.HasValue || !endDate.HasValue)
+                {
+                    startDate = DateTime.Now.AddDays(-7);
+                    endDate = DateTime.Now;
+                }
+
+                var filteredOrders = _context.Orders
+                    .Include(o => o.Client)
+                    .Where(order => order.CreatedAt >= startDate && order.CreatedAt <= endDate)
+                    .OrderByDescending(order => order.CreatedAt)
+                    .ToList();
+
+                // Calculate metrics
+                double totalRevenue = (double)filteredOrders.Sum(order => order.TotalAmount);
+                int cancelledCount = filteredOrders.Count(order => order.OrderStatus == "canceled");
+                int deliveredCount = filteredOrders.Count(order => order.OrderStatus == "delivered");
+                int returnedCount = filteredOrders.Count(order => order.OrderStatus == "returned");
+                int createdCount = filteredOrders.Count(order => order.OrderStatus == "created");
+                int paymentAccepted = filteredOrders.Count(order => order.PaymentStatus == "accepted");
+                int paymentPending = filteredOrders.Count(order => order.PaymentStatus == "pending");
+
+                // Create a memory stream to store the PDF
+                using (var memoryStream = new MemoryStream())
+                {
+                    // Create a Document object
+                    var document = new iTextSharp.text.Document(PageSize.A4);
+                    var writer = PdfWriter.GetInstance(document, memoryStream);
+                    document.Open();
+
+                    // Title
+                    var title = new Paragraph("Orders Report")
+                    {
+                        Alignment = Element.ALIGN_CENTER,
+                        Font = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 18)
+                    };
+                    document.Add(title);
+                    document.Add(new Phrase("\n")); // Add a line break
+
+                    // Table for the orders
+                    var orderTable = new PdfPTable(6)
+                    {
+                        WidthPercentage = 100
+                    };
+
+                    // Set column widths
+                    orderTable.SetWidths(new float[] { 1f, 2f, 2f, 2f, 2f, 2f });
+
+                    // Add headers
+                    orderTable.AddCell("Order ID");
+                    orderTable.AddCell("Client Name");
+                    orderTable.AddCell("Total Amount");
+                    orderTable.AddCell("Order Status");
+                    orderTable.AddCell("Payment Status");
+                    orderTable.AddCell("Created At");
+
+                    // Add data rows
+                    foreach (var order in filteredOrders)
+                    {
+                        orderTable.AddCell(order.Id.ToString());
+                        orderTable.AddCell(order.Client?.FirstName);
+                        orderTable.AddCell(order.TotalAmount.ToString());
+                        orderTable.AddCell(order.OrderStatus);
+                        orderTable.AddCell(order.PaymentStatus);
+                        orderTable.AddCell(order.CreatedAt.ToString("yyyy-MM-dd"));
+                    }
+
+                    // Add the table to the document
+                    document.Add(orderTable);
+
+                    // Add metrics section
+                    document.Add(new Phrase("\n")); // Add a line break
+                    document.Add(new Phrase("Metrics:"));
+                    document.Add(new Phrase($"\nTotal Sales: {totalRevenue}"));
+                    document.Add(new Phrase($"\nCancelled Orders: {cancelledCount}"));
+                    document.Add(new Phrase($"\nDelivered Orders: {deliveredCount}"));
+                    document.Add(new Phrase($"\nReturned Orders: {returnedCount}"));
+                    document.Add(new Phrase($"\nCreated Orders: {createdCount}"));
+                    document.Add(new Phrase($"\nPayment Accepted: {paymentAccepted}"));
+                    document.Add(new Phrase($"\nPayment Pending: {paymentPending}"));
+
+                    // Close the document
+                    document.Close();
+
+                    // Return the PDF as a byte array
+                    var file = memoryStream.ToArray();
+                    return File(file, "application/pdf", "Orders_Report.pdf");
+                }
+            }
+            catch (Exception ex)
+            {
+                // Log the exception if necessary
+                return View("Error");
+            }
+        }
+
+
 
         public IActionResult DownloadSalesReportExcel()
         {
@@ -398,12 +807,6 @@ namespace CakeHut.Controllers
                 return File(stream.ToArray(), "application/pdf", "SalesReport.pdf");
             }
         }
-
-        public IActionResult New()
-        {
-            return View();
-        }
-
 
     }
 }

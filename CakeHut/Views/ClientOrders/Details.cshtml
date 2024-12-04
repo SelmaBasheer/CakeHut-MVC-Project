@@ -51,6 +51,20 @@
 <h3 class="text-center mb-4">Order Details</h3>
 
 <a class="btn btn-link" asp-controller="ClientOrders" asp-action="Index">Orders</a>
+@if (Model.OrderStatus == "canceled")
+{
+    <span class="text-muted"></span>
+}
+else
+{
+    <div class="d-flex justify-content-end">
+       <a class="btn btn-secondary btn-sm"
+           asp-controller="ClientOrders"
+           asp-action="DownloadInvoice"
+           asp-route-id="@Model.Id"><i class="bi bi-download"></i> Invoice
+       </a>
+    </div>
+}
 
 @if (TempData["Message"] != null)
 {
@@ -120,6 +134,7 @@
             <th></th>
             <th style="width:100px">Units</th>
             <th style="width:100px">Amount</th>
+            <th style="width:150px">Actions</th>
         </tr>
     </thead>
     <tbody>
@@ -145,6 +160,36 @@
                     </td>
                     <td>@item.Quantity</td>
                     <td>@(item.UnitPrice * item.Quantity) Rs</td>
+                    <td>
+                        @if (item.Status == "delivered" || Model.OrderStatus == "delivered")
+                        {
+                            <form asp-controller="ClientOrders" asp-action="ReturnOrderItem" method="post" style="display: inline;">
+                                <input type="hidden" name="orderId" value="@Model.Id" />
+                                <input type="hidden" name="itemId" value="@item.Id" />
+                                <button type="submit" class="btn btn-sm btn-outline-primary">
+                                    Return Item
+                                </button>
+                            </form>
+                        }
+                        else if (Model.OrderStatus == "created" || Model.OrderStatus == "accepted")
+                        {
+                            <form asp-controller="ClientOrders" asp-action="CancelOrderItem" method="post" style="display: inline;">
+                                <input type="hidden" name="orderId" value="@Model.Id" />
+                                <input type="hidden" name="itemId" value="@item.Id" />
+                                <button type="submit" class="btn btn-sm btn-outline-danger">
+                                    Cancel Item
+                                </button>
+                            </form>
+                        }
+                        else if (Model.OrderStatus == "returned")
+                        {
+                            <span class="text-muted">Returned</span>
+                        }
+                        else if (item.Status == "cancelled" || Model.OrderStatus == "cancelled")
+                        {
+                            <span class="text-muted">Canceled</span>
+                        }
+                    </td>
                 </tr>
             }
         }
@@ -153,19 +198,40 @@
 
 
 <div class="ms-auto mb-3" style="width: 250px">
-    <div class="row">
-        <div class="col fw-bold">Subtotal:</div>
-        <div class="col text-end">@(subtotal) Rs</div>
-    </div>
-    <div class="row">
-        <div class="col fw-bold">Shipping Fee:</div>
-        <div class="col text-end">@(Model.ShippingFee) Rs</div>
-    </div>
+    @if (Model.Items.All(i => i.Status == "canceled"))
+    {
+        <div class="alert alert-warning">
+            All items in this order have been canceled.
+        </div>
+        <div class="row">
+            <div class="col fw-bold">Subtotal:</div>
+            <div class="col text-end">0 Rs</div>
+        </div>
+        <div class="row">
+            <div class="col fw-bold">Shipping Fee:</div>
+            <div class="col text-end">0 Rs</div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col fw-bold">Total:</div>
+            <div class="col text-end">0 Rs</div>
+        </div>
+    }
+    else{
+        <div class="row">
+            <div class="col fw-bold">Subtotal:</div>
+            <div class="col text-end">@Model.Items.Where(i => i.Status != "canceled").Sum(i => i.UnitPrice * i.Quantity) Rs</div>
+        </div>
+        <div class="row">
+            <div class="col fw-bold">Shipping Fee:</div>
+            <div class="col text-end">@(Model.ShippingFee) Rs</div>
+        </div>
+    
     <hr>
     @if (Model.AppliedCoupon != null)
         {
-            decimal discount = (decimal)Model.AppliedCoupon.DiscountPercentage / 100 * subtotal; // Assuming you have DiscountPercentage
-            decimal discountedTotal = subtotal + Model.ShippingFee - discount;
+        decimal discount = (decimal)Model.AppliedCoupon.DiscountPercentage / 100 * @Model.Items.Where(i => i.Status != "canceled").Sum(i => i.UnitPrice * i.Quantity); // Assuming you have DiscountPercentage
+        decimal discountedTotal = @Model.Items.Where(i => i.Status != "canceled").Sum(i => i.UnitPrice * i.Quantity) + Model.ShippingFee - discount;
 
         <div class="col fw-bold text-success">@Model.AppliedCoupon.Code Coupon applied!</div>
 
@@ -185,7 +251,7 @@
                 <div class="col text-end">@((subtotal + Model.ShippingFee)) Rs</div>
             </div>
         }
-
+    }
 </div>
 
 

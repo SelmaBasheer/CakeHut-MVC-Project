@@ -35,7 +35,9 @@
                     <tr>
                         <th>Date</th>
                         <th>Amount</th>
+                        <th>Type</th>
                         <th>Description</th>
+                        <th>Cancelled ID</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -44,7 +46,9 @@
                         <tr>
                             <td>@transaction.TransactionDate.ToString("yyyy-MM-dd HH:mm")</td>
                             <td class="text-success">@transaction.Amount Rs</td>
+                            <td>@transaction.TransactionType</td>
                             <td>@transaction.Description</td>
+                            <td>@transaction.CancelledId</td>
                         </tr>
                     }
                 </tbody>

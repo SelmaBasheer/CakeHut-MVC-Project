@@ -1,0 +1,59 @@
+﻿@model CakeHut.Models.Order
+
+<div class="container mt-5 p-4 border rounded shadow-sm bg-light">
+    <h2 class="text-center text-primary mb-4">Return Request</h2>
+
+    @if (Model != null && Model.Items != null && Model.Items.Any())
+    {
+        // Find the specific item using ViewBag.ItemId
+        var item = Model.Items.FirstOrDefault(i => i.Id == (int)ViewBag.ItemId);
+
+        if (item != null)
+        {
+            <div class="row mb-4">
+                <div class="col-md-4 d-flex flex-column align-items-end justify-content-center">
+                    @* <img src="/cakes/@item.Product.ImageUrl" alt="@item.Product.Name" class="img-fluid rounded shadow-sm border" /> *@
+                    <img src="/cakes/@item.Product.ImageUrl" width="100" class="rounded" alt="@item.Product.Name">
+                </div>
+                <div class="col-md-8">
+                    <p><strong>Product Name:</strong> <span class="text-dark">@item.Product.Name</span></p>
+                    <p><strong>Unit Price:</strong> <span class="text-success">@item.UnitPrice Rs</span></p>
+                    <p><strong>Quantity:</strong> <span class="text-info">@item.Quantity</span></p>
+                </div>
+            </div>
+
+            <form asp-action="SubmitReturnRequest" method="post" class="p-3 bg-white rounded shadow-sm border">
+                <input type="hidden" name="orderItemId" value="@item.Id" />
+                <input type="hidden" name="orderId" value="@Model.Id" />
+
+                <div class="form-group mb-3">
+                    <label for="returnReason" class="form-label"><strong>Reason for Return</strong></label>
+                    <textarea class="form-control"
+                              id="returnReason"
+                              name="returnReason"
+                              rows="4"
+                              placeholder="Please describe the reason for returning this item"
+                              required></textarea>
+                </div>
+
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary px-5 py-2">
+                        <i class="fas fa-undo-alt"></i> Submit Return Request
+                    </button>
+                </div>
+            </form>
+        }
+        else
+        {
+            <div class="alert alert-danger mt-4 text-center">
+                <i class="fas fa-exclamation-circle"></i> Item not found in the order.
+            </div>
+        }
+    }
+    else
+    {
+        <div class="alert alert-danger mt-4 text-center">
+            <i class="fas fa-exclamation-circle"></i> Order or items not found.
+        </div>
+    }
+</div>

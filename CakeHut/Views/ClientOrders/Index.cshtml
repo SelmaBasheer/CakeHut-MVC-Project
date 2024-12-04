@@ -76,19 +76,26 @@
 
             <tr>
                 <td>@count</td>
-                <!-- <td>@(total) Rs</td> -->
-                @if (@order.TotalAmount > 0)
+                @if (order.OrderStatus == "canceled")
                 {
                     <td>
-                        @order.TotalAmount Rs
-                        @if (order.TotalAmount < (total))
-                        {
-                            <!-- Compare against original if stored or known -->
-                            <span class="text-muted"><del>@(total) Rs</del></span>
-                        }
+                        <span class="text-muted">@total Rs </span>
                     </td>
-                }else{
-                    <td>@(total) Rs</td>
+                }
+                else
+                {
+                    @if (@order.TotalAmount > 0)
+                    {
+                        <td>
+                            @order.TotalAmount Rs
+                            @if (order.TotalAmount < (total))
+                            {
+                                <span class="text-muted"><del>@(total) Rs</del></span>
+                            }
+                        </td>
+                    }else{
+                        <td>@(total) Rs</td>
+                    }
                 }
                 
                 <td>@order.PaymentMethod</td>
@@ -98,10 +105,7 @@
                 <td>
                     <a class="btn btn-primary btn-sm" asp-controller="ClientOrders" asp-action="Details"
                        asp-route-id="@order.Id">Details</a>
-                    <a class="btn btn-secondary btn-sm"
-                       asp-controller="ClientOrders"
-                       asp-action="DownloadInvoice"
-                       asp-route-id="@order.Id"><i class="bi bi-download"></i> Invoice</a>
+                    
                 </td>
             </tr>
         }

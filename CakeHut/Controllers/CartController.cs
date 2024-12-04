@@ -145,7 +145,7 @@ namespace CakeHut.Controllers
             TempData["DeliveryAddress"] = model.DeliveryAddress;
             TempData["PaymentMethod"] = model.PaymentMethod;
 
-            if (model.PaymentMethod == "paypal" || model.PaymentMethod == "credit_card")
+            if (model.PaymentMethod == "paypal")
             {
                 return RedirectToAction("Index", "Checkout");
             }

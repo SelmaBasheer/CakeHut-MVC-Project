@@ -21,7 +21,7 @@ namespace CakeHut.Data
         }
 
         // Method to add a transaction (e.g., refund for canceled order)
-        public async Task AddTransactionAsync(string userId, decimal refundAmount, string description, string transactionType)
+        public async Task AddTransactionAsync(string userId, decimal refundAmount, string description, string transactionType, int cancelledId)
         {
             var wallet = await GetWalletAsync(userId);
             if (wallet == null)
@@ -43,17 +43,25 @@ namespace CakeHut.Data
                 Amount = refundAmount,
                 Description = description,
                 TransactionDate = DateTime.Now,
-                TransactionType = transactionType
+                TransactionType = transactionType,
+                CancelledId = cancelledId
             };
 
             wallet.Transactions.Add(transaction);
             await _context.SaveChangesAsync();
         }
 
-        public async Task AddRefundToWalletAsync(string userId, decimal refundAmount, string transactionType)
+        public async Task AddRefundToWalletAsync(string userId, decimal refundAmount, string transactionType, 
+            string cancellationType, int cancelledId)
         {
-            string description = $"Refund for canceled order";
-            await AddTransactionAsync(userId, refundAmount, description, transactionType);
+            string description = "";
+            if (cancellationType == "order")
+            {
+                description = $"Refund for canceled order";
+            }
+                description = $"Refund for canceled item";
+
+            await AddTransactionAsync(userId, refundAmount, description, transactionType, cancelledId);
         }
     }
 

@@ -98,6 +98,10 @@ namespace CakeHut.Controllers
         [HttpPost]
         public IActionResult SubmitRating(int ProductId, int Rating, string CustomerName, string Content)
         {
+            if (!User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Login", "Account");
+            }
 
             var product = context.Products.Include(p => p.Reviews)
                                   .FirstOrDefault(p => p.Id == ProductId);
@@ -116,9 +120,6 @@ namespace CakeHut.Controllers
             };
 
             context.Reviews.Add(review);
-
-            product.Ratings = context.Reviews.Where(r => r.ProductId == ProductId)
-                                      .Average(r => r.Rating);
 
             context.SaveChanges();
 

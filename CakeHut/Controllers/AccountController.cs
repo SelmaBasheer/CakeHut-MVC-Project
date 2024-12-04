@@ -451,7 +451,7 @@ namespace CakeHut.Controllers
         }
 
         [HttpGet]
-        public IActionResult LoginWithGoogle()
+        public IActionResult GoogleLogin()
         {
             var redirectUrl = Url.Action("GoogleResponse", "Account");
             var properties = signInManager.ConfigureExternalAuthenticationProperties(GoogleDefaults.AuthenticationScheme, redirectUrl);
@@ -462,29 +462,23 @@ namespace CakeHut.Controllers
         [HttpGet]
         public async Task<IActionResult> GoogleResponse()
         {
-            var result = await HttpContext.AuthenticateAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-
-            if (!result.Succeeded)
-            {
-                return RedirectToAction("Login");
-            }
-
+            // Authenticate user with external provider
             var externalLoginInfo = await signInManager.GetExternalLoginInfoAsync();
             if (externalLoginInfo == null)
             {
-                ViewBag.ErrorMessage = "Error loading external login information.";
+                TempData["ErrorMessage"] = "Error loading external login information.";
                 return RedirectToAction("Login");
             }
 
-            // Check if user already exists in the system
+            // Check if user exists in the system
             var user = await userManager.FindByLoginAsync(externalLoginInfo.LoginProvider, externalLoginInfo.ProviderKey);
             if (user == null)
             {
                 // Retrieve email from external provider
-                var email = result.Principal.FindFirstValue(ClaimTypes.Email);
+                var email = externalLoginInfo.Principal.FindFirstValue(ClaimTypes.Email);
                 if (string.IsNullOrEmpty(email))
                 {
-                    ViewBag.ErrorMessage = "Email address is required.";
+                    TempData["ErrorMessage"] = "Email address is required.";
                     return RedirectToAction("Login");
                 }
 
@@ -497,8 +491,8 @@ namespace CakeHut.Controllers
                     {
                         UserName = email,
                         Email = email,
-                        FirstName = result.Principal.FindFirstValue(ClaimTypes.GivenName),
-                        LastName = result.Principal.FindFirstValue(ClaimTypes.Surname),
+                        FirstName = externalLoginInfo.Principal.FindFirstValue(ClaimTypes.GivenName),
+                        LastName = externalLoginInfo.Principal.FindFirstValue(ClaimTypes.Surname),
                         EmailConfirmed = true,
                         CreatedDate = DateTime.Now
                     };
@@ -506,7 +500,7 @@ namespace CakeHut.Controllers
                     var createResult = await userManager.CreateAsync(user);
                     if (!createResult.Succeeded)
                     {
-                        ViewBag.ErrorMessage = "Error creating user.";
+                        TempData["ErrorMessage"] = "Error creating user: " + string.Join(", ", createResult.Errors.Select(e => e.Description));
                         return RedirectToAction("Login");
                     }
                 }
@@ -515,7 +509,7 @@ namespace CakeHut.Controllers
                 var addLoginResult = await userManager.AddLoginAsync(user, externalLoginInfo);
                 if (!addLoginResult.Succeeded)
                 {
-                    ViewBag.ErrorMessage = "Error adding external login.";
+                    TempData["ErrorMessage"] = "Error adding external login: " + string.Join(", ", addLoginResult.Errors.Select(e => e.Description));
                     return RedirectToAction("Login");
                 }
             }
@@ -523,7 +517,7 @@ namespace CakeHut.Controllers
             // Sign in the user
             await signInManager.SignInAsync(user, isPersistent: false);
 
-            // Redirect to the appropriate page
+            // Redirect based on role
             if (await userManager.IsInRoleAsync(user, "admin"))
             {
                 return RedirectToAction("AdminHome", "Home");
@@ -531,5 +525,6 @@ namespace CakeHut.Controllers
 
             return RedirectToAction("Index", "Home");
         }
+
     }
 }

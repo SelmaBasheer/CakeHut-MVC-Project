@@ -23,7 +23,11 @@ else
                         <img src="/cakes/@product.ImageUrl" width="100" class="rounded" alt="@product.Name">
                     </td>
                     <td>
-                        <h4>@product.Name</h4>
+                            <h4>
+                                <a asp-controller="Store" asp-action="Details" asp-route-id="@product.Id" class="text-decoration-none text-dark">
+                                    @product.Name
+                                </a>
+                            </h4>
                         <p>
                             Product ID: @product.Id<br>
                             Price: @(product.Price) Rs
@@ -37,6 +41,11 @@ else
                             </button>
                         </form>
                     </td>
+                        <td>
+                            <button type="button" class="btn btn-warning btn-sm mb-2" onclick="addToCart(this, @product.Id, @product.Stock)">
+                                Add to Cart <i class="bi bi-cart4"></i>
+                            </button>
+                        </td>
                 </tr>
             }
         </tbody>

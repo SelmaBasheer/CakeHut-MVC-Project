@@ -4,6 +4,7 @@ using CakeHut.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CakeHut.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241130083322_OrderItemsTableUpdatedWithReturnColumns")]
+    partial class OrderItemsTableUpdatedWithReturnColumns
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -376,6 +379,7 @@ namespace CakeHut.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("ReturnReason")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("ReturnRequestedAt")
@@ -455,7 +459,7 @@ namespace CakeHut.Migrations
                             Id = 1,
                             Availability = "In Stock",
                             CategoryId = 1,
-                            CreatedAt = new DateTime(2024, 11, 30, 18, 20, 18, 600, DateTimeKind.Utc).AddTicks(5890),
+                            CreatedAt = new DateTime(2024, 11, 30, 8, 33, 21, 20, DateTimeKind.Utc).AddTicks(5796),
                             Description = "Moist chocolate cake with rich fudge frosting",
                             DiscountedPrice = 0m,
                             ImageUrl = "chocolate-fudge-cake.jpg",
@@ -470,7 +474,7 @@ namespace CakeHut.Migrations
                             Id = 2,
                             Availability = "In Stock",
                             CategoryId = 1,
-                            CreatedAt = new DateTime(2024, 11, 30, 18, 20, 18, 600, DateTimeKind.Utc).AddTicks(5903),
+                            CreatedAt = new DateTime(2024, 11, 30, 8, 33, 21, 20, DateTimeKind.Utc).AddTicks(5809),
                             Description = "Delicate butterscotch cake with creamy praline frosting",
                             DiscountedPrice = 0m,
                             ImageUrl = "vanilla-bean-cake.jpg",
@@ -485,7 +489,7 @@ namespace CakeHut.Migrations
                             Id = 3,
                             Availability = "In Stock",
                             CategoryId = 1,
-                            CreatedAt = new DateTime(2024, 11, 30, 18, 20, 18, 600, DateTimeKind.Utc).AddTicks(5907),
+                            CreatedAt = new DateTime(2024, 11, 30, 8, 33, 21, 20, DateTimeKind.Utc).AddTicks(5812),
                             Description = "Moist red velvet cake with cream cheese frosting",
                             DiscountedPrice = 0m,
                             ImageUrl = "red-velvet-cake.jpg",

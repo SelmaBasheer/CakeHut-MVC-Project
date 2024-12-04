@@ -4,6 +4,8 @@
     ViewData["HomePage"] = true;
 }
 
+<link rel="stylesheet" href="@Url.Content("~/css/testimonial.css")" />
+
 <div style="background-color: white">
     <div class="position-relative text-white">
         <img src="~/cakes/banner-macarons.jpeg" class="img-fluid w-100" alt="hero" />
@@ -54,5 +56,107 @@
         <div class="text-center mx-auto">
             <a class="btn btn-secondary" asp-area="" asp-controller="Store" asp-action="Index">View More</a>
         </div>
+
+        <!-- Start Testimonial Slider -->
+        <div class="testimonial-section bg-light py-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-7 mx-auto text-center">
+                        <h2 class="section-title text-dark">Testimonials</h2>
+                    </div>
+                </div>
+
+                <div class="row justify-content-center">
+                    <div class="col-lg-12">
+                        <div class="testimonial-slider-wrap text-center">
+
+                            <div id="testimonial-nav">
+                                <span class="prev" data-controls="prev"><span class="fa fa-chevron-left"></span></span>
+                                <span class="next" data-controls="next"><span class="fa fa-chevron-right"></span></span>
+                            </div>
+
+                            <div class="testimonial-slider">
+
+                                <div class="item">
+                                    <div class="row justify-content-center">
+                                        <div class="col-lg-8 mx-auto">
+
+                                            <div class="testimonial-block text-center">
+                                                <blockquote class="mb-4">
+                                                    <p>&ldquo;The cake was absolutely divine! The moist layers and perfect frosting made my birthday unforgettable. Highly recommend CakeHut for any special occasion.&rdquo;</p>
+                                                </blockquote>
+
+                                                <div class="author-info">
+                                                    <div class="author-pic">
+                                                        <img src="/cakes/customer1.jpg" alt="Sophia James" class="img-fluid rounded-circle" style="width: 80px; height: 80px;">
+                                                    </div>
+                                                    <h3 class="font-weight-bold">Sophia James</h3>
+                                                    <span class="position d-block mb-3">Happy Customer</span>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- END item -->
+
+                                <div class="item">
+                                    <div class="row justify-content-center">
+                                        <div class="col-lg-8 mx-auto">
+
+                                            <div class="testimonial-block text-center">
+                                                <blockquote class="mb-4">
+                                                    <p>&ldquo;CakeHut made the most beautiful wedding cake! The flavors were a hit, and the design was exactly what we envisioned. Thank you for making our day even more special!&rdquo;</p>
+                                                </blockquote>
+
+                                                <div class="author-info">
+                                                    <div class="author-pic">
+                                                        <img src="/cakes/customer2.jpg" alt="Liam Brooks" class="img-fluid rounded-circle" style="width: 80px; height: 80px;">
+                                                    </div>
+                                                    <h3 class="font-weight-bold">Liam Brooks</h3>
+                                                    <span class="position d-block mb-3">Groom</span>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- END item -->
+
+                                <div class="item">
+                                    <div class="row justify-content-center">
+                                        <div class="col-lg-8 mx-auto">
+
+                                            <div class="testimonial-block text-center">
+                                                <blockquote class="mb-4">
+                                                    <p>&ldquo;We ordered a custom cake for our anniversary, and it was beyond our expectations. The attention to detail was amazing, and the taste was just heavenly. Will definitely order again!&rdquo;</p>
+                                                </blockquote>
+
+                                                <div class="author-info">
+                                                    <div class="author-pic">
+                                                        <img src="/cakes/customer3.jpg" alt="Emma White" class="img-fluid rounded-circle" style="width: 80px; height: 80px;">
+                                                    </div>
+                                                    <h3 class="font-weight-bold">Emma White</h3>
+                                                    <span class="position d-block mb-3">Anniversary Celebration</span>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- END item -->
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Testimonial Slider -->
+
+
     </div>
 </div>
+
+

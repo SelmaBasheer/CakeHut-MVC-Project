@@ -105,29 +105,27 @@
             }
         }
 
-
         function increase(id, availableStock) {
             let cart = getShoppingCart();
 
+            let totalItems = Object.values(cart).reduce((sum, quantity) => sum + Number(quantity), 0);
+
             let quantity = cart[id] || 0;
 
-            let totalItems = Object.values(cart).reduce((sum, qty) => sum + Number(qty), 0);
             if (totalItems >= 5) {
                 alert("You can only have a maximum of 5 items in your cart.");
-                return;
+                return; 
             }
 
             if (quantity >= availableStock) {
-                alert("You can't add more of this item, stock is limited.");
-                return;
+                alert("Out of stock");
+                return; 
             }
 
-            cart[id] = quantity + 1;
+            cart[id] = Number(quantity) + 1;
+
             saveCart(cart);
-
-            updateCartUI(id, cart[id]);
-
-            updateCartSize();
+            location.reload(); 
         }
 
         function updateCartUI(id, newQuantity) {

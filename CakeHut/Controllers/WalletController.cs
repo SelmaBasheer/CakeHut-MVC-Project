@@ -27,7 +27,10 @@ namespace CakeHut.Controllers
             var wallet = await _walletService.GetWalletAsync(currentUser.Id);
             if (wallet == null)
             {
-                return View(new Wallet()); 
+                return View(new Wallet
+                {
+                    Transactions = new List<WalletTransaction>()
+                });
             }
 
 
@@ -43,7 +46,7 @@ namespace CakeHut.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
-            await _walletService.AddTransactionAsync(currentUser.Id, amount, description, transactionType);
+            //await _walletService.AddTransactionAsync(currentUser.Id, amount, description, transactionType, cancelledId);
             return RedirectToAction("Index");
         }
     }
