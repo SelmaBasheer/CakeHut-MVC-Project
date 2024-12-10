@@ -51,23 +51,21 @@
                                         onclick="decrease(@item.Product.Id)">
                                     -
                                 </button>
-                                <span class="border rounded-3 p-2 m-1">@item.Quantity</span>
+                                <span id="cart-item-quantity-@item.Product.Id" class="border rounded-3 p-2 m-1">@item.Quantity</span>
                                 <button type="button" class="btn btn-outline-secondary btn-sm"
                                         onclick="increase(@item.Product.Id, @item.Product.Stock)">
                                     +
                                 </button>
                             </td>
-                           
-                                @if (item.Product.DiscountedPrice < item.Product.Price)
-                                {
-                                <td>@(item.Product.DiscountedPrice * item.Quantity) Rs</td>
-                                }
-                                else
-                                {
-                                <td>
-                                        @(item.UnitPrice * item.Quantity) Rs
-                                </td>
-                                }
+
+                            <td id="cart-item-price-@item.Product.Id">
+                                @(item.Product.DiscountedPrice < item.Product.Price ?
+                                    item.Product.DiscountedPrice * item.Quantity :
+                                    item.UnitPrice * item.Quantity) Rs
+                            </td>
+                            <span id="cart-item-unit-price-@item.Product.Id"
+                                  data-price="@item.Product.Price"
+                                  data-discounted-price="@item.Product.DiscountedPrice"></span>
                             
                             <td>
                                 <i class="bi bi-trash text-danger h4" style="cursor: pointer" onclick="remove(@item.Product.Id)"></i>
@@ -116,15 +114,18 @@
 
                         <div class="mb-3">
                             <label class="form-label">Payment Method</label>
-                            <select class="form-select" asp-for="PaymentMethod">
+                            <select class="form-select" id="payment-method-select" asp-for="PaymentMethod">
+                                
                                 @if (ViewBag.Total != null && ViewBag.Subtotal > 2000)
                                 {
                                     <option value="paypal">Paypal</option>
+                                    <option value="wallet">Wallet</option>
                                 }
                                 else
                                 {
                                     <option value="cash">Cash on Delivery</option>
                                     <option value="paypal">Paypal</option>
+                                    <option value="wallet">Wallet</option>
                                 }
                             </select>
                         </div>
@@ -136,7 +137,7 @@
                                 <p>Subtotal:</p>
                             </div>
                             <div class="col">
-                                <p class="text-end">@(ViewBag.Subtotal) Rs</p>
+                                <p class="text-end" id="subtotal">@(ViewBag.Subtotal) Rs</p>
                             </div>
                         </div>
 
@@ -146,6 +147,7 @@
                             </div>
                             <div class="col">
                                 <p class="text-end">@(ViewBag.ShippingFee) Rs</p>
+                                <span id="shipping-fee" data-fee="@ViewBag.ShippingFee"></span>
                             </div>
                         </div>
 
@@ -176,7 +178,7 @@
                                 <p>Total:</p>
                             </div>
                             <div class="col">
-                                <p class="text-end">@(ViewBag.Total) Rs</p>
+                                <p class="text-end" id="total">@(ViewBag.Total) Rs</p>
                             </div>
                         </div>
 

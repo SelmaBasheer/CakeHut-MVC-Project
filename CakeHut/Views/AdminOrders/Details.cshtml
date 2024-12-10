@@ -138,7 +138,12 @@
     </div>
 </div>
 
-
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["Message"]
+    </div>
+}
 
 <table class="table">
     <thead>
@@ -148,6 +153,7 @@
             <th style="width:100px">Units</th>
             <th style="width:100px">Amount</th>
             <th style="width:100px">Status</th>
+            <th style="width:100px">Action</th>
         </tr>
     </thead>
     <tbody>
@@ -186,6 +192,15 @@
                         {
                             <span class="text-primary">@item.Status</span> 
                         }
+                    </td>
+                    <td>
+                        @if (item.Status == "returnRequested" || item.Status == "returnAccepted")
+                        {
+                            <button class="btn btn-primary ms-2" data-bs-toggle="modal" data-bs-target="#itemStatusModal" onclick="setItemId('@item.Id')">
+                                Edit
+                            </button>
+                    }
+                        
                     </td>
                 </tr>
             }
@@ -271,7 +286,6 @@
                     <select class="form-select mb-2" name="payment_status" asp-for="PaymentStatus">
                         <option value="pending">pending</option>
                         <option value="accepted">accepted</option>
-                        <option value="canceled">canceled</option>
                     </select>
                     <button type="submit" class="btn btn-primary">Save</button>
                 </form>
@@ -286,7 +300,7 @@
 
 
 
-<!-- Modal -->
+<!-- Order Status Modal -->
 <div class="modal fade" id="orderStatusModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -306,7 +320,38 @@
                         <option value="shipped">shipped</option>
                         <option value="delivered">delivered</option>
                         <option value="returned">returned</option>
-                        <option value="deleted">deleted</option>
+                        <option value="returnAccepted">returnAccepted</option>
+                        <option value="processing">processing</option>
+                    </select>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Item Status Modal -->
+<div class="modal fade" id="itemStatusModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5">Update Item Status</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+                <form method="post" asp-controller="AdminOrders" asp-action="EditItem">
+                    <input type="hidden" name="orderId" value="@Model.Id" />
+                    <input type="hidden" id="itemId" name="itemId" />
+                    <label>Item Status</label>
+                    <select class="form-select mb-2" name="item_status" id="returnStatus">
+                        <option value="returned">returned</option>
+                        <option value="returnAccepted">returnAccepted</option>
+                        <option value="returnRequested">returnRequested</option>
                     </select>
                     <button type="submit" class="btn btn-primary">Save</button>
                 </form>
@@ -364,3 +409,9 @@
         </div>
     </div>
 </div>
+
+<script>
+    function setItemId(itemId) {
+        document.getElementById('itemId').value = itemId;
+    }
+</script>

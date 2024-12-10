@@ -15,6 +15,8 @@
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js" />
     <!-- Include Cropper.js CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
 
     
 
@@ -84,62 +86,98 @@
 
             updateCartSize();
         }
+        
 
-        function decrease(id) {
-            let cart = getShoppingCart();
+        function updateCartUI(id, quantity, unitPrice, discountedPrice) {
+            const quantityElement = document.querySelector(`#cart-item-quantity-${id}`);
+            const priceElement = document.querySelector(`#cart-item-price-${id}`);
+            const subtotalElement = document.querySelector("#subtotal");
+            const totalElement = document.querySelector("#total");
 
-            let quantity = cart[id];
-
-            if (isNaN(quantity)) {
-                return; 
+            // Update quantity display
+            if (quantityElement) {
+                quantityElement.textContent = quantity;
             }
 
-            quantity = Number(quantity);
+            // Update product price display
+            const price = discountedPrice && discountedPrice < unitPrice ? discountedPrice : unitPrice;
+            if (priceElement) {
+                priceElement.textContent = `${price * quantity} Rs`;
+            }
 
-            if (quantity > 1) {
-                cart[id] = quantity - 1;
+            // Update subtotal and total
+            const cart = getShoppingCart();
+            let newSubtotal = 0;
+
+            for (const productId in cart) {
+                const productQuantity = cart[productId];
+                const productUnitPrice = parseFloat(document.querySelector(`#cart-item-unit-price-${productId}`).dataset.price);
+                const productDiscountedPrice = parseFloat(document.querySelector(`#cart-item-unit-price-${productId}`).dataset.discountedPrice);
+                const effectivePrice = productDiscountedPrice && productDiscountedPrice < productUnitPrice ? productDiscountedPrice : productUnitPrice;
+                newSubtotal += productQuantity * effectivePrice;
+            }
+
+            if (subtotalElement) {
+                subtotalElement.textContent = `${newSubtotal} Rs`;
+            }
+
+            if (totalElement) {
+                totalElement.textContent = `${newSubtotal + parseFloat(document.querySelector("#shipping-fee").dataset.fee)} Rs`;
+            }
+
+            updatePaymentMethods(newSubtotal);
+        }
+
+            function updatePaymentMethods(subtotal) {
+            const paymentMethodSelect = document.querySelector("#payment-method-select"); 
+            if (!paymentMethodSelect) return;
+
+            paymentMethodSelect.innerHTML = "";
+
+            if (subtotal > 2000) {
+                paymentMethodSelect.innerHTML = `
+                    <option value="paypal">Paypal</option>
+                    <option value="wallet">Wallet</option>
+                `;
+            } else {
+                paymentMethodSelect.innerHTML = `
+                    <option value="cash">Cash on Delivery</option>
+                    <option value="paypal">Paypal</option>
+                    <option value="wallet">Wallet</option>
+                `;
+            }
+        }
+
+        function decrease(id) {
+            const cart = getShoppingCart();
+
+            if (cart[id] && cart[id] > 1) {
+                cart[id] -= 1;
                 saveCart(cart);
-                location.reload(); 
+                const unitPrice = parseFloat(document.querySelector(`#cart-item-unit-price-${id}`).dataset.price);
+                const discountedPrice = parseFloat(document.querySelector(`#cart-item-unit-price-${id}`).dataset.discountedPrice);
+                updateCartUI(id, cart[id], unitPrice, discountedPrice);
+                updateCartSize();
             } else {
                 remove(id);
             }
         }
 
         function increase(id, availableStock) {
-            let cart = getShoppingCart();
+            const cart = getShoppingCart();
 
-            let totalItems = Object.values(cart).reduce((sum, quantity) => sum + Number(quantity), 0);
+            if (!cart[id]) cart[id] = 0;
 
-            let quantity = cart[id] || 0;
-
-            if (totalItems >= 5) {
-                alert("You can only have a maximum of 5 items in your cart.");
-                return; 
+            if (cart[id] < availableStock && Object.values(cart).reduce((sum, q) => sum + q, 0) < 5) {
+                cart[id] += 1;
+                saveCart(cart);
+                const unitPrice = parseFloat(document.querySelector(`#cart-item-unit-price-${id}`).dataset.price);
+                const discountedPrice = parseFloat(document.querySelector(`#cart-item-unit-price-${id}`).dataset.discountedPrice);
+                updateCartUI(id, cart[id], unitPrice, discountedPrice);
+                updateCartSize();
+            } else {
+                alert("Cannot add more of this product or cart limit reached.");
             }
-
-            if (quantity >= availableStock) {
-                alert("Out of stock");
-                return; 
-            }
-
-            cart[id] = Number(quantity) + 1;
-
-            saveCart(cart);
-            location.reload(); 
-        }
-
-        function updateCartUI(id, newQuantity) {
-            const quantityElement = document.getElementById(`cart-item-quantity-${id}`);
-            if (quantityElement) {
-                quantityElement.textContent = newQuantity;
-            }
-        }
-
-        function updateCartSize() {
-            let cart = getShoppingCart();
-            let cartSize = Object.values(cart).reduce((sum, quantity) => sum + Number(quantity), 0);
-
-            document.getElementById("CartSize").innerHTML = cartSize; 
         }
 
         function remove(id) {
@@ -151,17 +189,18 @@
                 location.reload(); 
             }
         }
-
+        
         function updateCartSize() {
             let cart = getShoppingCart();
-            let cartSize = Object.values(cart).reduce((sum, quantity) => sum + Number(quantity), 0);
+            //let cartSize = Object.values(cart).reduce((sum, quantity) => sum + Number(quantity), 0);
+            let cartSize = Object.keys(cart).length;
 
             document.getElementById("CartSize").innerHTML = cartSize;
         }
             document.addEventListener("DOMContentLoaded", function () {
             fetchWishlistCount();
         });
-
+        
         function fetchWishlistCount() {
             fetch('/Wishlist/Count')
                 .then(response => response.json())
@@ -304,6 +343,7 @@
     <!-- Include Cropper.js JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
     <script src="https://cdn.rawgit.com/mark-rolich/Magnifier.js/gh-pages/magnifier.js"></script>
+
 
 </body>
 </html>

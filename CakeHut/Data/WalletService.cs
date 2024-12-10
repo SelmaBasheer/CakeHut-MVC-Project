@@ -58,11 +58,40 @@ namespace CakeHut.Data
             if (cancellationType == "order")
             {
                 description = $"Refund for canceled order";
+            }else if(cancellationType == "Return")
+            {
+                description = $"Refund for returned item";
             }
                 description = $"Refund for canceled item";
 
             await AddTransactionAsync(userId, refundAmount, description, transactionType, cancelledId);
         }
+
+        public async Task<bool> DeductFromWalletAsync(string userId, decimal amount)
+        {
+            var wallet = await GetWalletAsync(userId);
+            if (wallet == null || wallet.Balance < amount)
+            {
+                return false; // Insufficient balance
+            }
+
+            wallet.Balance -= amount;
+
+            var transaction = new WalletTransaction
+            {
+                UserId = userId,
+                Amount = -amount,
+                Description = "Order Payment",
+                TransactionDate = DateTime.Now,
+                TransactionType = "Debit"
+            };
+
+            wallet.Transactions.Add(transaction);
+            await _context.SaveChangesAsync();
+
+            return true;
+        }
+
     }
 
 

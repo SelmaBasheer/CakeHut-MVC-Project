@@ -116,6 +116,5 @@ namespace CakeHut.Controllers
                 return Json(new { count = 0 });
             }
         }
-
     }
 }

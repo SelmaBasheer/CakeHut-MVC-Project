@@ -199,7 +199,6 @@ namespace CakeHut.Controllers
                 return RedirectToAction("Details", new { id });
             }
 
-
             if (order.OrderStatus == "canceled")
             {
                 return BadRequest("Order is already canceled.");
@@ -252,10 +251,10 @@ namespace CakeHut.Controllers
                 }
 
                 // Check if return is allowed (within 5 hours)
-                //if (order.CreatedAt.AddHours(5) < DateTime.UtcNow || item.Status != "delivered")
-                if (item.Status != "delivered")
+                if (order.CreatedAt.AddHours(5) < DateTime.UtcNow || item.Status != "delivered")
+                //if (item.Status != "delivered")
                 {
-                    TempData["ErrorMessage"] = "Return is not allowed for this item.";
+                    TempData["ErrorMessage"] = "Return is not allowed for this item as the time exceeded";
                     return RedirectToAction("Details", new { id = orderId });
                 }
                 ViewBag.ItemId = itemId;
@@ -301,11 +300,11 @@ namespace CakeHut.Controllers
                 }
 
                 // Update item status and save reason for return
-                orderItem.Status = "returned";
+                orderItem.Status = "returnRequested";
                 orderItem.ReturnReason = returnReason;
                 orderItem.ReturnRequestedAt = DateTime.UtcNow;
-                orderItem.IsReturned = true;
-                order.OrderStatus = "returned";
+                //orderItem.IsReturned = true;
+                //order.OrderStatus = "returnRequested";
 
                 await _context.SaveChangesAsync();
 

@@ -41,7 +41,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var transaction in Model.Transactions.OrderByDescending(t => t.TransactionDate))
+                    @foreach (var transaction in ViewBag.PaginatedTransactions)
                     {
                         <tr>
                             <td>@transaction.TransactionDate.ToString("yyyy-MM-dd HH:mm")</td>
@@ -55,4 +55,15 @@
             </table>
         </div>
     }
+    <!-- Pagination Controls -->
+    <nav class="d-flex justify-content-center mt-4">
+        <ul class="pagination">
+            @for (int i = 1; i <= ViewBag.TotalPages; i++)
+            {
+                <li class="page-item @(i == ViewBag.PageIndex ? "active" : "")">
+                    <a class="page-link" asp-action="Index" asp-route-pageIndex="@i">@i</a>
+                </li>
+            }
+        </ul>
+    </nav>
 </div>

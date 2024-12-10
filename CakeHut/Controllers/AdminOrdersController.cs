@@ -1,8 +1,12 @@
 ﻿using CakeHut.Data;
 using CakeHut.Models;
+using DocumentFormat.OpenXml.InkML;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
+using OfficeOpenXml.Export.HtmlExport.StyleCollectors.StyleContracts;
 
 namespace CakeHut.Controllers
 {
@@ -10,17 +14,22 @@ namespace CakeHut.Controllers
     [Route("/Admin/Orders/{action=Index}/{id?}")]
     public class AdminOrdersController : Controller
     {
-        private readonly ApplicationDbContext context;
+        private readonly ApplicationDbContext _context;
         private readonly int pageSize = 5;
+        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly WalletService _walletService;
 
-        public AdminOrdersController(ApplicationDbContext context)
+        public AdminOrdersController(ApplicationDbContext context, UserManager<ApplicationUser> userManager,
+             WalletService walletService)
         {
-            this.context = context;
+            _context = context;
+            _userManager = userManager;
+            _walletService = walletService;
         }
 
         public IActionResult Index(int pageIndex)
         {
-            IQueryable<Order> query = context.Orders.Include(o => o.Client)
+            IQueryable<Order> query = _context.Orders.Include(o => o.Client)
                 .Include(o => o.Items).OrderByDescending(o => o.Id);
 
             if (pageIndex <= 0)
@@ -45,7 +54,7 @@ namespace CakeHut.Controllers
         // Order Details
         public async Task<IActionResult> Details(int id)
         {
-            var order = context.Orders.Include(o => o.Client).Include(o => o.Items)
+            var order = _context.Orders.Include(o => o.Client).Include(o => o.Items)
                 .ThenInclude(oi => oi.Product).FirstOrDefault(o => o.Id == id);
 
             if (order == null)
@@ -53,7 +62,7 @@ namespace CakeHut.Controllers
                 return RedirectToAction("Index");
             }
 
-            var coupon = await context.Orders
+            var coupon = await _context.Orders
                 .Include(o => o.AppliedCoupon)
                 .FirstOrDefaultAsync(o => o.Id == id);
 
@@ -65,7 +74,7 @@ namespace CakeHut.Controllers
                 }
             }
 
-            ViewBag.NumOrders = context.Orders.Where(o => o.ClientId == order.ClientId).Count();
+            ViewBag.NumOrders = _context.Orders.Where(o => o.ClientId == order.ClientId).Count();
 
             return View(order);
         }
@@ -73,7 +82,7 @@ namespace CakeHut.Controllers
         // Edit order status
         public IActionResult Edit(int id, string? payment_status, string? order_status)
         {
-            var order = context.Orders
+            var order = _context.Orders
                 .Include(o => o.Items) 
                 .FirstOrDefault(o => o.Id == id);
             if (order == null)
@@ -108,9 +117,97 @@ namespace CakeHut.Controllers
                 }
             }
 
-            context.SaveChanges();
+            bool allItemsReturned = order.Items.All(item => item.Status == "returned");
+
+            if (allItemsReturned)
+            {
+                order.OrderStatus = "returned";
+            }
+
+            _context.SaveChanges();
 
             return RedirectToAction("Details", new { id });
         }
+
+        [HttpPost]
+        public async Task<IActionResult> EditItem(int orderId, int itemId, string item_status)
+        {
+            var order = _context.Orders.Include(o => o.Items)
+                .Include(o => o.AppliedCoupon)
+                .FirstOrDefault(o => o.Id == orderId);
+
+            var orderItem = _context.OrderItems.FirstOrDefault(o => o.Id == itemId);
+            if (order != null)
+            {
+                //var orderItem = _context.OrderItems.FirstOrDefault(o => o.Id == itemId);
+                if (orderItem != null)
+                {
+                    orderItem.Status = item_status;
+                    
+                }
+            }
+
+            bool allItemsReturned = order.Items.All(item => item.Status == "returned");
+
+            if (allItemsReturned)
+            {
+                order.OrderStatus = "returned";
+            }
+
+            if (item_status == "returned")
+            {
+                var currentUser = await _userManager.FindByIdAsync(order.ClientId);
+                if (currentUser != null)
+                {
+                    var remainingItemsTotal = order.Items
+                    .Where(i => i.Status != "canceled" && i.Status != "returned")
+                    .Sum(i => i.UnitPrice * i.Quantity);
+
+
+                    decimal discount = 0;
+                    if (order.AppliedCoupon != null)
+                    {
+                        discount = (order.AppliedCoupon.DiscountPercentage / 100m) * remainingItemsTotal;
+                    }
+
+                    decimal refundAmount = 0;
+
+
+                    if (remainingItemsTotal == 0)
+                    {
+                        order.OrderStatus = "returned";
+                        refundAmount = order.TotalAmount;
+                    }else
+                    {
+                        refundAmount = orderItem.UnitPrice * orderItem.Quantity - discount;
+                    }
+
+                    //decimal refundAmount = orderItem.UnitPrice * orderItem.Quantity;
+
+                    //if (order.AppliedCoupon != null)
+                    //{
+                    //    decimal discountAmount = (order.AppliedCoupon.DiscountPercentage / 100m) * refundAmount;
+                    //    refundAmount -= discountAmount; 
+                    //}
+
+                    if (order.PaymentStatus == "accepted")
+                    {
+                        await _walletService.AddRefundToWalletAsync(
+                            currentUser.Id,
+                            refundAmount,
+                            "Refund",
+                            "Return",
+                            orderItem.Id
+                        );
+                    }
+
+                    TempData["Message"] = $"Item {orderItem.Product.Name} has been returned. A refund of {refundAmount:F2} Rs has been credited to the {currentUser.FirstName}'s wallet.";
+                }
+            }
+
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Details", new { itemId });
+        }
+
     }
 }

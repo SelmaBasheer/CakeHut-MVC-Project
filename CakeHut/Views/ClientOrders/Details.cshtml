@@ -72,6 +72,12 @@ else
         @TempData["Message"]
     </div>
 }
+else if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-warning">
+        @TempData["ErrorMessage"]
+    </div>
+}
 
 <div class="row mb-4">
     <div class="col">
@@ -135,6 +141,7 @@ else
             <th style="width:100px">Units</th>
             <th style="width:100px">Amount</th>
             <th style="width:150px">Actions</th>
+            <th style="width:100px">Status</th>
         </tr>
     </thead>
     <tbody>
@@ -160,8 +167,9 @@ else
                     </td>
                     <td>@item.Quantity</td>
                     <td>@(item.UnitPrice * item.Quantity) Rs</td>
+
                     <td>
-                        @if (item.Status == "delivered" || Model.OrderStatus == "delivered")
+                        @if (item.Status == "delivered" )
                         {
                             <form asp-controller="ClientOrders" asp-action="ReturnOrderItem" method="post" style="display: inline;">
                                 <input type="hidden" name="orderId" value="@Model.Id" />
@@ -171,7 +179,7 @@ else
                                 </button>
                             </form>
                         }
-                        else if (Model.OrderStatus == "created" || Model.OrderStatus == "accepted")
+                        else if (item.Status == "active" && Model.OrderStatus == "created" && Model.OrderStatus == "accepted")
                         {
                             <form asp-controller="ClientOrders" asp-action="CancelOrderItem" method="post" style="display: inline;">
                                 <input type="hidden" name="orderId" value="@Model.Id" />
@@ -181,13 +189,24 @@ else
                                 </button>
                             </form>
                         }
-                        else if (Model.OrderStatus == "returned")
+                        
+                    </td>
+                    <td>
+                        @if (item.Status == "active" || item.Status == "delivered")
                         {
-                            <span class="text-muted">Returned</span>
+                            <span class="text-success">@item.Status</span>
                         }
-                        else if (item.Status == "cancelled" || Model.OrderStatus == "cancelled")
+                        else if (item.Status == "canceled")
                         {
-                            <span class="text-muted">Canceled</span>
+                            <span class="text-muted">@item.Status</span>
+                        }
+                        else if (item.Status == "returned"){
+                            <span class="text-success">@item.Status</span>
+                            <span class="text-muted" style="font-size: 0.8em;">(Refund amount has been credited to your wallet)</span>
+                        }
+                        else
+                        {
+                            <span class="text-primary">@item.Status</span>
                         }
                     </td>
                 </tr>

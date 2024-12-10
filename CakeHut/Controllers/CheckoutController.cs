@@ -85,30 +85,85 @@ namespace CakeHut.Controllers
             try
             {
                 List<OrderItem> cartItems = CartHelper.GetCartItems(Request, Response, context);
-                decimal totalAmount = CartHelper.GetSubtotal(cartItems) + shippingFee;
+                
+                decimal totalAmount;
+                if (TempData["DiscountedTotal"] != null && decimal.TryParse(TempData["DiscountedTotal"].ToString(), out var discountedTotal))
+                {
+                    totalAmount = discountedTotal;
+                }
+                else
+                {
+                    totalAmount = CartHelper.GetSubtotal(cartItems) + shippingFee;
+                }
 
 
-                // create the request body
-                JsonObject createOrderRequest = new JsonObject();
-                createOrderRequest.Add("intent", "CAPTURE");
+                string deliveryAddress = TempData["DeliveryAddress"]?.ToString();
 
-                JsonObject amount = new JsonObject();
-                amount.Add("currency_code", "USD");
-                amount.Add("value", totalAmount);
+                if (string.IsNullOrEmpty(deliveryAddress))
+                {
+                    _logger.LogWarning("Delivery address is missing.");
+                    return new JsonResult(new { Id = "", Error = "Delivery address is missing." });
+                }
 
-                JsonObject purchaseUnit1 = new JsonObject();
-                purchaseUnit1.Add("amount", amount);
+                var appUser = await userManager.GetUserAsync(User);
+                if (appUser == null)
+                {
+                    _logger.LogWarning("User not found while creating PayPal order.");
+                    return new JsonResult(new { Id = "", Error = "User not found." });
+                }
 
-                JsonArray purchaseUnits = new JsonArray();
-                purchaseUnits.Add(purchaseUnit1);
+                string fullName = string.IsNullOrEmpty(appUser.FirstName)
+                    ? $"{appUser.FirstName} {appUser.LastName}" 
+                    : appUser.FirstName; 
+
+
+                JsonObject createOrderRequest = new JsonObject
+                    {
+                        { "intent", "CAPTURE" },
+                        { "application_context", new JsonObject
+                            {
+                                { "shipping_preference", "SET_PROVIDED_ADDRESS" } 
+                            }
+                        }
+                    };
+
+                                JsonObject amount = new JsonObject
+                    {
+                        { "currency_code", "USD" },
+                        { "value", totalAmount.ToString("F2") } 
+                    };
+
+                                JsonObject shipping = new JsonObject
+                    {
+                        { "name", new JsonObject { { "full_name", fullName } } },
+                        { "address", new JsonObject
+                            {
+                                { "address_line_1", deliveryAddress },
+                                { "admin_area_2", "City" },         
+                                { "admin_area_1", "State" },        
+                                { "postal_code", "12345" },         
+                                { "country_code", "US" }           
+                            }
+                        }
+                    };
+
+                                JsonObject purchaseUnit1 = new JsonObject
+                    {
+                        { "amount", amount },
+                        { "shipping", shipping }
+                    };
+
+                                JsonArray purchaseUnits = new JsonArray
+                    {
+                        purchaseUnit1
+                    };
 
                 createOrderRequest.Add("purchase_units", purchaseUnits);
 
 
-                // get access token
                 string accessToken = await GetPaypalAccessToken();
 
-                // send request
+                
                 string url = PaypalUrl + "/v2/checkout/orders";
 
 

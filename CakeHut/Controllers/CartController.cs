@@ -148,7 +148,11 @@ namespace CakeHut.Controllers
             if (model.PaymentMethod == "paypal")
             {
                 return RedirectToAction("Index", "Checkout");
+            }else if (model.PaymentMethod == "wallet")
+            {
+                return RedirectToAction("WalletPayment", "Wallet", new { totalAmount = ViewBag.Total });
             }
+
 
             return RedirectToAction("Confirm");
         }
@@ -228,6 +232,16 @@ namespace CakeHut.Controllers
                 total = CartHelper.GetSubtotal(cartItems) + shippingFee; 
             }
 
+            string paymentStatus = string.Empty;
+            if(paymentMethod == "wallet")
+            {
+                paymentStatus = "accepted";
+            }
+            else
+            {
+                paymentStatus = "pending";
+            }
+
             var order = new Order
             {
                 ClientId = appUser.Id,
@@ -235,7 +249,7 @@ namespace CakeHut.Controllers
                 ShippingFee = shippingFee,
                 DeliveryAddress = deliveryAddress,
                 PaymentMethod = paymentMethod,
-                PaymentStatus = "pending",
+                PaymentStatus = paymentStatus,
                 PaymentDetails = "",
                 OrderStatus = "created",
                 CreatedAt = DateTime.Now,

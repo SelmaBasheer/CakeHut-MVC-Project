@@ -38,18 +38,12 @@ namespace CakeHut.Data
 
             if (!request.HttpContext.User.Identity.IsAuthenticated)
             {
-                return 0; // Return 0 for unauthenticated users
+                return 0; 
             }
-
-            int cartSize = 0;
 
             var cartDictionary = GetCartDictionary(request, response);
-            foreach (var keyValuePair in cartDictionary)
-            {
-                cartSize += keyValuePair.Value;
-            }
-
-            return cartSize;
+            
+            return cartDictionary?.Count ?? 0;
         }
 
         public static List<OrderItem> GetCartItems(HttpRequest request, HttpResponse response
