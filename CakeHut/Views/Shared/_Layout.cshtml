@@ -102,7 +102,7 @@
             // Update product price display
             const price = discountedPrice && discountedPrice < unitPrice ? discountedPrice : unitPrice;
             if (priceElement) {
-                priceElement.textContent = `${price * quantity} Rs`;
+                priceElement.textContent = `${(price * quantity).toFixed(2)} Rs`;
             }
 
             // Update subtotal and total
@@ -118,11 +118,11 @@
             }
 
             if (subtotalElement) {
-                subtotalElement.textContent = `${newSubtotal} Rs`;
+                subtotalElement.textContent = `${(newSubtotal).toFixed(2)} Rs`;
             }
 
             if (totalElement) {
-                totalElement.textContent = `${newSubtotal + parseFloat(document.querySelector("#shipping-fee").dataset.fee)} Rs`;
+                totalElement.textContent = `${(newSubtotal + parseFloat(document.querySelector("#shipping-fee").dataset.fee)).toFixed(2)} Rs`;
             }
 
             updatePaymentMethods(newSubtotal);
