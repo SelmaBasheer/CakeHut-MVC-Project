@@ -142,13 +142,18 @@ namespace CakeHut.Controllers
                     discount = (order.AppliedCoupon.DiscountPercentage / 100m) * remainingItemsTotal;
                 }
 
-                decimal refundAmount = orderItem.UnitPrice * orderItem.Quantity;
+                decimal itemDiscountShare = 0;
+                if (order.AppliedCoupon != null)
+                {
+                    itemDiscountShare = (orderItem.UnitPrice * order.AppliedCoupon.DiscountPercentage) / 100m;
+                }
+                decimal refundAmount = (orderItem.UnitPrice * orderItem.Quantity) - itemDiscountShare;
+
 
 
                 if (remainingItemsTotal == 0)
                 {
                     refundAmount += order.ShippingFee; 
-                    //order.TotalAmount = 0; 
                     order.OrderStatus = "canceled"; 
                     order.CancellationDate = DateTime.UtcNow; 
                 }

@@ -170,25 +170,22 @@ namespace CakeHut.Controllers
                         discount = (order.AppliedCoupon.DiscountPercentage / 100m) * remainingItemsTotal;
                     }
 
-                    decimal refundAmount = 0;
+                    decimal itemDiscountShare = 0;
+                    if (order.AppliedCoupon != null)
+                    {
+                        itemDiscountShare = (orderItem.UnitPrice * order.AppliedCoupon.DiscountPercentage) / 100m;
+                    }
+
+                    decimal refundAmount = (orderItem.UnitPrice * orderItem.Quantity) - itemDiscountShare;
+
 
 
                     if (remainingItemsTotal == 0)
                     {
                         order.OrderStatus = "returned";
                         refundAmount = order.TotalAmount;
-                    }else
-                    {
-                        refundAmount = orderItem.UnitPrice * orderItem.Quantity - discount;
                     }
-
-                    //decimal refundAmount = orderItem.UnitPrice * orderItem.Quantity;
-
-                    //if (order.AppliedCoupon != null)
-                    //{
-                    //    decimal discountAmount = (order.AppliedCoupon.DiscountPercentage / 100m) * refundAmount;
-                    //    refundAmount -= discountAmount; 
-                    //}
+                    
 
                     if (order.PaymentStatus == "accepted")
                     {

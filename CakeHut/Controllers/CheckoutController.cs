@@ -43,6 +43,7 @@ namespace CakeHut.Controllers
                 if (TempData["DiscountedTotal"] != null && decimal.TryParse(TempData["DiscountedTotal"].ToString(), out var discountedTotal))
                 {
                     total = discountedTotal;
+                    TempData.Keep("DiscountedTotal");
                 }
                 else
                 {
@@ -90,6 +91,7 @@ namespace CakeHut.Controllers
                 if (TempData["DiscountedTotal"] != null && decimal.TryParse(TempData["DiscountedTotal"].ToString(), out var discountedTotal))
                 {
                     totalAmount = discountedTotal;
+                    TempData.Keep("DiscountedTotal");
                 }
                 else
                 {

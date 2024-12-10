@@ -179,7 +179,7 @@ else if (TempData["ErrorMessage"] != null)
                                 </button>
                             </form>
                         }
-                        else if (item.Status == "active" && Model.OrderStatus == "created" && Model.OrderStatus == "accepted")
+                        else if (item.Status != "canceled" && item.Status == "active")
                         {
                             <form asp-controller="ClientOrders" asp-action="CancelOrderItem" method="post" style="display: inline;">
                                 <input type="hidden" name="orderId" value="@Model.Id" />
